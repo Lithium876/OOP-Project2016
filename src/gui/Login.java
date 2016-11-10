@@ -120,6 +120,7 @@ public class Login{
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CreateStaff cs = new CreateStaff();
+				StaffMenu sm = new StaffMenu();
 				String pswrd = new String(pass.getPassword());
 				String usr =usrname.getText();
 				String type = String.valueOf(domain.getSelectedItem());
@@ -139,7 +140,7 @@ public class Login{
 							cs.run();
 						}else{
 							if(type.equals("STAFF")){
-								
+								sm.load();
 							}else{
 								
 							}
