@@ -17,7 +17,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Login {
+public class Login{
 
 	private JFrame frmLogin;
 	private JTextField usrname;
@@ -45,6 +45,14 @@ public class Login {
 	public Login() {
 		initialize();
 	}
+	public void run() {
+		try {
+			Login window = new Login();
+			window.frmLogin.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -55,7 +63,7 @@ public class Login {
 		frmLogin.getContentPane().setBackground(new Color(0, 102, 255));
 		frmLogin.setResizable(false);
 		frmLogin.setTitle("Login");
-		frmLogin.setBounds(100, 100, 614, 467);
+		frmLogin.setBounds(100, 100, 614, 473);
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmLogin.getContentPane().setLayout(null);
 		
@@ -105,26 +113,41 @@ public class Login {
 		JComboBox domain = new JComboBox();
 		domain.setEditable(true);
 		domain.setBounds(110, 224, 190, 24);
-		domain.setModel(new DefaultComboBoxModel(new String[]{"Administrator","Staff","Student"}));
+		domain.setModel(new DefaultComboBoxModel(new String[]{"Administrator","STAFF","STUDENT"}));
 		panel_2.add(domain);
 		
 		JButton btnNewButton = new JButton("LOGIN");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String passwrd = new String(pass.getPassword());
+				CreateStaff cs = new CreateStaff();
+				String pswrd = new String(pass.getPassword());
 				String usr =usrname.getText();
-				String pswrd =passwrd;
 				String type = String.valueOf(domain.getSelectedItem());
 				
 				int check;
 				FileProcess look = new FileProcess();
-				check=look.fileLookUP(usr, pswrd,type);
-				
-				if(check==0){
-					System.out.println("Login B");
+				if(pswrd.length()==0 ||usr.length()==0 ){
+					JOptionPane.showMessageDialog(null, "Can't leave Username or Password field blank!");
 				}
-				else{
-					JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
+				else
+				{
+					check=look.fileLookUP(usr, pswrd,type);
+					if(check==0){
+						frmLogin.dispose();
+						if(type.equals("Administrator"))
+						{
+							cs.run();
+						}else{
+							if(type.equals("STAFF")){
+								
+							}else{
+								
+							}
+						}
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
+					}
 				}
 			}
 		});
@@ -136,5 +159,11 @@ public class Login {
 		panel_3.setBackground(new Color(0, 153, 255));
 		panel_3.setBounds(227, -15, 10, 431);
 		frmLogin.getContentPane().add(panel_3);
+		
+		JLabel lblNewLabel = new JLabel("The Home & Away Institute");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setBounds(201, 424, 298, 15);
+		frmLogin.getContentPane().add(lblNewLabel);
 	}
+
 }

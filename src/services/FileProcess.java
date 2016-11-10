@@ -11,13 +11,15 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class FileProcess {
-	public void writeUser(String user, String pass,String domain)
+	public void writeUser(String name, String user, String pass,String domain)
 	{
 		FileWriter writer =null;
 		try 
 		{
 			writer =new FileWriter("UserAccounts.txt",true);
 				
+			writer.write(name);
+			writer.write("\r\n");
 			writer.write(user);
 			writer.write("\r\n");
 			writer.write(pass);
@@ -75,16 +77,16 @@ public class FileProcess {
 			{
 				try
 				{
-					if(Temps.get(l).contains(search))
+					if(Temps.get(l+1).contains(search))
 					{
 						if(rewrite.equals("NO"))
 						{
-							Temps.set(l, Update);
+							Temps.set(l+1, Update);
 							count++;
 						}
 						else
 						{
-							Temps.set(l+1, Update);
+							Temps.set(l+2, Update);
 							count++;
 						}
 						
@@ -113,13 +115,13 @@ public class FileProcess {
 		Temps.clear();//CLEARS THE LIST
 	}
 	
-	public int validate(String user, String pass, String confirmpass, String update,String domain)
+	public int validate(String name, String user, String pass, String confirmpass, String update,String domain)
 	{
 		String alpha= "[a-zA-Z]+";
 		String num="[0-9]+";
 		try
 		{
-			if(pass.length()<6||pass.length()>25)
+			if(pass.length()<8||pass.length()>25)
 			{
 				JOptionPane.showMessageDialog(null, "Check password length!.. A minimum of 6 or a maximum of 25 characters are required");
 			}
@@ -134,8 +136,16 @@ public class FileProcess {
 			else
 			{
 				if(update.equals("NO")){
-					JOptionPane.showMessageDialog(null, "Account Created!!");
-					writeUser(user,pass,domain);
+					
+					int check= LookUPUser(user);
+					if(check==0){
+						JOptionPane.showMessageDialog(null, "Username Already Exist!");
+						return 1;
+						
+					}else{
+						JOptionPane.showMessageDialog(null, "Account Created!!");
+						writeUser(name, user,pass,domain);
+					}
 					return 0;
 				}else if(update.equals("YES")){
 					String str="Password: "+pass;
@@ -216,7 +226,7 @@ public class FileProcess {
 			inFile.close();
 			for(int i=0;i<Temps.size();i++)
 			{
-				if(Temps.get(i).contains(user)&&Temps.get(i+1).equals(pass)&&Temps.get(i+2).equals(domain))
+				if(Temps.get(i+1).contains(user)&&Temps.get(i+2).equals(pass)&&Temps.get(i+3).equals(domain))
 				{
 					return 0;
 				}
@@ -224,7 +234,36 @@ public class FileProcess {
 		}
 		catch(Exception e)
 		{
-			JOptionPane.showMessageDialog(null, "Opps.. Somthing went wrong while looking up user in file.\n Error: "+e.getMessage());
+			//JOptionPane.showMessageDialog(null, "Opps.. Somthing went wrong while looking up user in file.\n Error: "+e.getMessage());
+		}
+		return -1;
+	}	
+	public int LookUPUser(String user)
+	{
+		try
+		{
+			String strholder="";
+			Scanner inFile = new Scanner(new File("UserAccounts.txt"));
+			List<String> Temps =new ArrayList<String>();
+			
+			while(inFile.hasNext())
+			{
+				strholder=inFile.nextLine();
+				Temps.add(strholder);
+			}
+			inFile.close();
+			for(int i=0;i<Temps.size();i++)
+			{
+				if(Temps.get(i+1).equals(user))
+				{
+					Temps.clear();
+					return 0;
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			//JOptionPane.showMessageDialog(null, "Opps.. Somthing went wrong while looking up user in file.\n Error: "+e.getMessage());
 		}
 		return -1;
 	}	
