@@ -27,6 +27,8 @@ public class CreateStaff{
 	private JPasswordField passwordField;
 	private JPasswordField confirmpasswordField;
 	private JTextField lastName;
+	private JTextField departmnt;
+	private JTextField faculty;
 
 	/**
 	 * Launch the application.
@@ -78,18 +80,18 @@ public class CreateStaff{
 		panel.setLayout(null);
 		
 		firstName = new JTextField();
-		firstName.setBounds(123, 99, 159, 19);
+		firstName.setBounds(118, 76, 166, 19);
 		panel.add(firstName);
 		firstName.setColumns(10);
 		
 		JLabel fname = new JLabel("First Name:");
 		fname.setForeground(new Color(255, 255, 255));
-		fname.setBounds(32, 101, 99, 15);
+		fname.setBounds(22, 78, 99, 15);
 		panel.add(fname);
 		
 		JLabel lname = new JLabel("Last Name:");
 		lname.setForeground(Color.WHITE);
-		lname.setBounds(300, 101, 99, 15);
+		lname.setBounds(302, 78, 99, 15);
 		panel.add(lname);
 		
 		username = new JTextField();
@@ -134,7 +136,7 @@ public class CreateStaff{
 		
 		lastName = new JTextField();
 		lastName.setColumns(10);
-		lastName.setBounds(398, 99, 159, 19);
+		lastName.setBounds(400, 76, 159, 19);
 		panel.add(lastName);
 		
 		JSeparator separator = new JSeparator();
@@ -151,11 +153,13 @@ public class CreateStaff{
 				FileProcess fp = new FileProcess();
 				String name = new String(firstName.getText()+" "+lastName.getText());
 				String usr = username.getText();
+				String department = departmnt.getText();
+				String fac = faculty.getText();
 				String passwrd = new String(passwordField.getPassword());
 				String confirmPasswrd = new String(confirmpasswordField.getPassword());
 				String type = String.valueOf(domain.getSelectedItem());
 				
-				fp.validate(name, usr, passwrd, confirmPasswrd, "NO", type);
+				fp.validate(name, usr, passwrd, confirmPasswrd, "NO", type,department,fac);
 			}
 		});
 		btnNewButton.setBounds(191, 366, 221, 32);
@@ -181,6 +185,26 @@ public class CreateStaff{
 		});
 		btnNewButton_1.setBounds(251, 407, 99, 25);
 		panel.add(btnNewButton_1);
+		
+		JLabel lblDepartment = new JLabel("Department:");
+		lblDepartment.setForeground(Color.WHITE);
+		lblDepartment.setBounds(22, 123, 99, 15);
+		panel.add(lblDepartment);
+		
+		departmnt = new JTextField();
+		departmnt.setColumns(10);
+		departmnt.setBounds(118, 119, 166, 19);
+		panel.add(departmnt);
+		
+		JLabel lblFaculty = new JLabel("Faculty:");
+		lblFaculty.setForeground(Color.WHITE);
+		lblFaculty.setBounds(302, 121, 99, 15);
+		panel.add(lblFaculty);
+		
+		faculty = new JTextField();
+		faculty.setColumns(10);
+		faculty.setBounds(400, 119, 159, 19);
+		panel.add(faculty);
 		
 		
 	}

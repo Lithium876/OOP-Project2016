@@ -128,7 +128,7 @@ public class Login{
 				int check;
 				FileProcess look = new FileProcess();
 				if(pswrd.length()==0 ||usr.length()==0 ){
-					JOptionPane.showMessageDialog(null, "Can't leave Username or Password field blank!");
+					JOptionPane.showMessageDialog(null,"Can't leave Username or Password field blank!");
 				}
 				else
 				{

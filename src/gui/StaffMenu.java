@@ -14,10 +14,25 @@ import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+
+import domain.StudentRecords;
+
+import javax.swing.JSeparator;
 
 public class StaffMenu {
 
 	private JFrame frmStaffMenu;
+	private JTextField fname;
+	private JTextField lname;
+	private JTextField textField_2;
+	private JTextField contact;
+	private JTextField add1;
+	private JTextField addw;
+	private JTextField add3;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -101,6 +116,7 @@ public class StaffMenu {
 		panel.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("REGISTER STUDENT");
+		btnNewButton.setEnabled(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -109,6 +125,13 @@ public class StaffMenu {
 		panel.add(btnNewButton);
 		
 		JButton btnCreateProgramme = new JButton("CREATE PROGRAMME");
+		btnCreateProgramme.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmStaffMenu.dispose();
+				RegisterStudents rs = new RegisterStudents();
+				rs.load();
+			}
+		});
 		btnCreateProgramme.setBounds(12, 195, 188, 25);
 		panel.add(btnCreateProgramme);
 		
@@ -136,9 +159,133 @@ public class StaffMenu {
 		panel.add(btnNewButton_1);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setLayout(null);
 		panel_1.setBackground(new Color(0, 153, 255));
-		panel_1.setBounds(236, 106, 507, 270);
+		panel_1.setBounds(236, 23, 507, 402);
 		frmStaffMenu.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("First Name:");
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setBounds(12, 153, 93, 15);
+		panel_1.add(lblNewLabel_1);
+		
+		fname = new JTextField();
+		fname.setBounds(103, 151, 392, 19);
+		panel_1.add(fname);
+		fname.setColumns(10);
+		
+		JLabel lblLastName = new JLabel("Last Name:");
+		lblLastName.setForeground(Color.WHITE);
+		lblLastName.setBounds(12, 182, 88, 15);
+		panel_1.add(lblLastName);
+		
+		lname = new JTextField();
+		lname.setColumns(10);
+		lname.setBounds(103, 180, 392, 19);
+		panel_1.add(lname);
+		
+		JLabel lblId = new JLabel("ID:");
+		lblId.setForeground(Color.WHITE);
+		lblId.setBounds(182, 14, 25, 15);
+		panel_1.add(lblId);
+		
+		textField_2 = new JTextField();
+		textField_2.setEditable(false);
+		textField_2.setColumns(10);
+		textField_2.setBounds(209, 12, 123, 19);
+		panel_1.add(textField_2);
+		
+		JLabel lblContact = new JLabel("Contact #:");
+		lblContact.setForeground(Color.WHITE);
+		lblContact.setBounds(12, 228, 93, 15);
+		panel_1.add(lblContact);
+		
+		contact = new JTextField();
+		contact.setColumns(10);
+		contact.setBounds(103, 226, 392, 19);
+		panel_1.add(contact);
+		
+		JLabel lblAddress = new JLabel("Address:");
+		lblAddress.setForeground(Color.WHITE);
+		lblAddress.setBounds(12, 266, 93, 15);
+		panel_1.add(lblAddress);
+		
+		add1 = new JTextField();
+		add1.setColumns(10);
+		add1.setBounds(103, 264, 392, 19);
+		panel_1.add(add1);
+		
+		addw = new JTextField();
+		addw.setColumns(10);
+		addw.setBounds(103, 295, 392, 19);
+		panel_1.add(addw);
+		
+		add3 = new JTextField();
+		add3.setColumns(10);
+		add3.setBounds(103, 326, 392, 19);
+		panel_1.add(add3);
+		StudentRecords sr = new StudentRecords();
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(481, 277, -468, -24);
+		panel_1.add(separator);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(12, 210, 483, 15);
+		panel_1.add(separator_1);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setBounds(12, 34, 483, 15);
+		panel_1.add(separator_2);
+		
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setBounds(12, 137, 483, 15);
+		panel_1.add(separator_3);
+		
+		JSeparator separator_4 = new JSeparator();
+		separator_4.setBounds(12, 353, 483, 15);
+		panel_1.add(separator_4);
+		
+		JButton btnNewButton_2 = new JButton("REGISTER STUDENT");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_2.setBounds(144, 365, 311, 25);
+		panel_1.add(btnNewButton_2);
+		
+		JLabel label = new JLabel("Date:");
+		label.setForeground(Color.WHITE);
+		label.setBounds(12, 49, 62, 15);
+		panel_1.add(label);
+		
+		textField = new JTextField();
+		textField.setText("11/10/2016");
+		textField.setEditable(false);
+		textField.setColumns(10);
+		textField.setBounds(143, 49, 328, 19);
+		panel_1.add(textField);
+		
+		JLabel label_1 = new JLabel("Enrolment Status:");
+		label_1.setForeground(Color.WHITE);
+		label_1.setBounds(12, 82, 133, 15);
+		panel_1.add(label_1);
+		
+		textField_1 = new JTextField();
+		textField_1.setEditable(false);
+		textField_1.setText("1");
+		textField_1.setColumns(10);
+		textField_1.setBounds(143, 80, 328, 19);
+		panel_1.add(textField_1);
+		
+		JLabel label_2 = new JLabel("Programme Code:");
+		label_2.setForeground(Color.WHITE);
+		label_2.setBounds(12, 109, 133, 15);
+		panel_1.add(label_2);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(143, 106, 328, 19);
+		panel_1.add(textField_3);
 	}
 }

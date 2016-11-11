@@ -11,7 +11,7 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class FileProcess {
-	public void writeUser(String name, String user, String pass,String domain)
+	public void writeUser(String name, String user, String pass,String domain,String department, String faculty)
 	{
 		FileWriter writer =null;
 		try 
@@ -25,6 +25,10 @@ public class FileProcess {
 			writer.write(pass);
 			writer.write("\r\n");
 			writer.write(domain);
+			writer.write("\r\n");
+			writer.write(department);
+			writer.write("\r\n");
+			writer.write(faculty);
 			writer.write("\r\n");
 			writer.write("=======================================");
 			writer.write("\r\n");
@@ -115,7 +119,7 @@ public class FileProcess {
 		Temps.clear();//CLEARS THE LIST
 	}
 	
-	public int validate(String name, String user, String pass, String confirmpass, String update,String domain)
+	public int validate(String name, String user, String pass, String confirmpass, String update,String domain,String department, String faculty)
 	{
 		String alpha= "[a-zA-Z]+";
 		String num="[0-9]+";
@@ -123,7 +127,7 @@ public class FileProcess {
 		{
 			if(pass.length()<8||pass.length()>25)
 			{
-				JOptionPane.showMessageDialog(null, "Check password length!.. A minimum of 6 or a maximum of 25 characters are required");
+				JOptionPane.showMessageDialog(null, "Check password length!.. A minimum of 8 or a maximum of 25 characters are required");
 			}
 			else if(pass.matches(alpha)==true || pass.matches(num)==true) 
 			{
@@ -144,7 +148,7 @@ public class FileProcess {
 						
 					}else{
 						JOptionPane.showMessageDialog(null, "Account Created!!");
-						writeUser(name, user,pass,domain);
+						writeUser(name, user,pass,domain,department,faculty);
 					}
 					return 0;
 				}else if(update.equals("YES")){

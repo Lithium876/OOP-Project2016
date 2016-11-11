@@ -1,9 +1,11 @@
 package domain;
 
-import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
-public class StudentRecords extends Person implements Serializable{
+public class StudentRecords extends Person {
 	private String address;
 	private Date dateEnrolled;
 	private String programmeCode;
@@ -23,12 +25,11 @@ public class StudentRecords extends Person implements Serializable{
 		super(id,firstName,lastName);
 		this.course=course;
 		this.address=address;
-		this.enrolmentStatus=enrolmentStatus;
 		this.programmeCode=programmeCode;
 		this.contactNumber=contactNumber;
 		this.enrolmentStatus=enrolmentStatus;
-		this.dateEnrolled=new Date();
 	}
+	
 	public void setcourse(CourseRecords course){
 		this.course=course;
 	}
@@ -56,7 +57,10 @@ public class StudentRecords extends Person implements Serializable{
 	public String getAddress() {
 		return address;
 	}
-	public Date getDateEnrolled() {
+	public String getDateEnrolled() {
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+		Date today = Calendar.getInstance().getTime();
+		String dateEnrolled = df.format(today);
 		return dateEnrolled;
 	}
 	public boolean isEnrolmentStatus() {
