@@ -162,6 +162,13 @@ public class StaffMenu{
 		panel.add(btnModifyPrgramme);
 		
 		JButton btnGenerateStudentList = new JButton("STUDENT LIST");
+		btnGenerateStudentList.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmStaffMenu.dispose();
+				StudentList sl =new StudentList();
+				sl.load();
+			}
+		});
 		btnGenerateStudentList.setBounds(12, 329, 188, 25);
 		panel.add(btnGenerateStudentList);
 		
@@ -276,9 +283,9 @@ public class StaffMenu{
 					pst.setString(4, contact.getText());
 					pst.setString(5, add1.getText());
 					pst.setString(6, add2.getText());
-					pst.setString(7, add2.getText());
-					pst.setString(8, add3.getText());
-					pst.setString(9, progcode.getText());
+					pst.setString(7, add3.getText());
+					pst.setString(8, progcode.getText());
+					pst.setString(9, enrolstat.getText());
 					pst.setString(10, date.getText());
 					pst.execute();
 					pst.close();
