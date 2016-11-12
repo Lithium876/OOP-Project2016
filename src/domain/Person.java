@@ -1,20 +1,20 @@
 package domain;
 
 public abstract class Person {
-	private int idNumber;
+	private String idNumber;
 	private String firstName;
 	private String lastName;
 	
 	public Person(){
-		this.idNumber=0;
+		this.idNumber="";
 		this.firstName=" ";
 		this.lastName=" ";
 	}
-	public Person(int idNumber, String firstName, String LastName){
+	public Person(String idNumber, String firstName, String LastName){
 		this.idNumber=idNumber;
 		this.firstName=firstName;
 	}
-	public void setIdNumber(int idNumber) {
+	public void setIdNumber(String idNumber) {
 		this.idNumber = idNumber;
 	}
 	public void setFirstName(String firstName) {
@@ -23,7 +23,7 @@ public abstract class Person {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public int getIdNumber() {
+	public String getIdNumber() {
 		return idNumber;
 	}
 	public String getFirstName() {

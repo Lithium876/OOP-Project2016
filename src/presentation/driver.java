@@ -17,7 +17,7 @@ public class driver {
 		stu.setContactNumber(754843);
 		stu.setEnrolmentStatus(true);
 		stu.setProgrammeCode("PHY432");
-		stu.setIdNumber(893453);
+		stu.setIdNumber("893453");
 		stu.setFirstName("Lomar");
 		stu.setLastName("Lilly");
 		stu.setcourse(course);

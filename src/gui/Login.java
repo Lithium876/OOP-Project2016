@@ -23,6 +23,7 @@ public class Login{
 	private JTextField usrname;
 	private JPasswordField pass;
 
+
 	/**
 	 * Launch the application.
 	 */
@@ -45,6 +46,7 @@ public class Login{
 	public Login() {
 		initialize();
 	}
+	
 	public void run() {
 		try {
 			Login window = new Login();
@@ -58,7 +60,7 @@ public class Login{
 	 * Initialize the contents of the frame.
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void initialize() {
+	public void initialize() {
 		frmLogin = new JFrame();
 		frmLogin.getContentPane().setBackground(new Color(0, 102, 255));
 		frmLogin.setResizable(false);
@@ -83,7 +85,7 @@ public class Login{
 		frmLogin.getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		
-		JLabel lblUsername = new JLabel("Username:");
+		JLabel lblUsername = new JLabel("ID Number:");
 		lblUsername.setForeground(new Color(255, 255, 255));
 		lblUsername.setFont(new Font("Droid Sans Fallback", Font.BOLD, 16));
 		lblUsername.setBounds(12, 146, 121, 26);
@@ -111,7 +113,6 @@ public class Login{
 		panel_2.add(pass);
 		
 		JComboBox domain = new JComboBox();
-		domain.setEditable(true);
 		domain.setBounds(110, 224, 190, 24);
 		domain.setModel(new DefaultComboBoxModel(new String[]{"Administrator","STAFF","STUDENT"}));
 		panel_2.add(domain);
@@ -140,7 +141,9 @@ public class Login{
 							cs.run();
 						}else{
 							if(type.equals("STAFF")){
+								///sm.load();
 								sm.load();
+							
 							}else{
 								
 							}
@@ -165,6 +168,8 @@ public class Login{
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setBounds(201, 424, 298, 15);
 		frmLogin.getContentPane().add(lblNewLabel);
-	}
+		
+		}
+	
 
 }

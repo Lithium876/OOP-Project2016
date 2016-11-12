@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import services.FileProcess;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JComboBox;
 import javax.swing.JSeparator;
@@ -29,6 +30,7 @@ public class CreateStaff{
 	private JTextField lastName;
 	private JTextField departmnt;
 	private JTextField faculty;
+	public String usr;
 
 	/**
 	 * Launch the application.
@@ -99,7 +101,7 @@ public class CreateStaff{
 		username.setBounds(265, 163, 198, 19);
 		panel.add(username);
 		
-		JLabel usrname = new JLabel("Username:");
+		JLabel usrname = new JLabel("ID Number:");
 		usrname.setForeground(Color.WHITE);
 		usrname.setBounds(123, 165, 99, 15);
 		panel.add(usrname);
@@ -152,7 +154,7 @@ public class CreateStaff{
 			public void actionPerformed(ActionEvent e) {
 				FileProcess fp = new FileProcess();
 				String name = new String(firstName.getText()+" "+lastName.getText());
-				String usr = username.getText();
+				usr = username.getText();
 				String department = departmnt.getText();
 				String fac = faculty.getText();
 				String passwrd = new String(passwordField.getPassword());
@@ -168,7 +170,7 @@ public class CreateStaff{
 		JLabel lblAddStaffAccount = new JLabel("Staff Account");
 		lblAddStaffAccount.setFont(new Font("Courier 10 Pitch", Font.BOLD, 47));
 		lblAddStaffAccount.setForeground(new Color(255, 255, 255));
-		lblAddStaffAccount.setBounds(129, 12, 377, 38);
+		lblAddStaffAccount.setBounds(129, 12, 377, 52);
 		panel.add(lblAddStaffAccount);
 		
 		JSeparator separator_2 = new JSeparator();

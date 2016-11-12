@@ -21,7 +21,7 @@ public class StudentRecords extends Person {
 		this.contactNumber=0;
 		this.course = new CourseRecords();
 	}
-	public StudentRecords(int id,String firstName, String lastName,String address, boolean enrolmentStatus,String programmeCode, int contactNumber,CourseRecords course){
+	public StudentRecords(String id,String firstName, String lastName,String address, boolean enrolmentStatus,String programmeCode, int contactNumber,CourseRecords course){
 		super(id,firstName,lastName);
 		this.course=course;
 		this.address=address;

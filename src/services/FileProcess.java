@@ -10,6 +10,8 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+import gui.StaffMenu;
+
 public class FileProcess {
 	public void writeUser(String name, String user, String pass,String domain,String department, String faculty)
 	{
@@ -121,7 +123,7 @@ public class FileProcess {
 	
 	public int validate(String name, String user, String pass, String confirmpass, String update,String domain,String department, String faculty)
 	{
-		String alpha= "[a-zA-Z]+";
+		String alpha= "[a-zA-Z]+\\-";
 		String num="[0-9]+";
 		try
 		{
@@ -232,6 +234,7 @@ public class FileProcess {
 			{
 				if(Temps.get(i+1).contains(user)&&Temps.get(i+2).equals(pass)&&Temps.get(i+3).equals(domain))
 				{
+				
 					return 0;
 				}
 			}
@@ -270,5 +273,38 @@ public class FileProcess {
 			//JOptionPane.showMessageDialog(null, "Opps.. Somthing went wrong while looking up user in file.\n Error: "+e.getMessage());
 		}
 		return -1;
+	}	
+	public String[] getUserinfo(String user)
+	{
+		try
+		{
+			String strholder="";
+			String [] info = new String[3];
+			Scanner inFile = new Scanner(new File("UserAccounts.txt"));
+			List<String> Temps =new ArrayList<String>();
+			
+			while(inFile.hasNext())
+			{
+				strholder=inFile.nextLine();
+				Temps.add(strholder);
+			}
+			inFile.close();
+			for(int i=0;i<Temps.size();i++)
+			{
+				if(Temps.get(i+1).equals(user))
+				{
+					info[0]=Temps.get(i-1);
+					info[1]=Temps.get(i+4);
+					info[2]=Temps.get(i+5);
+					return info;
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			//JOptionPane.showMessageDialog(null, "Opps.. Somthing went wrong while looking up user in file.\n Error: "+e.getMessage());
+		}
+		return null;
+		
 	}	
 }
