@@ -46,6 +46,7 @@ and Contact number.
 
 Course Record:
 * Code, Name, Description, Credits and Pre-requisite
+
 Programme Record:
 * Code, Name, Maximum number of courses, Award and Accreditation
 
