@@ -16,13 +16,14 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class Login{
 
 	private JFrame frmLogin;
 	private JTextField usrname;
 	private JPasswordField pass;
-
+	private static String usr;
 
 	/**
 	 * Launch the application.
@@ -78,6 +79,18 @@ public class Login{
 		panel_1.setBackground(new Color(0, 153, 255));
 		panel_1.setBounds(0, 0, 230, 416);
 		frmLogin.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel logo = new JLabel("");
+		logo.setIcon(new ImageIcon("/home/lithium/Documents/Login-icon.png"));
+		logo.setBounds(51, 124, 150, 138);
+		panel_1.add(logo);
+		
+		JLabel lblNewLabel_1 = new JLabel("H&AI");
+		lblNewLabel_1.setFont(new Font("Century Schoolbook L", Font.BOLD, 30));
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setBounds(69, 236, 93, 46);
+		panel_1.add(lblNewLabel_1);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(0, 153, 255));
@@ -124,7 +137,7 @@ public class Login{
 				StudentMenu stm = new StudentMenu();
 				StaffMenu sm = new StaffMenu();
 				String pswrd = new String(pass.getPassword());
-				String usr =usrname.getText();
+				usr =usrname.getText();
 				String type = String.valueOf(domain.getSelectedItem());
 				
 				int check;
@@ -173,6 +186,9 @@ public class Login{
 		frmLogin.getContentPane().add(lblNewLabel);
 		
 		}
+	public String getid(){
+		return usr;
+	}
 	
 
 }

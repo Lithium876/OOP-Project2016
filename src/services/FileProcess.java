@@ -291,7 +291,7 @@ public class FileProcess {
 			{
 				if(Temps.get(i+1).equals(user))
 				{
-					info[0]=Temps.get(i-1);
+					info[0]=Temps.get(i);
 					info[1]=Temps.get(i+4);
 					info[2]=Temps.get(i+5);
 					return info;

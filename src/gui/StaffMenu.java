@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.awt.event.ActionEvent;
@@ -28,6 +29,7 @@ import javax.swing.JOptionPane;
 import java.sql.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import javax.swing.ImageIcon;
 
 
 public class StaffMenu{
@@ -43,6 +45,9 @@ public class StaffMenu{
 	private JTextField date;
 	private JTextField enrolstat;
 	private JTextField progcode;
+	private String name;
+	private String depart;
+	private String fac;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -184,6 +189,31 @@ public class StaffMenu{
 		});
 		btnNewButton_1.setBounds(44, 424, 117, 25);
 		panel.add(btnNewButton_1);
+		
+		JLabel StaffName = new JLabel("New label");
+		StaffName.setFont(new Font("Bitstream Charter", Font.BOLD, 18));
+		StaffName.setForeground(Color.WHITE);
+		StaffName.setBounds(50, 135, 112, 24);
+		panel.add(StaffName);
+		Login in =new Login();
+		FileProcess fp = new FileProcess();
+		String getid = in.getid();
+		String[]info = new String[3];
+		info=fp.getUserinfo(getid);
+		try{
+			name=info[0];
+			depart=info[1];
+			fac=info[2];
+		}
+		catch(Exception e){
+			
+		}
+		StaffName.setText(name);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon("person.png"));
+		lblNewLabel_2.setBounds(44, 33, 146, 97);
+		panel.add(lblNewLabel_2);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(0, 153, 255));
