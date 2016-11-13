@@ -1,8 +1,6 @@
 package domain;
 
-import java.io.Serializable;
-
-public class CourseRecords extends Records implements Serializable{
+public class CourseRecords extends Records{
 	private String description;
 	private int credits;
 	private String preRequisite;

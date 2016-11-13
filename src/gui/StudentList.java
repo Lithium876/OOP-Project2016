@@ -1,13 +1,13 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.EventQueue;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+//import java.util.Calendar;
+//import java.util.GregorianCalendar;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,7 +15,6 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
@@ -34,32 +33,11 @@ public class StudentList {
 	private JFrame studentList;
 	private JButton SeeAll;
 	private JButton search;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					StudentList window = new StudentList();
-					window.studentList.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	/**
-	 * Create the application.
-	 */
-	Connection conn=null;
 	private JTable table;
 	private JTextField find;
-	public StudentList() {
-		initialize();
-		conn=DBConnection.dbConnector();
-	}
+	
+	Connection conn=null;
+	
 	public void load() {
 		try {
 			StudentList window = new StudentList();
@@ -68,6 +46,12 @@ public class StudentList {
 			e.printStackTrace();
 		}
 	}
+	
+	public StudentList() {
+		initialize();
+		conn=DBConnection.dbConnector();
+	}
+	
 	public void clock(){
 		Thread clock=new Thread()
 		{
@@ -75,13 +59,13 @@ public class StudentList {
 			{
 				try{
 					for(;;){
-					Calendar now = new GregorianCalendar();
+				/*	Calendar now = new GregorianCalendar();
 					int day = now.get(Calendar.DAY_OF_MONTH);
 					int month=now.get(Calendar.MONTH);
 					int year =now.get(Calendar.YEAR);
 					int seconds = now.get(Calendar.SECOND);
 					int minutes=now.get(Calendar.MINUTE);
-					int hour=now.get(Calendar.HOUR);
+					int hour=now.get(Calendar.HOUR);*/
 					
 					//lblNewLabel_1.setText(hour+":"+minutes+":"+seconds);
 					sleep(1000);
@@ -93,9 +77,7 @@ public class StudentList {
 		};
 		clock.start();
 	}
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
 	private void initialize() {
 		studentList = new JFrame();
 		studentList.setResizable(false);
@@ -104,7 +86,6 @@ public class StudentList {
 		studentList.setBounds(100, 100, 1023, 577);
 		studentList.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		studentList.getContentPane().setLayout(null);
-		
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 153, 255));
@@ -130,6 +111,13 @@ public class StudentList {
 		panel.add(btnNewButton);
 		
 		JButton btnCreateProgramme = new JButton("CREATE PROGRAMME");
+		btnCreateProgramme.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				studentList.dispose();
+				CreateProgramme rs = new CreateProgramme();
+				rs.load();
+			}
+		});
 		btnCreateProgramme.setBounds(12, 224, 188, 25);
 		panel.add(btnCreateProgramme);
 		

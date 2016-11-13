@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
 import services.DBConnection;
+import services.FileProcess;
 
 import javax.swing.JSeparator;
 import javax.swing.JMenuBar;
@@ -56,6 +57,7 @@ public class StaffMenu{
 		});
 	}
 	Connection conn=null;
+	private JTextField pass;
 	
 	public StaffMenu() {
 		initialize();
@@ -83,10 +85,10 @@ public class StaffMenu{
 					int day = now.get(Calendar.DAY_OF_MONTH);
 					int month=now.get(Calendar.MONTH);
 					int year =now.get(Calendar.YEAR);
-					int seconds = now.get(Calendar.SECOND);
+					/*int seconds = now.get(Calendar.SECOND);
 					int minutes=now.get(Calendar.MINUTE);
 					int hour=now.get(Calendar.HOUR);
-			
+			*/
 					date.setText(month+"/"+day+"/"+year);
 					sleep(1000);
 					}
@@ -114,7 +116,7 @@ public class StaffMenu{
 	 */
 	private void initialize() {
 		frmStaffMenu = new JFrame();
-		frmStaffMenu.setTitle("STAFF MENU");
+		frmStaffMenu.setTitle("STAFF");
 		frmStaffMenu.setResizable(false);
 		frmStaffMenu.getContentPane().setBackground(new Color(0, 102, 255));
 		frmStaffMenu.setBounds(100, 100, 757, 569);
@@ -146,7 +148,7 @@ public class StaffMenu{
 		btnCreateProgramme.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmStaffMenu.dispose();
-				RegisterStudents rs = new RegisterStudents();
+				CreateProgramme rs = new CreateProgramme();
 				rs.load();
 			}
 		});
@@ -211,13 +213,13 @@ public class StaffMenu{
 		
 		JLabel lblId = new JLabel("ID:");
 		lblId.setForeground(Color.WHITE);
-		lblId.setBounds(182, 14, 25, 15);
+		lblId.setBounds(12, 14, 25, 15);
 		panel_1.add(lblId);
 		
 		id = new JTextField();
 		id.setEditable(false);
 		id.setColumns(10);
-		id.setBounds(209, 12, 123, 19);
+		id.setBounds(39, 12, 123, 19);
 		panel_1.add(id);
 		
 		JLabel lblContact = new JLabel("Contact #:");
@@ -275,21 +277,33 @@ public class StaffMenu{
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					String query = "INSERT INTO studentinfo(IDNumber,FName,LName,Contact,Address1,Address2,Address3,ProgrammeCode,EnrolStat,DateEnrol)VALUES(?,?,?,?,?,?,?,?,?,?)";
+					String query = "INSERT INTO studentinfo(IDNumber,Password,FName,LName,Contact,Address1,Address2,Address3,ProgrammeCode,EnrolStat,DateEnrol)VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 					PreparedStatement pst = conn.prepareStatement(query);
 					pst.setString(1,id.getText());
-					pst.setString(2, fname.getText());
-					pst.setString(3, lname.getText());
-					pst.setString(4, contact.getText());
-					pst.setString(5, add1.getText());
-					pst.setString(6, add2.getText());
-					pst.setString(7, add3.getText());
-					pst.setString(8, progcode.getText());
-					pst.setString(9, enrolstat.getText());
-					pst.setString(10, date.getText());
+					pst.setString(2,pass.getText());
+					pst.setString(3, fname.getText());
+					pst.setString(4, lname.getText());
+					pst.setString(5, contact.getText());
+					pst.setString(6, add1.getText());
+					pst.setString(7, add2.getText());
+					pst.setString(8, add3.getText());
+					pst.setString(9, progcode.getText());
+					pst.setString(10, enrolstat.getText());
+					pst.setString(11, date.getText());
 					pst.execute();
 					pst.close();
+					FileProcess fp = new FileProcess();
+					String name = new String(fname.getText()+" "+lname.getText());
+					String usr = id.getText();
+					String department = "";
+					String fac = "";
+					String passwrd = new String(pass.getText());
+					String confirmPasswrd = new String(pass.getText());
+					String type = "STUDENT";
 					clear();
+					
+					fp.validate(name, usr, passwrd, confirmPasswrd, "NO", type,department,fac);
+					
 					JOptionPane.showMessageDialog(null, "Student Registered!");
 				}catch(Exception err){
 					System.out.println(err);
@@ -363,6 +377,19 @@ public class StaffMenu{
 		progcode.setColumns(10);
 		progcode.setBounds(143, 133, 328, 19);
 		panel_1.add(progcode);
+		
+		JLabel lblDefaultPassword = new JLabel("Default Password:");
+		lblDefaultPassword.setForeground(Color.WHITE);
+		lblDefaultPassword.setBounds(209, 14, 139, 15);
+		panel_1.add(lblDefaultPassword);
+		
+		pass = new JTextField();
+		pass.setText("12345678Q");
+		pass.setEnabled(false);
+		pass.setEditable(false);
+		pass.setColumns(10);
+		pass.setBounds(348, 12, 123, 19);
+		panel_1.add(pass);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frmStaffMenu.setJMenuBar(menuBar);

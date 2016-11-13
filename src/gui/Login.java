@@ -121,6 +121,7 @@ public class Login{
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CreateStaff cs = new CreateStaff();
+				StudentMenu stm = new StudentMenu();
 				StaffMenu sm = new StaffMenu();
 				String pswrd = new String(pass.getPassword());
 				String usr =usrname.getText();
@@ -145,7 +146,9 @@ public class Login{
 								sm.load();
 							
 							}else{
-								
+								if(type.equals("STUDENT")){
+									stm.live();
+								}
 							}
 						}
 					}

@@ -10,8 +10,6 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-import gui.StaffMenu;
-
 public class FileProcess {
 	public void writeUser(String name, String user, String pass,String domain,String department, String faculty)
 	{
