@@ -82,7 +82,7 @@ public class Login{
 		panel_1.setLayout(null);
 		
 		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon("/home/lithium/Documents/Login-icon.png"));
+		logo.setIcon(new ImageIcon("Login-icon.png"));
 		logo.setBounds(51, 124, 150, 138);
 		panel_1.add(logo);
 		
