@@ -307,19 +307,18 @@ public class StaffMenu{
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					String query = "INSERT INTO studentinfo(IDNumber,Password,FName,LName,Contact,Address1,Address2,Address3,ProgrammeCode,EnrolStat,DateEnrol)VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+					String query = "INSERT INTO studentinfo(IDNumber,FName,LName,Contact,Address1,Address2,Address3,ProgrammeCode,EnrolStat,DateEnrol)VALUES(?,?,?,?,?,?,?,?,?,?)";
 					PreparedStatement pst = conn.prepareStatement(query);
 					pst.setString(1,id.getText());
-					pst.setString(2,pass.getText());
-					pst.setString(3, fname.getText());
-					pst.setString(4, lname.getText());
-					pst.setString(5, contact.getText());
-					pst.setString(6, add1.getText());
-					pst.setString(7, add2.getText());
-					pst.setString(8, add3.getText());
-					pst.setString(9, progcode.getText());
-					pst.setString(10, enrolstat.getText());
-					pst.setString(11, date.getText());
+					pst.setString(2, fname.getText());
+					pst.setString(3, lname.getText());
+					pst.setString(4, contact.getText());
+					pst.setString(5, add1.getText());
+					pst.setString(6, add2.getText());
+					pst.setString(7, add3.getText());
+					pst.setString(8, progcode.getText());
+					pst.setString(9, enrolstat.getText());
+					pst.setString(10, date.getText());
 					pst.execute();
 					pst.close();
 					FileProcess fp = new FileProcess();

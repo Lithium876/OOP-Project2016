@@ -9,6 +9,7 @@ import java.sql.*;
 //import java.util.Calendar;
 //import java.util.GregorianCalendar;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,6 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
 import services.DBConnection;
+import services.FileProcess;
+
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -35,6 +38,9 @@ public class StudentList {
 	private JButton search;
 	private JTable table;
 	private JTextField find;
+	private String name;
+	private String depart;
+	private String fac;
 	
 	Connection conn=null;
 	
@@ -99,6 +105,8 @@ public class StudentList {
 		lblNewLabel.setBounds(39, 0, 130, 44);
 		panel.add(lblNewLabel);
 		
+		
+		
 		JButton btnNewButton = new JButton("REGISTER STUDENT");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -149,6 +157,31 @@ public class StudentList {
 		btnNewButton_1.setBounds(39, 424, 117, 25);
 		panel.add(btnNewButton_1);
 		
+		JLabel StaffName = new JLabel("New label");
+		StaffName.setFont(new Font("Bitstream Charter", Font.BOLD, 18));
+		StaffName.setForeground(Color.WHITE);
+		StaffName.setBounds(50, 135, 112, 24);
+		panel.add(StaffName);
+		Login in =new Login();
+		FileProcess fp = new FileProcess();
+		String getid = in.getid();
+		String[]info = new String[3];
+		info=fp.getUserinfo(getid);
+		try{
+			name=info[0];
+			depart=info[1];
+			fac=info[2];
+		}
+		catch(Exception e){
+			
+		}
+		StaffName.setText(name);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon("person.png"));
+		lblNewLabel_2.setBounds(44, 33, 146, 97);
+		panel.add(lblNewLabel_2);
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBackground(new Color(0, 153, 255));
@@ -161,6 +194,7 @@ public class StudentList {
 		panel_1.add(scrollPane);
 		
 		table = new JTable();
+		table.setEnabled(false);
 		scrollPane.setViewportView(table);
 		
 		find = new JTextField();
