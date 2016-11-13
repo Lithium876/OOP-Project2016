@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -17,7 +18,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import java.awt.BorderLayout;
+
 import javax.swing.JTextField;
 
 import services.FileProcess;
@@ -285,24 +286,57 @@ public class CreateProgramme {
 		menuBar.add(mnAccount);
 		
 		JMenuItem mntmChangePassword = new JMenuItem("Change Password");
+		mntmChangePassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChangePassword cp = new ChangePassword();
+				cp.start();
+			}
+		});
 		mnAccount.add(mntmChangePassword);
 		
 		JSeparator separator_6 = new JSeparator();
 		mnAccount.add(separator_6);
 		
 		JMenuItem mntmChangeDepartment = new JMenuItem("Change Department");
+		mntmChangeDepartment.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChangeDepartment cd = new ChangeDepartment();
+				cd.start();
+			}
+		});
 		mnAccount.add(mntmChangeDepartment);
 		
 		JMenuItem mntmChangeFaculty = new JMenuItem("Change Faculty");
+		mntmChangeFaculty.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChangeFaculty cf = new ChangeFaculty();
+				cf.start();
+			}
+		});
 		mnAccount.add(mntmChangeFaculty);
 		
-		JSeparator separator_7 = new JSeparator();
-		mnAccount.add(separator_7);
 		
 		JMenuItem mntmAccountInformation = new JMenuItem("Account Information");
 		mnAccount.add(mntmAccountInformation);
 		
 		JMenu mnAbout = new JMenu("About");
 		menuBar.add(mnAbout);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Project");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					Runtime.getRuntime().exec("CIT2004 - SEM1 - Programming Project 2016-2017.pdf");
+				}catch(Exception err){
+					try{
+						Desktop d = java.awt.Desktop.getDesktop ();
+						d.open (new java.io.File ("CIT2004 - SEM1 - Programming Project 2016-2017.pdf"));
+					}catch(Exception err2){
+						System.out.println(err2);
+					}
+				}
+			}
+		});
+		mnAbout.add(mntmNewMenuItem);
 	}
 }
