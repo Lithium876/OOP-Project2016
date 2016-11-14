@@ -442,27 +442,6 @@ public class StaffMenu{
 		});
 		mnAccount.add(mntmChangePassword);
 		
-		JSeparator separator_6 = new JSeparator();
-		mnAccount.add(separator_6);
-		
-		JMenuItem mntmChangeDepartment = new JMenuItem("Change Department");
-		mntmChangeDepartment.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ChangeDepartment cd = new ChangeDepartment();
-				cd.start();
-			}
-		});
-		mnAccount.add(mntmChangeDepartment);
-		
-		JMenuItem mntmChangeFaculty = new JMenuItem("Change Faculty");
-		mntmChangeFaculty.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ChangeFaculty cf = new ChangeFaculty();
-				cf.start();
-			}
-		});
-		mnAccount.add(mntmChangeFaculty);
-		
 		JSeparator separator_7 = new JSeparator();
 		mnAccount.add(separator_7);
 		

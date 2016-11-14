@@ -25,12 +25,23 @@ import services.FileProcess;
 
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JCheckBox;
+import javax.swing.SwingConstants;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class CreateProgramme {
 
 	private JFrame frmCreateProgramme;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JComboBox comboBox;
+	private JCheckBox dip;
+	private JCheckBox cer;
+	private JCheckBox deg;
+	private JCheckBox no;
+	private JCheckBox yes;
 	private String name;
 	private String depart;
 	private String fac;
@@ -93,6 +104,7 @@ public class CreateProgramme {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
 		frmCreateProgramme = new JFrame();
 		frmCreateProgramme.setTitle("STAFF MENU");
@@ -213,49 +225,26 @@ public class CreateProgramme {
 		textField_1.setBounds(216, 139, 242, 19);
 		panel_1.add(textField_1);
 		
-		JLabel label = new JLabel("Programme Name:");
-		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Dialog", Font.BOLD, 18));
-		label.setBounds(23, 189, 191, 28);
-		panel_1.add(label);
+		JLabel lblNumberOfCourses = new JLabel("No. of Courses:");
+		lblNumberOfCourses.setForeground(Color.WHITE);
+		lblNumberOfCourses.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblNumberOfCourses.setBounds(23, 189, 191, 28);
+		panel_1.add(lblNumberOfCourses);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(221, 192, 237, 24);
-		panel_1.add(comboBox);
-		
+				
 		JButton btnNewButton_2 = new JButton("CREATE PROGRAMME");
 		btnNewButton_2.setBounds(97, 450, 293, 34);
 		panel_1.add(btnNewButton_2);
-		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Degree ");
-		rdbtnNewRadioButton.setFont(new Font("Dialog", Font.BOLD, 18));
-		rdbtnNewRadioButton.setForeground(new Color(255, 255, 255));
-		rdbtnNewRadioButton.setBackground(new Color(0, 153, 255));
-		rdbtnNewRadioButton.setBounds(145, 347, 149, 23);
-		panel_1.add(rdbtnNewRadioButton);
-		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Associate Degree");
-		rdbtnNewRadioButton_1.setFont(new Font("Dialog", Font.BOLD, 18));
-		rdbtnNewRadioButton_1.setForeground(new Color(255, 255, 255));
-		rdbtnNewRadioButton_1.setBackground(new Color(0, 153, 255));
-		rdbtnNewRadioButton_1.setBounds(145, 386, 204, 23);
-		panel_1.add(rdbtnNewRadioButton_1);
-		
-		JRadioButton rdbtnCertificate = new JRadioButton("Certificate");
-		rdbtnCertificate.setFont(new Font("Dialog", Font.BOLD, 18));
-		rdbtnCertificate.setForeground(new Color(255, 255, 255));
-		rdbtnCertificate.setBackground(new Color(0, 153, 255));
-		rdbtnCertificate.setBounds(145, 309, 149, 23);
-		panel_1.add(rdbtnCertificate);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(12, 238, 483, 2);
 		panel_1.add(separator);
 		
-		JLabel lblProgrammeType = new JLabel("PROGRAMME TYPE");
-		lblProgrammeType.setFont(new Font("Bitstream Charter", Font.BOLD, 24));
+		JLabel lblProgrammeType = new JLabel("AWARDS AND ACCREDIATION");
+		lblProgrammeType.setBackground(new Color(0, 153, 255));
+		lblProgrammeType.setFont(new Font("Bitstream Charter", Font.BOLD, 20));
 		lblProgrammeType.setForeground(new Color(255, 255, 255));
-		lblProgrammeType.setBounds(142, 248, 282, 40);
+		lblProgrammeType.setBounds(119, 248, 305, 40);
 		panel_1.add(lblProgrammeType);
 		
 		JSeparator separator_1 = new JSeparator();
@@ -276,6 +265,81 @@ public class CreateProgramme {
 		separator_3.setBounds(12, 52, 483, 2);
 		panel_1.add(separator_3);
 		
+		JCheckBox cer = new JCheckBox("Certificate");
+		cer.setEnabled(false);
+		cer.setForeground(new Color(255, 255, 255));
+		cer.setFont(new Font("Dialog", Font.BOLD, 18));
+		cer.setBackground(new Color(255, 255, 255));
+		cer.setBounds(33, 307, 207, 23);
+		panel_1.add(cer);
+		
+		JCheckBox dip = new JCheckBox("Diploma");
+		dip.setForeground(Color.WHITE);
+		dip.setFont(new Font("Dialog", Font.BOLD, 18));
+		dip.setEnabled(false);
+		dip.setBackground(new Color(255, 255, 255));
+		dip.setBounds(33, 354, 207, 23);
+		panel_1.add(dip);
+		
+		JCheckBox deg = new JCheckBox("Associate Degree");
+		deg.setForeground(Color.WHITE);
+		deg.setFont(new Font("Dialog", Font.BOLD, 18));
+		deg.setEnabled(false);
+		deg.setBackground(new Color(255, 255, 255));
+		deg.setBounds(33, 398, 207, 23);
+		panel_1.add(deg);
+		
+		JSeparator separator_4 = new JSeparator();
+		separator_4.setOrientation(SwingConstants.VERTICAL);
+		separator_4.setBounds(260, 300, 19, 117);
+		panel_1.add(separator_4);
+		
+		JCheckBox yes = new JCheckBox(" ACCREDITED");
+		yes.setForeground(Color.WHITE);
+		yes.setFont(new Font("Dialog", Font.BOLD, 18));
+		yes.setEnabled(false);
+		yes.setBackground(new Color(255, 255, 255));
+		yes.setBounds(288, 328, 207, 23);
+		panel_1.add(yes);
+		
+		JCheckBox no = new JCheckBox(" UNACCREDITED");
+		no.setForeground(Color.WHITE);
+		no.setFont(new Font("Dialog", Font.BOLD, 18));
+		no.setEnabled(false);
+		no.setBackground(new Color(255, 255, 255));
+		no.setBounds(288, 371, 207, 23);
+		panel_1.add(no);
+		JComboBox comboBox = new JComboBox();
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cer.setSelected(false);
+				dip.setSelected(false);
+				deg.setSelected(false);
+				yes.setSelected(false);
+				no.setSelected(false);
+				try{
+					String num = String.valueOf(comboBox.getSelectedItem());
+					if(num.equals("4")){
+						cer.setSelected(true);
+						yes.setSelected(true);
+					}else{
+						if(num.equals("6")){
+							dip.setSelected(true);
+							no.setSelected(true);
+						}else{
+							deg.setSelected(true);
+							yes.setSelected(true);
+						}
+					}
+				}catch(Exception err){
+					
+				}
+			}
+		});
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"4", "6", "8"}));
+		comboBox.setBounds(221, 192, 237, 24);
+		panel_1.add(comboBox);
+
 		JMenuBar menuBar = new JMenuBar();
 		frmCreateProgramme.setJMenuBar(menuBar);
 		
@@ -296,24 +360,6 @@ public class CreateProgramme {
 		
 		JSeparator separator_6 = new JSeparator();
 		mnAccount.add(separator_6);
-		
-		JMenuItem mntmChangeDepartment = new JMenuItem("Change Department");
-		mntmChangeDepartment.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ChangeDepartment cd = new ChangeDepartment();
-				cd.start();
-			}
-		});
-		mnAccount.add(mntmChangeDepartment);
-		
-		JMenuItem mntmChangeFaculty = new JMenuItem("Change Faculty");
-		mntmChangeFaculty.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ChangeFaculty cf = new ChangeFaculty();
-				cf.start();
-			}
-		});
-		mnAccount.add(mntmChangeFaculty);
 		
 		
 		JMenuItem mntmAccountInformation = new JMenuItem("Account Information");

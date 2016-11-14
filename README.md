@@ -46,6 +46,7 @@ and Contact number.
 
 Course Record:
 * Code, Name, Description, Credits and Pre-requisite
+
 Programme Record:
 * Code, Name, Maximum number of courses, Award and Accreditation
 
@@ -62,6 +63,7 @@ that starts at zero (0), and the enrolment status should be set to zero (0).
 
 ##Programme Administration:
 <i>Create Programme</i> – the system should present a form that accepts general programme details.
+
 <i>Modify Programme Details</i> – the system should present a form that allows for the addition, removal, editing
 of courses for the programme.
 Generate Student List – the system should present a form that accepts a programme code then displays the
