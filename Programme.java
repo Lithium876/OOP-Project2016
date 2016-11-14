@@ -129,7 +129,7 @@ public class Programme extends JFrame {
 		cbStatus.setBounds(315, 211, 190, 26);
 		contentPane.add(cbStatus);
 		
-		String max[]={"1","2","3","4","5","6","7","8"};
+		String max[]={"4","6","8"};
 		JComboBox cbMCourse = new JComboBox(max);
 		cbMCourse.setSelectedIndex(-1);
 		cbMCourse.setFont(new Font("Lucida Bright", Font.BOLD, 15));
