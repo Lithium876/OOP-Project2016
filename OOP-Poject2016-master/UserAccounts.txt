@@ -1,0 +1,19 @@
+Lomar Lilly
+admin
+password1
+Administrator
+=======================================
+Lomar Lilly
+lomar
+password1
+STAFF
+Computing
+FENC
+=======================================
+Lomar Lilly
+1613888
+12345678Q
+STUDENT
+=======================================
+
+
