@@ -15,6 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import services.DBConnection;
+import javax.swing.JComboBox;
+import javax.swing.JCheckBox;
+import javax.swing.JTextField;
 
 public class AddCourse {
 
@@ -34,6 +37,7 @@ public class AddCourse {
 		});
 	}
 	Connection conn=null;
+	private JTextField textField;
 	
 	public AddCourse() {
 		initialize();
@@ -134,6 +138,7 @@ public class AddCourse {
 				GenerateFee gf = new GenerateFee();
 				frmAddCourse.dispose();	
 				gf.load();
+				
 			}
 		});
 		btnGenerateFee.setBounds(12, 249, 188, 25);
@@ -153,8 +158,73 @@ public class AddCourse {
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBackground(new Color(0, 153, 255));
-		panel_1.setBounds(236, 35, 507, 375);
+		panel_1.setBounds(236, 12, 507, 421);
 		frmAddCourse.getContentPane().add(panel_1);
+		
+		JLabel lblSelectACourses = new JLabel("Select a Course(s) From The Group Below  ");
+		lblSelectACourses.setForeground(Color.WHITE);
+		lblSelectACourses.setFont(new Font("Dialog", Font.BOLD, 20));
+		lblSelectACourses.setBounds(35, 13, 420, 26);
+		panel_1.add(lblSelectACourses);
+		
+		JButton btnSave = new JButton("Save");
+		btnSave.setBounds(131, 326, 97, 25);
+		panel_1.add(btnSave);
+		
+		JButton btnReset = new JButton("Reset");
+		btnReset.setBounds(282, 326, 97, 25);
+		panel_1.add(btnReset);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("New check box");
+		chckbxNewCheckBox.setBounds(70, 132, 113, 25);
+		panel_1.add(chckbxNewCheckBox);
+		
+		JCheckBox checkBox = new JCheckBox("New check box");
+		checkBox.setEnabled(false);
+		checkBox.setBounds(201, 178, 113, 25);
+		panel_1.add(checkBox);
+		
+		JCheckBox checkBox_1 = new JCheckBox("New check box");
+		checkBox_1.setBounds(201, 132, 113, 25);
+		panel_1.add(checkBox_1);
+		
+		JCheckBox checkBox_2 = new JCheckBox("New check box");
+		checkBox_2.setBounds(342, 132, 113, 25);
+		panel_1.add(checkBox_2);
+		
+		JCheckBox checkBox_3 = new JCheckBox("New check box");
+		checkBox_3.setBounds(70, 178, 113, 25);
+		panel_1.add(checkBox_3);
+		
+		JCheckBox checkBox_4 = new JCheckBox("New check box");
+		checkBox_4.setEnabled(false);
+		checkBox_4.setBounds(342, 178, 113, 25);
+		panel_1.add(checkBox_4);
+		
+		JCheckBox checkBox_5 = new JCheckBox("New check box");
+		checkBox_5.setEnabled(false);
+		checkBox_5.setBounds(70, 228, 113, 25);
+		panel_1.add(checkBox_5);
+		
+		JCheckBox checkBox_6 = new JCheckBox("New check box");
+		checkBox_6.setEnabled(false);
+		checkBox_6.setBounds(201, 228, 113, 25);
+		panel_1.add(checkBox_6);
+		
+		JLabel lblNewLabel_1 = new JLabel("Program Enrolled:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_1.setBounds(47, 70, 146, 20);
+		panel_1.add(lblNewLabel_1);
+		
+		textField = new JTextField();
+		textField.setEditable(false);
+		textField.setBounds(198, 68, 116, 22);
+		panel_1.add(textField);
+		textField.setColumns(10);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(60, 120, 407, 145);
+		panel_1.add(panel_2);
 		
 	}
 }

@@ -30,6 +30,11 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.SwingConstants;
 
+import net.proteanit.sql.DbUtils;
+
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+
 
 public class StudentMenu{
 
@@ -48,6 +53,7 @@ public class StudentMenu{
 		});
 	}
 	Connection conn=null;
+	private JTable table;
 	
 	public StudentMenu() {
 		initialize();
@@ -173,6 +179,42 @@ public class StudentMenu{
 		panel_1.setBackground(new Color(0, 153, 255));
 		panel_1.setBounds(236, 35, 507, 375);
 		studentMenu.getContentPane().add(panel_1);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(78, 125, 370, 200);
+		panel_1.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		
+		JButton btnNewButton_2 = new JButton("Load Courses");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// Used to generate the CourseTable from the database and display it in the jtable
+				// its not working because its layout so just insert the exact table name in the database
+				try{
+					String query="Select * from CourseRecords";
+					PreparedStatement pst = conn.prepareStatement(query);
+					ResultSet rs = pst.executeQuery();
+					table.setModel(DbUtils.resultSetToTableModel(rs));
+					
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					
+				}
+				
+			}
+		});
+		btnNewButton_2.setBounds(194, 85, 125, 25);
+		panel_1.add(btnNewButton_2);
+		
+		JLabel lblProgramDetails = new JLabel("Program Details");
+		lblProgramDetails.setFont(new Font("Dialog", Font.BOLD, 20));
+		lblProgramDetails.setForeground(Color.WHITE);
+		lblProgramDetails.setBounds(180, 13, 161, 25);
+		panel_1.add(lblProgramDetails);
 		
 	}	
 }

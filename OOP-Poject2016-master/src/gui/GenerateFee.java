@@ -15,6 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import services.DBConnection;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 public class GenerateFee {
 
@@ -35,6 +38,10 @@ public class GenerateFee {
 			}
 		});
 	}Connection conn=null;
+JTable table;
+private JTextField textField;
+private JTextField textField_1;
+private JTextField textField_2;
 	
 	public GenerateFee() {
 		initialize();
@@ -162,8 +169,59 @@ public class GenerateFee {
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBackground(new Color(0, 153, 255));
-		panel_1.setBounds(236, 35, 507, 375);
+		panel_1.setBounds(236, 12, 507, 421);
 		frmGenerateFee.getContentPane().add(panel_1);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(65, 69, 379, 162);
+		panel_1.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		
+		JLabel lblNewLabel_1 = new JLabel("Total Fees:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_1.setBounds(50, 385, 100, 23);
+		panel_1.add(lblNewLabel_1);
+		
+		textField = new JTextField();
+		textField.setEditable(false);
+		textField.setBounds(222, 386, 116, 22);
+		panel_1.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel_2 = new JLabel("Total Credits:");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_2.setBounds(50, 356, 116, 16);
+		panel_1.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("# Of Courses Enrolled:");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_3.setBounds(50, 327, 182, 16);
+		panel_1.add(lblNewLabel_3);
+		
+		textField_1 = new JTextField();
+		textField_1.setEditable(false);
+		textField_1.setBounds(222, 354, 116, 22);
+		panel_1.add(textField_1);
+		textField_1.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.setEditable(false);
+		textField_2.setBounds(222, 325, 116, 22);
+		panel_1.add(textField_2);
+		textField_2.setColumns(10);
+		
+		JLabel lblP = new JLabel("Progress Report");
+		lblP.setFont(new Font("Dialog", Font.BOLD, 20));
+		lblP.setForeground(Color.WHITE);
+		lblP.setBounds(161, 13, 165, 23);
+		panel_1.add(lblP);
+		
+		JLabel lblFeeBreakdown = new JLabel("Fee Breakdown");
+		lblFeeBreakdown.setFont(new Font("Dialog", Font.BOLD, 20));
+		lblFeeBreakdown.setForeground(Color.WHITE);
+		lblFeeBreakdown.setBounds(178, 269, 148, 16);
+		panel_1.add(lblFeeBreakdown);
 	}
-
 }
