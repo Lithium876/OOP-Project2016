@@ -40,7 +40,6 @@ public class StudentMenu{
 
 	private JFrame student;
 	private String name;
-	private static int run=0;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -110,8 +109,6 @@ public class StudentMenu{
 			@Override
 			public void windowOpened(WindowEvent e) {
 				try{
-					
-				}catch(Exception err){
 					Login in = new Login();
 					String pass = in.getpswrd();
 					if(pass.equals("12345678Q")){
@@ -119,6 +116,7 @@ public class StudentMenu{
 						ChangePassword cp = new ChangePassword();
 						cp.start();
 				}
+				}catch(Exception err){
 				
 				}
 			}
