@@ -36,7 +36,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 
-public class StudentMenu{
+public class ProgrammeDetails{
 
 	private JFrame student;
 	private String name;
@@ -46,7 +46,7 @@ public class StudentMenu{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StudentMenu window = new StudentMenu();
+					ProgrammeDetails window = new ProgrammeDetails();
 					window.student.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +56,7 @@ public class StudentMenu{
 	}
 	Connection conn=null;
 	
-	public StudentMenu() {
+	public ProgrammeDetails() {
 		initialize();
 		clock();
 		conn=DBConnection.dbConnector();
@@ -65,7 +65,7 @@ public class StudentMenu{
 	
 	public void live() {
 		try {
-			StudentMenu window = new StudentMenu();
+			ProgrammeDetails window = new ProgrammeDetails();
 			window.student.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -110,16 +110,14 @@ public class StudentMenu{
 			@Override
 			public void windowOpened(WindowEvent e) {
 				try{
-					
-				}catch(Exception err){
 					Login in = new Login();
 					String pass = in.getpswrd();
 					if(pass.equals("12345678Q")){
 						JOptionPane.showMessageDialog(null, "You have logged in with the default password, please change it!");
 						ChangePassword cp = new ChangePassword();
 						cp.start();
-				}
-				
+					}
+				}catch(Exception err){
 				}
 			}
 		});
@@ -177,18 +175,22 @@ public class StudentMenu{
 		studentName.setText(name);
 		
 		JButton enrol = new JButton("ENROL FOR SEMESTER");
-		enrol.setEnabled(false);
+		enrol.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					student.dispose();
+					StudentMenu sm = new StudentMenu();
+					sm.live();
+				}catch(Exception err){
+					
+				}
+			}
+		});
 		enrol.setBounds(12, 183, 188, 25);
 		panel.add(enrol);
 		
 		JButton btnViewProgrammeDetails = new JButton("PROGRAMME DETAILS");
-		btnViewProgrammeDetails.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ProgrammeDetails pd = new ProgrammeDetails();
-				pd.live();
-				student.dispose();
-			}
-		});
+		btnViewProgrammeDetails.setEnabled(false);
 		btnViewProgrammeDetails.setBounds(12, 220, 188, 25);
 		panel.add(btnViewProgrammeDetails);
 		

@@ -24,6 +24,7 @@ public class Login{
 	private JTextField usrname;
 	private JPasswordField pass;
 	private static String usr;
+	private static String pswrd;
 
 	/**
 	 * Launch the application.
@@ -136,7 +137,7 @@ public class Login{
 				CreateStaff cs = new CreateStaff();
 				StudentMenu stm = new StudentMenu();
 				StaffMenu sm = new StaffMenu();
-				String pswrd = new String(pass.getPassword());
+				pswrd = new String(pass.getPassword());
 				usr =usrname.getText();
 				String type = String.valueOf(domain.getSelectedItem());
 				
@@ -189,6 +190,10 @@ public class Login{
 	public String getid(){
 		return usr;
 	}
-	
+
+	public String getpswrd() {
+		// TODO Auto-generated method stub
+		return pswrd;
+	}
 
 }

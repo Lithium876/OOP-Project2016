@@ -50,7 +50,7 @@ public class FileProcess {
 	
 	public void writeUpdates(ArrayList<String> list){
 		try{
-			BufferedWriter writer = new BufferedWriter(new FileWriter("/UserAccounts.txt"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("UserAccounts.txt"));
 			for(String x : list){
 					writer.write(x);
 					writer.newLine();
@@ -99,7 +99,7 @@ public class FileProcess {
 				}
 				catch(Exception err)
 				{
-					JOptionPane.showMessageDialog(null, "Opps.. Somthing went wrong while Updating file.\nError: "+err.getMessage());
+					//JOptionPane.showMessageDialog(null, "Opps.. Somthing went wrong while Updating file.\nError: "+err.getMessage());
 				}
 			}
 			writeUpdates(Temps);    //SENDS OFF ARRYLIST TO BE WRITTEN BACK TO FILE
@@ -121,7 +121,7 @@ public class FileProcess {
 	
 	public int validate(String name, String user, String pass, String confirmpass, String update,String domain,String department, String faculty)
 	{
-		String alpha= "[a-zA-Z]+\\-";
+		String alpha= "[a-zA-Z]+";
 		String num="[0-9]+";
 		try
 		{
@@ -152,8 +152,7 @@ public class FileProcess {
 					}
 					return 0;
 				}else if(update.equals("YES")){
-					String str="Password: "+pass;
-					updateFile(user,str,"YES");
+					updateFile(user,pass,"YES");
 					return 0;
 				}
 			}

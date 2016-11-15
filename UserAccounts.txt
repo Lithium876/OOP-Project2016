@@ -5,14 +5,14 @@ Administrator
 =======================================
 Lomar Lilly
 lomar
-password1
+password2
 STAFF
 Computing
 FENC
 =======================================
 Lomar Lilly
 1613888
-12345678Q
+password1
 STUDENT
 =======================================
 Lomar Lilly
@@ -22,4 +22,3 @@ STUDENT
 
 
 =======================================
-
