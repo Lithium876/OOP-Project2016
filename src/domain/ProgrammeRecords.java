@@ -45,11 +45,11 @@ public class ProgrammeRecords extends Records{
 	}
 	
 	public void display(){
-		System.out.println(super.getCode()); 
-		System.out.println(super.getName());
-		System.out.println(maxCourse);
-		System.out.println(award);
-		System.out.println(accreditation);	
+		System.out.println("Programme Code: "+super.getCode()); 
+		System.out.println("Programme Name: "+super.getName());
+		System.out.println("Max Number of Courses: "+maxCourse);
+		System.out.println("Award: "+award);
+		System.out.println("Accreditation: "+accreditation);	
 		course.display();
 	}
 }

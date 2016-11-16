@@ -34,9 +34,9 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import domain.StudentRecords;
 
-
-public class StudentMenu{
+public class StudentMenu extends StudentRecords{
 
 	private JFrame student;
 	private String name;
@@ -115,6 +115,8 @@ public class StudentMenu{
 						JOptionPane.showMessageDialog(null, "You have logged in with the default password, please change it!");
 						ChangePassword cp = new ChangePassword();
 						cp.start();
+						student.dispose();
+						in.run();
 				}
 				}catch(Exception err){
 				
@@ -174,11 +176,6 @@ public class StudentMenu{
 		}
 		studentName.setText(name);
 		
-		JButton enrol = new JButton("ENROL FOR SEMESTER");
-		enrol.setEnabled(false);
-		enrol.setBounds(12, 183, 188, 25);
-		panel.add(enrol);
-		
 		JButton btnViewProgrammeDetails = new JButton("PROGRAMME DETAILS");
 		btnViewProgrammeDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -187,11 +184,12 @@ public class StudentMenu{
 				student.dispose();
 			}
 		});
-		btnViewProgrammeDetails.setBounds(12, 220, 188, 25);
+		btnViewProgrammeDetails.setBounds(12, 238, 188, 25);
 		panel.add(btnViewProgrammeDetails);
 		
 		JButton btnAddCourse = new JButton("ADD COURSE");
-		btnAddCourse.setBounds(12, 257, 188, 25);
+		btnAddCourse.setEnabled(false);
+		btnAddCourse.setBounds(12, 183, 188, 25);
 		panel.add(btnAddCourse);
 		
 		JButton btnFeeBreakdown = new JButton("FEE BREAKDOWN");
@@ -199,18 +197,24 @@ public class StudentMenu{
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnFeeBreakdown.setBounds(12, 294, 188, 25);
+		btnFeeBreakdown.setBounds(12, 290, 188, 25);
 		panel.add(btnFeeBreakdown);
-		
-		JButton btnGenerateReport = new JButton("PROGRESS REPORT");
-		btnGenerateReport.setBounds(12, 331, 188, 25);
-		panel.add(btnGenerateReport);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(0, 153, 255));
 		panel_1.setBounds(236, 12, 507, 496);
 		student.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
+		
+		JLabel lblEnrolForSemester = new JLabel("ENROL FOR SEMESTER");
+		lblEnrolForSemester.setFont(new Font("Bitstream Charter", Font.BOLD, 24));
+		lblEnrolForSemester.setForeground(Color.WHITE);
+		lblEnrolForSemester.setBounds(131, 12, 273, 28);
+		panel_1.add(lblEnrolForSemester);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(12, 52, 483, 2);
+		panel_1.add(separator);
 		
 		JMenuBar menuBar = new JMenuBar();
 		student.setJMenuBar(menuBar);

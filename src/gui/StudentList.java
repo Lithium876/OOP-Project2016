@@ -26,12 +26,13 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import domain.StudentRecords;
 import net.proteanit.sql.DbUtils;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class StudentList {
+public class StudentList extends StudentRecords{
 
 	private JFrame studentList;
 	private JButton SeeAll;
@@ -41,7 +42,6 @@ public class StudentList {
 	private String name;
 	private String depart;
 	private String fac;
-	
 	Connection conn=null;
 	
 	public void load() {
@@ -104,8 +104,6 @@ public class StudentList {
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(39, 0, 130, 44);
 		panel.add(lblNewLabel);
-		
-		
 		
 		JButton btnNewButton = new JButton("REGISTER STUDENT");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -283,7 +281,6 @@ public class StudentList {
 			}
 		});
 		mnAccount.add(mntmChangePassword);
-		
 		
 		JSeparator separator_7 = new JSeparator();
 		mnAccount.add(separator_7);

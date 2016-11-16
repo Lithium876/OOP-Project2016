@@ -26,9 +26,7 @@ public class Login{
 	private static String usr;
 	private static String pswrd;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -42,13 +40,6 @@ public class Login{
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
-	public Login() {
-		initialize();
-	}
-	
 	public void run() {
 		try {
 			Login window = new Login();
@@ -57,10 +48,19 @@ public class Login{
 			e.printStackTrace();
 		}
 	}
+	
+	public Login() {
+		initialize();
+	}
+	
+	public String getid(){
+		return usr;
+	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	public String getpswrd() {
+		return pswrd;
+	}
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void initialize() {
 		frmLogin = new JFrame();
@@ -156,7 +156,6 @@ public class Login{
 							cs.run();
 						}else{
 							if(type.equals("STAFF")){
-								///sm.load();
 								sm.load();
 							
 							}else{
@@ -187,13 +186,4 @@ public class Login{
 		frmLogin.getContentPane().add(lblNewLabel);
 		
 		}
-	public String getid(){
-		return usr;
-	}
-
-	public String getpswrd() {
-		// TODO Auto-generated method stub
-		return pswrd;
-	}
-
 }

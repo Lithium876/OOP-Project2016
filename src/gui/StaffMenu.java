@@ -35,8 +35,10 @@ import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-
-public class StaffMenu{
+import domain.CourseRecords;
+import domain.StaffRecords;
+import domain.StudentRecords;
+public class StaffMenu extends StudentRecords{
 
 	private JFrame frmStaffMenu;
 	private JTextField fname;
@@ -49,9 +51,32 @@ public class StaffMenu{
 	private JTextField date;
 	private JTextField enrolstat;
 	private JTextField progcode;
+	private JTextField pass;
 	private String name;
 	private String depart;
 	private String fac;
+	Connection conn=null;
+	
+	
+	public void load() {
+		try {
+			StaffMenu window = new StaffMenu();
+			window.frmStaffMenu.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public StaffMenu() {
+		initialize();
+		clock();
+		conn=DBConnection.dbConnector();
+	}
+	
+	public StaffMenu(String id, String firstName, String lastName, String address, String enrolmentStatus,String programmeCode, String contactNumber, CourseRecords course) {
+		super(id, firstName, lastName, address, enrolmentStatus, programmeCode, contactNumber, course);
+		super.setLastName(lastName);
+	}
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -65,24 +90,7 @@ public class StaffMenu{
 			}
 		});
 	}
-	Connection conn=null;
-	private JTextField pass;
 	
-	public StaffMenu() {
-		initialize();
-		clock();
-		conn=DBConnection.dbConnector();
-		
-	}
-	
-	public void load() {
-		try {
-			StaffMenu window = new StaffMenu();
-			window.frmStaffMenu.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	public void clock(){
 		Thread clock=new Thread()
 		{
@@ -96,18 +104,19 @@ public class StaffMenu{
 					int year =now.get(Calendar.YEAR);
 					/*int seconds = now.get(Calendar.SECOND);
 					int minutes=now.get(Calendar.MINUTE);
-					int hour=now.get(Calendar.HOUR);
-			*/
+					int hour=now.get(Calendar.HOUR);*/
+					
 					date.setText(month+"/"+day+"/"+year);
 					sleep(1000);
 					}
 				}catch(Exception e){
-					
+					System.out.println(e);
 				}
 			}
 		};
 		clock.start();
 	}
+	
 	public void clear(){
 		id.setText("");
 		fname.setText("");
@@ -120,9 +129,10 @@ public class StaffMenu{
 		progcode.setText("");
 	}
 	
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	public void setStaffMenuEnabled(boolean enabled) {
+		frmStaffMenu.setEnabled(enabled);
+	}
+	
 	private void initialize() {
 		frmStaffMenu = new JFrame();
 		frmStaffMenu.setTitle("STAFF");
@@ -148,6 +158,7 @@ public class StaffMenu{
 		btnNewButton.setEnabled(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				clear();
 			}
 		});
 		btnNewButton.setBounds(12, 171, 188, 25);
@@ -210,7 +221,7 @@ public class StaffMenu{
 			fac=info[2];
 		}
 		catch(Exception e){
-			
+			//System.out.println(e);
 		}
 		StaffName.setText(name);
 		
@@ -286,7 +297,6 @@ public class StaffMenu{
 		add3.setBounds(103, 406, 392, 19);
 		panel_1.add(add3);
 		
-		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(481, 277, -468, -24);
 		panel_1.add(separator);
@@ -311,39 +321,49 @@ public class StaffMenu{
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					String query = "INSERT INTO studentinfo(IDNumber,FName,LName,Contact,Address1,Address2,Address3,ProgrammeCode,EnrolStat,DateEnrol)VALUES(?,?,?,?,?,?,?,?,?,?)";
-					PreparedStatement pst = conn.prepareStatement(query);
-					pst.setString(1,id.getText());
-					pst.setString(2, fname.getText());
-					pst.setString(3, lname.getText());
-					pst.setString(4, contact.getText());
-					pst.setString(5, add1.getText());
-					pst.setString(6, add2.getText());
-					pst.setString(7, add3.getText());
-					pst.setString(8, progcode.getText());
-					pst.setString(9, enrolstat.getText());
-					pst.setString(10, date.getText());
-					pst.execute();
-					pst.close();
-					FileProcess fp = new FileProcess();
-					String name = new String(fname.getText()+" "+lname.getText());
-					String usr = id.getText();
-					String department = "";
-					String fac = "";
-					String passwrd = new String(pass.getText());
-					String confirmPasswrd = new String(pass.getText());
-					String type = "STUDENT";
-					clear();
-					
-					fp.validate(name, usr, passwrd, confirmPasswrd, "NO", type,department,fac);
-					
-					JOptionPane.showMessageDialog(null, "Student Registered!");
+					if(progcode.getText().length()==0 || fname.getText().length()==0 || lname.getText().length()==0 || add1.getText().length()==0 || contact.getText().length()==0){
+						JOptionPane.showMessageDialog(null, "You left a field blank!");
+					}else{
+						CourseRecords course = new CourseRecords();
+						StudentRecords student = new StaffMenu(id.getText(), fname.getText(), lname.getText(), add1.getText()+", "+add2.getText()+", "+add3.getText(), enrolstat.getText(), progcode.getText(), contact.getText(), course);				
+						try {
+							FileProcess fp = new FileProcess();
+							String name = new String(student.getFirstName()+" "+student.getLastName());
+							String usr = student.getIdNumber();
+							String department = "";
+							String fac = "";
+							String passwrd = new String(pass.getText());
+							String confirmPasswrd = new String(pass.getText());
+							String type = "STUDENT";
+							
+							String query = "INSERT INTO studentinfo(IDNumber,FName,LName,Contact,Address,ProgrammeCode,EnrolStat,DateEnrol)VALUES(?,?,?,?,?,?,?,?)";
+							PreparedStatement pst;
+							pst = conn.prepareStatement(query);
+							pst.setString(1,student.getIdNumber());
+							pst.setString(2, student.getFirstName());
+							pst.setString(3, student.getLastName());
+							pst.setString(4, student.getContactNumber());
+							pst.setString(5, student.getAddress());
+							pst.setString(6, student.getProgramCode());
+							pst.setString(7, student.getEnrolmentStatus());
+							pst.setString(8, student.getDateEnrolled());
+							pst.execute();
+							pst.close();	
+							fp.validate(name, usr, passwrd, confirmPasswrd, "NO", type,department,fac);
+							JOptionPane.showMessageDialog(null, "Student Registered!");
+						} catch (Exception err) {
+							err.printStackTrace();
+						}
+						student.display();
+						clear();
+					}
 				}catch(Exception err){
-					System.out.println(err);
+					//System.out.println(err);
 				}
+				
 			}
 		});
-		btnNewButton_2.setBounds(131, 448, 311, 25);
+		btnNewButton_2.setBounds(93, 448, 195, 25);
 		panel_1.add(btnNewButton_2);
 		
 		JLabel label = new JLabel("Date Enrolled:");
@@ -402,8 +422,7 @@ public class StaffMenu{
 						get.close();
 					}
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					System.out.println(e1);
+					//System.out.println(e1);
 				}
 			}
 		});
@@ -423,6 +442,15 @@ public class StaffMenu{
 		pass.setColumns(10);
 		pass.setBounds(348, 12, 123, 19);
 		panel_1.add(pass);
+		
+		JButton btnClear = new JButton("CLEAR");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clear();
+			}
+		});
+		btnClear.setBounds(300, 448, 195, 25);
+		panel_1.add(btnClear);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frmStaffMenu.setJMenuBar(menuBar);
@@ -461,14 +489,11 @@ public class StaffMenu{
 						Desktop d = java.awt.Desktop.getDesktop ();
 						d.open (new java.io.File ("CIT2004 - SEM1 - Programming Project 2016-2017.pdf"));
 					}catch(Exception err2){
-						System.out.println(err2);
+						//System.out.println(err2);
 					}
 				}
 			}
 		});
 		mnAbout.add(mntmSystem);
 		}
-	public void setStaffMenuEnabled(boolean enabled) {
-		frmStaffMenu.setEnabled(enabled);
-	}
 }

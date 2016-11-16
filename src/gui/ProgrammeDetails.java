@@ -34,9 +34,12 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.SwingConstants;
+
+import domain.StudentRecords;
 
 
-public class ProgrammeDetails{
+public class ProgrammeDetails extends StudentRecords{
 
 	private JFrame student;
 	private String name;
@@ -174,8 +177,13 @@ public class ProgrammeDetails{
 		}
 		studentName.setText(name);
 		
-		JButton enrol = new JButton("ENROL FOR SEMESTER");
-		enrol.addActionListener(new ActionListener() {
+		JButton btnViewProgrammeDetails = new JButton("PROGRAMME DETAILS");
+		btnViewProgrammeDetails.setEnabled(false);
+		btnViewProgrammeDetails.setBounds(12, 237, 188, 25);
+		panel.add(btnViewProgrammeDetails);
+		
+		JButton btnAddCourse = new JButton("ADD COURSE");
+		btnAddCourse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
 					student.dispose();
@@ -186,16 +194,7 @@ public class ProgrammeDetails{
 				}
 			}
 		});
-		enrol.setBounds(12, 183, 188, 25);
-		panel.add(enrol);
-		
-		JButton btnViewProgrammeDetails = new JButton("PROGRAMME DETAILS");
-		btnViewProgrammeDetails.setEnabled(false);
-		btnViewProgrammeDetails.setBounds(12, 220, 188, 25);
-		panel.add(btnViewProgrammeDetails);
-		
-		JButton btnAddCourse = new JButton("ADD COURSE");
-		btnAddCourse.setBounds(12, 257, 188, 25);
+		btnAddCourse.setBounds(12, 183, 188, 25);
 		panel.add(btnAddCourse);
 		
 		JButton btnFeeBreakdown = new JButton("FEE BREAKDOWN");
@@ -203,12 +202,8 @@ public class ProgrammeDetails{
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnFeeBreakdown.setBounds(12, 294, 188, 25);
+		btnFeeBreakdown.setBounds(12, 295, 188, 25);
 		panel.add(btnFeeBreakdown);
-		
-		JButton btnGenerateReport = new JButton("PROGRESS REPORT");
-		btnGenerateReport.setBounds(12, 331, 188, 25);
-		panel.add(btnGenerateReport);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(0, 153, 255));
