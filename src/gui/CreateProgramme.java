@@ -38,6 +38,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class CreateProgramme extends ProgrammeRecords{
 
@@ -228,6 +229,27 @@ private void initialize() {
 		panel_1.add(lblNewLabel_1);
 			
 		progCode = new JTextField();
+		progCode.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				try{
+					String q2 = "SELECT * FROM programmeinfo WHERE ProgrammeCode=?";
+					PreparedStatement check = conn.prepareStatement(q2);
+					check.setString(1,progCode.getText());
+					ResultSet rs1 = check.executeQuery();
+					if(rs1.next()){
+						JOptionPane.showMessageDialog(null, "The Programme Code: "+progCode.getText()+" Already Exist!");
+						progCode.setText("");
+						check.close();
+					}else{
+						check.close();
+					}
+				}catch(Exception err){
+					System.out.println(err);
+				}
+				
+			}
+		});
 		progCode.setBounds(216, 85, 242, 19);
 		panel_1.add(progCode);
 		progCode.setColumns(10);

@@ -426,14 +426,16 @@ public class StaffMenu extends StudentRecords{
 					check.setString(1,progcode.getText());
 					ResultSet rs1 = check.executeQuery();
 					if(rs1.next()){
-						
+						check.close();
 					}else{
 						JOptionPane.showMessageDialog(null, "Sorry, "+progcode.getText()+" is not a valid programme code!");
 						int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to Register a New Programme Code?","Register Programme Code",JOptionPane.YES_NO_OPTION);
 						if(dialogResult == JOptionPane.YES_OPTION){
 							frmStaffMenu.dispose();
+							check.close();
 						}else{
 							progcode.setText("");
+							check.close();
 						}
 					}
 				} catch (SQLException e1) {
