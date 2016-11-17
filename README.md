@@ -47,6 +47,7 @@ and Contact number.
 Course Record:
 * Code, Name, Description, Credits and Pre-requisite
 
+
 Programme Record:
 * Code, Name, Maximum number of courses, Award and Accreditation
 
@@ -64,8 +65,11 @@ that starts at zero (0), and the enrolment status should be set to zero (0).
 ##Programme Administration:
 <i>Create Programme</i> – the system should present a form that accepts general programme details.
 
+
 <i>Modify Programme Details</i> – the system should present a form that allows for the addition, removal, editing
 of courses for the programme.
+
+
 Generate Student List – the system should present a form that accepts a programme code then displays the
 list of student currently enrolled in the programme.
 
@@ -78,5 +82,7 @@ programme.
 <i>Generate Fee Breakdown for Semester<i> – the system should present a form that displays all courses enrolled
 in for the semester and the total cost (i.e. number of credits * cost per credit), it should also switch students
 enrolled status to one (1).
+
+
 Generate Progress Report – the system should display all the courses the student has ever enrolled in for
 the programme.

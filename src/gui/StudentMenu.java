@@ -35,11 +35,21 @@ import java.awt.event.FocusEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import domain.StudentRecords;
+import net.proteanit.sql.DbUtils;
 
 public class StudentMenu extends StudentRecords{
 
+	private JTextField stuProgramme;
+	private JTextField maxCourses;
+	private JTextField stuId;
+	private JTextField stuName;
+	private JTextField stuEnrolstat;
+	private JTextField stuEnroldate;
+	private String getid; 
 	private JFrame student;
 	private String name;
+	Connection conn=null;
+	
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -53,14 +63,6 @@ public class StudentMenu extends StudentRecords{
 			}
 		});
 	}
-	Connection conn=null;
-	
-	public StudentMenu() {
-		initialize();
-		clock();
-		conn=DBConnection.dbConnector();
-		
-	}
 	
 	public void live() {
 		try {
@@ -70,6 +72,13 @@ public class StudentMenu extends StudentRecords{
 			e.printStackTrace();
 		}
 	}
+	
+	public StudentMenu() {
+		initialize();
+		clock();
+		conn=DBConnection.dbConnector();
+	}
+	
 	public void clock(){
 		Thread clock=new Thread()
 		{
@@ -83,8 +92,7 @@ public class StudentMenu extends StudentRecords{
 					int year =now.get(Calendar.YEAR);
 					/*int seconds = now.get(Calendar.SECOND);
 					int minutes=now.get(Calendar.MINUTE);
-					int hour=now.get(Calendar.HOUR);
-			*/
+					int hour=now.get(Calendar.HOUR);*/
 					//date.setText(month+"/"+day+"/"+year);
 					sleep(1000);
 					}
@@ -95,13 +103,6 @@ public class StudentMenu extends StudentRecords{
 		};
 		clock.start();
 	}
-	public void clear(){
-		
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	
 	private void initialize() {
 		student = new JFrame();
@@ -117,7 +118,49 @@ public class StudentMenu extends StudentRecords{
 						cp.start();
 						student.dispose();
 						in.run();
-				}
+					}else{
+						try{
+							ResultSet rs;
+							ResultSet rs2;
+							ResultSetMetaData rsmd;
+							ResultSetMetaData rsmd2;
+							String q = "SELECT * FROM studentinfo WHERE IDNumber=?";
+							String q2 = "SELECT * FROM programmeinfo WHERE ProgrammeCode=?";
+							PreparedStatement pst= conn.prepareStatement(q);
+							PreparedStatement pst2= conn.prepareStatement(q2);
+							
+							pst.setString(1,getid);
+							rs = pst.executeQuery();
+							rsmd = rs.getMetaData();
+							int columnsNumber = rsmd.getColumnCount();
+							String[] loginfo = new String[columnsNumber+1];
+							while (rs.next()) {
+								for (int i = 1; i <= columnsNumber; i++) {
+							         loginfo[i]=rs.getString(i);
+							    }
+							}
+							stuId.setText(loginfo[1]);
+							stuName.setText(loginfo[2]+" "+loginfo[3]);
+							stuProgramme.setText(loginfo[6]);
+							stuEnrolstat.setText(loginfo[7]);
+							stuEnroldate.setText(loginfo[8]);
+						
+							pst2.setString(1,stuProgramme.getText());
+							rs2 = pst2.executeQuery();
+							rsmd2 = rs2.getMetaData();
+							int columnsNumber1 = rsmd2.getColumnCount();
+							String[] proginfo=new String[columnsNumber1+1];
+							while (rs2.next()) {
+								for (int i = 1; i <= columnsNumber1; i++) {
+									proginfo[i]=rs2.getString(i);
+							        //System.out.print(proginfo[i]+"\n");
+							    }
+							}
+							maxCourses.setText(proginfo[3]);
+						}catch(Exception err){
+							System.out.println(err);
+						}
+					}
 				}catch(Exception err){
 				
 				}
@@ -165,7 +208,7 @@ public class StudentMenu extends StudentRecords{
 		panel.add(studentName);
 		Login in =new Login();
 		FileProcess fp = new FileProcess();
-		String getid = in.getid();
+		getid = in.getid();
 		String[]info = new String[3];
 		info=fp.getUserinfo(getid);
 		try{
@@ -195,6 +238,9 @@ public class StudentMenu extends StudentRecords{
 		JButton btnFeeBreakdown = new JButton("FEE BREAKDOWN");
 		btnFeeBreakdown.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//GenerateFee gf = new GenerateFee();
+				//student.dispose();	
+				//gf.load();
 			}
 		});
 		btnFeeBreakdown.setBounds(12, 290, 188, 25);
@@ -215,6 +261,92 @@ public class StudentMenu extends StudentRecords{
 		JSeparator separator = new JSeparator();
 		separator.setBounds(12, 52, 483, 2);
 		panel_1.add(separator);
+		
+		JLabel lblNewLabel = new JLabel("PROGRAMME:");
+		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBounds(82, 132, 132, 15);
+		panel_1.add(lblNewLabel);
+		
+		stuProgramme = new JTextField();
+		stuProgramme.setEditable(false);
+		stuProgramme.setBounds(226, 128, 200, 19);
+		panel_1.add(stuProgramme);
+		stuProgramme.setColumns(10);
+		
+		JLabel lblName = new JLabel("ID NUMBER:");
+		lblName.setForeground(Color.WHITE);
+		lblName.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblName.setBounds(82, 67, 114, 15);
+		panel_1.add(lblName);
+		
+		stuId = new JTextField();
+		stuId.setEditable(false);
+		stuId.setColumns(10);
+		stuId.setBounds(226, 66, 200, 19);
+		panel_1.add(stuId);
+		
+		JLabel lblFullName = new JLabel("FULL NAME:");
+		lblFullName.setForeground(Color.WHITE);
+		lblFullName.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblFullName.setBounds(82, 102, 132, 15);
+		panel_1.add(lblFullName);
+		
+		stuName = new JTextField();
+		stuName.setEditable(false);
+		stuName.setColumns(10);
+		stuName.setBounds(226, 97, 200, 19);
+		panel_1.add(stuName);
+		
+		JLabel lblEnrollmentStatus = new JLabel("ENROL STATUS: ");
+		lblEnrollmentStatus.setForeground(Color.WHITE);
+		lblEnrollmentStatus.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblEnrollmentStatus.setBounds(82, 163, 158, 15);
+		panel_1.add(lblEnrollmentStatus);
+		
+		stuEnrolstat = new JTextField();
+		stuEnrolstat.setEditable(false);
+		stuEnrolstat.setColumns(10);
+		stuEnrolstat.setBounds(226, 159, 200, 19);
+		panel_1.add(stuEnrolstat);
+		
+		JLabel lblEnrolDate = new JLabel("ENROL DATE: ");
+		lblEnrolDate.setForeground(Color.WHITE);
+		lblEnrolDate.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblEnrolDate.setBounds(82, 191, 158, 15);
+		panel_1.add(lblEnrolDate);
+		
+		stuEnroldate = new JTextField();
+		stuEnroldate.setEditable(false);
+		stuEnroldate.setColumns(10);
+		stuEnroldate.setBounds(226, 187, 200, 19);
+		panel_1.add(stuEnroldate);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(12, 246, 483, 2);
+		panel_1.add(separator_1);
+		
+		JLabel lblCoursesAvailable = new JLabel("COURSES AVAILABLE");
+		lblCoursesAvailable.setForeground(Color.WHITE);
+		lblCoursesAvailable.setFont(new Font("Bitstream Charter", Font.BOLD, 20));
+		lblCoursesAvailable.setBounds(150, 256, 209, 28);
+		panel_1.add(lblCoursesAvailable);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setBounds(12, 283, 483, 2);
+		panel_1.add(separator_2);
+		
+		JLabel lblNumberOfCourses = new JLabel("MAX NO. OF COURSES:");
+		lblNumberOfCourses.setForeground(Color.WHITE);
+		lblNumberOfCourses.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblNumberOfCourses.setBounds(82, 219, 216, 15);
+		panel_1.add(lblNumberOfCourses);
+		
+		maxCourses = new JTextField();
+		maxCourses.setEditable(false);
+		maxCourses.setColumns(10);
+		maxCourses.setBounds(294, 218, 132, 19);
+		panel_1.add(maxCourses);
 		
 		JMenuBar menuBar = new JMenuBar();
 		student.setJMenuBar(menuBar);

@@ -330,7 +330,7 @@ public class StaffMenu extends StudentRecords{
 							FileProcess fp = new FileProcess();
 							String name = new String(student.getFirstName()+" "+student.getLastName());
 							String usr = student.getIdNumber();
-							String department = "";
+							String department = student.getProgramCode();
 							String fac = "";
 							String passwrd = new String(pass.getText());
 							String confirmPasswrd = new String(pass.getText());
@@ -400,6 +400,7 @@ public class StaffMenu extends StudentRecords{
 			public void focusLost(FocusEvent e) {
 				String numOfRecords = null;
 				String q="SELECT COUNT(FName) FROM studentinfo";
+				String q2= "SELECT * FROM programmeinfo WHERE ProgrammeCode=?";
 				try {
 					PreparedStatement get = conn.prepareStatement(q);
 					ResultSet rs = get.executeQuery();
@@ -420,6 +421,20 @@ public class StaffMenu extends StudentRecords{
 						String a = Integer.toString(count);
 						id.setText(year%100+a+progcode.getText());
 						get.close();
+					}
+					PreparedStatement check = conn.prepareStatement(q2);
+					check.setString(1,progcode.getText());
+					ResultSet rs1 = check.executeQuery();
+					if(rs1.next()){
+						
+					}else{
+						JOptionPane.showMessageDialog(null, "Sorry, "+progcode.getText()+" is not a valid programme code!");
+						int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to Register a New Programme Code?","Register Programme Code",JOptionPane.YES_NO_OPTION);
+						if(dialogResult == JOptionPane.YES_OPTION){
+							frmStaffMenu.dispose();
+						}else{
+							progcode.setText("");
+						}
 					}
 				} catch (SQLException e1) {
 					//System.out.println(e1);

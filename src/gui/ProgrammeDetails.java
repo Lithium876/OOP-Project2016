@@ -34,16 +34,23 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javax.swing.SwingConstants;
-
 import domain.StudentRecords;
-
+import net.proteanit.sql.DbUtils;
 
 public class ProgrammeDetails extends StudentRecords{
 
+	private JTextField progCode;
+	private JTextField maxCourses;
+	private JTextField stuId;
+	private JTextField stuName;
+	private String getid; 
 	private JFrame student;
 	private String name;
-	private static int run=0;
+	Connection conn=null;
+	private JTextField progName;
+	private JTextField award;
+	private JTextField accreditation;
+	
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -57,14 +64,6 @@ public class ProgrammeDetails extends StudentRecords{
 			}
 		});
 	}
-	Connection conn=null;
-	
-	public ProgrammeDetails() {
-		initialize();
-		clock();
-		conn=DBConnection.dbConnector();
-		
-	}
 	
 	public void live() {
 		try {
@@ -74,6 +73,13 @@ public class ProgrammeDetails extends StudentRecords{
 			e.printStackTrace();
 		}
 	}
+	
+	public ProgrammeDetails() {
+		initialize();
+		clock();
+		conn=DBConnection.dbConnector();
+	}
+	
 	public void clock(){
 		Thread clock=new Thread()
 		{
@@ -87,8 +93,7 @@ public class ProgrammeDetails extends StudentRecords{
 					int year =now.get(Calendar.YEAR);
 					/*int seconds = now.get(Calendar.SECOND);
 					int minutes=now.get(Calendar.MINUTE);
-					int hour=now.get(Calendar.HOUR);
-			*/
+					int hour=now.get(Calendar.HOUR);*/
 					//date.setText(month+"/"+day+"/"+year);
 					sleep(1000);
 					}
@@ -99,13 +104,6 @@ public class ProgrammeDetails extends StudentRecords{
 		};
 		clock.start();
 	}
-	public void clear(){
-		
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	
 	private void initialize() {
 		student = new JFrame();
@@ -119,8 +117,54 @@ public class ProgrammeDetails extends StudentRecords{
 						JOptionPane.showMessageDialog(null, "You have logged in with the default password, please change it!");
 						ChangePassword cp = new ChangePassword();
 						cp.start();
+						student.dispose();
+						in.run();
+					}else{
+						try{
+							ResultSet rs;
+							ResultSet rs2;
+							ResultSetMetaData rsmd;
+							ResultSetMetaData rsmd2;
+							String q = "SELECT * FROM studentinfo WHERE IDNumber=?";
+							String q2 = "SELECT * FROM programmeinfo WHERE ProgrammeCode=?";
+							PreparedStatement pst= conn.prepareStatement(q);
+							PreparedStatement pst2= conn.prepareStatement(q2);
+							
+							pst.setString(1,getid);
+							rs = pst.executeQuery();
+							rsmd = rs.getMetaData();
+							int columnsNumber = rsmd.getColumnCount();
+							String[] loginfo = new String[columnsNumber+1];
+							while (rs.next()) {
+								for (int i = 1; i <= columnsNumber; i++) {
+							         loginfo[i]=rs.getString(i);
+							    }
+							}
+							stuId.setText(loginfo[1]);
+							stuName.setText(loginfo[2]+" "+loginfo[3]);
+							progCode.setText(loginfo[6]);
+						
+							pst2.setString(1,progCode.getText());
+							rs2 = pst2.executeQuery();
+							rsmd2 = rs2.getMetaData();
+							int columnsNumber1 = rsmd2.getColumnCount();
+							String[] proginfo=new String[columnsNumber1+1];
+							while (rs2.next()) {
+								for (int i = 1; i <= columnsNumber1; i++) {
+									proginfo[i]=rs2.getString(i);
+							    }
+							}
+							progName.setText(proginfo[2]);
+							maxCourses.setText(proginfo[3]);
+							award.setText(proginfo[4]);
+							accreditation.setText(proginfo[5]);
+							
+						}catch(Exception err){
+							System.out.println(err);
+						}
 					}
 				}catch(Exception err){
+				
 				}
 			}
 		});
@@ -166,7 +210,7 @@ public class ProgrammeDetails extends StudentRecords{
 		panel.add(studentName);
 		Login in =new Login();
 		FileProcess fp = new FileProcess();
-		String getid = in.getid();
+		getid = in.getid();
 		String[]info = new String[3];
 		info=fp.getUserinfo(getid);
 		try{
@@ -179,19 +223,22 @@ public class ProgrammeDetails extends StudentRecords{
 		
 		JButton btnViewProgrammeDetails = new JButton("PROGRAMME DETAILS");
 		btnViewProgrammeDetails.setEnabled(false);
-		btnViewProgrammeDetails.setBounds(12, 237, 188, 25);
+		btnViewProgrammeDetails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ProgrammeDetails pd = new ProgrammeDetails();
+				pd.live();
+				student.dispose();
+			}
+		});
+		btnViewProgrammeDetails.setBounds(12, 238, 188, 25);
 		panel.add(btnViewProgrammeDetails);
 		
 		JButton btnAddCourse = new JButton("ADD COURSE");
 		btnAddCourse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try{
-					student.dispose();
-					StudentMenu sm = new StudentMenu();
-					sm.live();
-				}catch(Exception err){
-					
-				}
+				StudentMenu sm = new StudentMenu();
+				sm.live();
+				student.dispose();
 			}
 		});
 		btnAddCourse.setBounds(12, 183, 188, 25);
@@ -200,9 +247,12 @@ public class ProgrammeDetails extends StudentRecords{
 		JButton btnFeeBreakdown = new JButton("FEE BREAKDOWN");
 		btnFeeBreakdown.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//GenerateFee gf = new GenerateFee();
+				//student.dispose();	
+				//gf.load();
 			}
 		});
-		btnFeeBreakdown.setBounds(12, 295, 188, 25);
+		btnFeeBreakdown.setBounds(12, 290, 188, 25);
 		panel.add(btnFeeBreakdown);
 		
 		JPanel panel_1 = new JPanel();
@@ -210,6 +260,118 @@ public class ProgrammeDetails extends StudentRecords{
 		panel_1.setBounds(236, 12, 507, 496);
 		student.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
+		
+		JLabel lblEnrolForSemester = new JLabel("ENROL FOR SEMESTER");
+		lblEnrolForSemester.setFont(new Font("Bitstream Charter", Font.BOLD, 24));
+		lblEnrolForSemester.setForeground(Color.WHITE);
+		lblEnrolForSemester.setBounds(131, 12, 273, 28);
+		panel_1.add(lblEnrolForSemester);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(12, 52, 483, 2);
+		panel_1.add(separator);
+		
+		JLabel lblNewLabel = new JLabel("PROGRAMME CODE:");
+		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBounds(35, 218, 188, 15);
+		panel_1.add(lblNewLabel);
+		
+		progCode = new JTextField();
+		progCode.setEditable(false);
+		progCode.setBounds(241, 214, 200, 19);
+		panel_1.add(progCode);
+		progCode.setColumns(10);
+		
+		JLabel lblName = new JLabel("ID NUMBER:");
+		lblName.setForeground(Color.WHITE);
+		lblName.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblName.setBounds(87, 67, 114, 15);
+		panel_1.add(lblName);
+		
+		stuId = new JTextField();
+		stuId.setEditable(false);
+		stuId.setColumns(10);
+		stuId.setBounds(225, 66, 200, 19);
+		panel_1.add(stuId);
+		
+		JLabel lblFullName = new JLabel("FULL NAME:");
+		lblFullName.setForeground(Color.WHITE);
+		lblFullName.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblFullName.setBounds(87, 98, 132, 15);
+		panel_1.add(lblFullName);
+		
+		stuName = new JTextField();
+		stuName.setEditable(false);
+		stuName.setColumns(10);
+		stuName.setBounds(225, 97, 200, 19);
+		panel_1.add(stuName);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(12, 310, 483, 2);
+		panel_1.add(separator_1);
+		
+		JLabel lblCoursesAvailable = new JLabel("COURSES OFFERED");
+		lblCoursesAvailable.setForeground(Color.WHITE);
+		lblCoursesAvailable.setFont(new Font("Bitstream Charter", Font.BOLD, 20));
+		lblCoursesAvailable.setBounds(162, 324, 209, 28);
+		panel_1.add(lblCoursesAvailable);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setBounds(12, 364, 483, 2);
+		panel_1.add(separator_2);
+		
+		JLabel lblNumberOfCourses = new JLabel("MAX NO. OF COURSES:");
+		lblNumberOfCourses.setForeground(Color.WHITE);
+		lblNumberOfCourses.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblNumberOfCourses.setBounds(35, 280, 216, 15);
+		panel_1.add(lblNumberOfCourses);
+		
+		maxCourses = new JTextField();
+		maxCourses.setEditable(false);
+		maxCourses.setColumns(10);
+		maxCourses.setBounds(241, 279, 200, 19);
+		panel_1.add(maxCourses);
+		
+		JLabel label_2 = new JLabel("PROGRAMME NAME:");
+		label_2.setForeground(Color.WHITE);
+		label_2.setFont(new Font("Dialog", Font.BOLD, 16));
+		label_2.setBounds(35, 251, 188, 15);
+		panel_1.add(label_2);
+		
+		progName = new JTextField();
+		progName.setEditable(false);
+		progName.setColumns(10);
+		progName.setBounds(241, 245, 200, 19);
+		panel_1.add(progName);
+		
+		JLabel lblaward = new JLabel("AWARD:");
+		lblaward.setForeground(Color.WHITE);
+		lblaward.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblaward.setBounds(97, 133, 99, 15);
+		panel_1.add(lblaward);
+		
+		award = new JTextField();
+		award.setEditable(false);
+		award.setColumns(10);
+		award.setBounds(225, 132, 200, 19);
+		panel_1.add(award);
+		
+		JLabel lblAccreditation = new JLabel("ACCREDITATION:");
+		lblAccreditation.setForeground(Color.WHITE);
+		lblAccreditation.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblAccreditation.setBounds(35, 191, 162, 15);
+		panel_1.add(lblAccreditation);
+		
+		accreditation = new JTextField();
+		accreditation.setEditable(false);
+		accreditation.setColumns(10);
+		accreditation.setBounds(241, 183, 200, 19);
+		panel_1.add(accreditation);
+		
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setBounds(0, 169, 483, 2);
+		panel_1.add(separator_3);
 		
 		JMenuBar menuBar = new JMenuBar();
 		student.setJMenuBar(menuBar);
