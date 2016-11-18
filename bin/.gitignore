@@ -1,2 +1,4 @@
-/gui/
 /domain/
+/gui/
+/presentation/
+/services/

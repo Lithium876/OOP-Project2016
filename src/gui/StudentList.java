@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
@@ -36,7 +37,6 @@ public class StudentList extends StudentRecords{
 
 	private JFrame studentList;
 	private JButton SeeAll;
-	private JButton search;
 	private JTable table;
 	private JTextField find;
 	private String name;
@@ -130,6 +130,9 @@ public class StudentList extends StudentRecords{
 		JButton btnModifyPrgramme = new JButton("MODIFY PRGRAMME");
 		btnModifyPrgramme.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				studentList.dispose();
+				ModifyProgramme pm = new ModifyProgramme();
+				pm.load();
 			}
 		});
 		btnModifyPrgramme.setBounds(12, 278, 188, 25);
@@ -169,9 +172,8 @@ public class StudentList extends StudentRecords{
 			name=info[0];
 			depart=info[1];
 			fac=info[2];
-		}
-		catch(Exception e){
-			
+		}catch(Exception e){
+			//System.out.println(e);
 		}
 		StaffName.setText(name);
 		
@@ -198,13 +200,19 @@ public class StudentList extends StudentRecords{
 		find = new JTextField();
 		find.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyTyped(KeyEvent e) {
-				if(find.getText().length()==0){
-					search.setEnabled(false);
-				}
-				else{
-					search.setEnabled(true);
-				}
+			public void keyReleased(KeyEvent e) {
+				try{	
+					String Query= "SELECT * FROM studentinfo WHERE ProgrammeCode=?";
+					PreparedStatement pst= conn.prepareStatement(Query);
+					pst.setString(1, find.getText());
+					ResultSet rs= pst.executeQuery();
+					
+					table.setModel(DbUtils.resultSetToTableModel(rs));
+					pst.close();
+				  }
+				  catch(SQLException ex){
+					  JOptionPane.showMessageDialog(null, ex.getMessage());
+				  }
 			}
 		});
 		find.setBounds(227, 75, 222, 19);
@@ -217,25 +225,7 @@ public class StudentList extends StudentRecords{
 		lblProgrammeCode.setBounds(42, 74, 182, 20);
 		panel_1.add(lblProgrammeCode);
 		
-		search = new JButton("GENERATE");
-		search.setEnabled(false);
-		search.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try{
-					String q = "SELECT * FROM studentinfo WHERE ProgrammeCode=?";
-					PreparedStatement pst= conn.prepareStatement(q);
-					pst.setString(1,find.getText());
-					ResultSet rs = pst.executeQuery();
-					table.setModel(DbUtils.resultSetToTableModel(rs));
-				}catch(Exception err){
-					System.out.println(err);
-				}
-			}
-		});
-		search.setBounds(461, 72, 117, 25);
-		panel_1.add(search);
-		
-		SeeAll = new JButton("VIEW ALL");
+		SeeAll = new JButton("VIEW ALL STUDENTS");
 		SeeAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -243,12 +233,13 @@ public class StudentList extends StudentRecords{
 					PreparedStatement pst= conn.prepareStatement(q);
 					ResultSet rs = pst.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
+					pst.close();
 				}catch(Exception err){
 					System.out.println(err);
 				}
 			}
 		});
-		SeeAll.setBounds(590, 72, 117, 25);
+		SeeAll.setBounds(472, 72, 235, 25);
 		panel_1.add(SeeAll);
 		
 		JSeparator separator = new JSeparator();

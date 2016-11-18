@@ -12,12 +12,12 @@ FENC
 =======================================
 Paul Smith
 1614999
-password1
+qwerty12
 STUDENT
 =======================================
 Lomar Lilly
 1616PHY
-12345678Q
+qwerty12
 STUDENT
 =======================================
 dsvsdv sdvsdvsdv
@@ -40,5 +40,19 @@ dfgdfg sdufgsdo
 password1
 STUDENT
 123
+
+=======================================
+Vid Rec
+1620123
+password1
+STUDENT
+123
+
+=======================================
+Corey Lilly
+1621sher
+qwerty12
+STUDENT
+sher
 
 =======================================

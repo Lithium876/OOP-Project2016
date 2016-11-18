@@ -153,16 +153,16 @@ public class StudentMenu extends StudentRecords{
 							while (rs2.next()) {
 								for (int i = 1; i <= columnsNumber1; i++) {
 									proginfo[i]=rs2.getString(i);
-							        //System.out.print(proginfo[i]+"\n");
 							    }
 							}
 							maxCourses.setText(proginfo[3]);
+							pst.close();
+							pst2.close();
 						}catch(Exception err){
 							System.out.println(err);
 						}
 					}
 				}catch(Exception err){
-				
 				}
 			}
 		});
@@ -213,8 +213,7 @@ public class StudentMenu extends StudentRecords{
 		info=fp.getUserinfo(getid);
 		try{
 			name=info[0];
-		}
-		catch(Exception e){
+		}catch(Exception e){
 			
 		}
 		studentName.setText(name);

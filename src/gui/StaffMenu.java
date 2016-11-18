@@ -178,6 +178,9 @@ public class StaffMenu extends StudentRecords{
 		JButton btnModifyPrgramme = new JButton("MODIFY PRGRAMME");
 		btnModifyPrgramme.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frmStaffMenu.dispose();
+				ModifyProgramme pm = new ModifyProgramme();
+				pm.load();
 			}
 		});
 		btnModifyPrgramme.setBounds(12, 277, 188, 25);
@@ -351,7 +354,7 @@ public class StaffMenu extends StudentRecords{
 							pst.close();	
 							fp.validate(name, usr, passwrd, confirmPasswrd, "NO", type,department,fac);
 							JOptionPane.showMessageDialog(null, "Student Registered!");
-						} catch (Exception err) {
+						}catch (Exception err) {
 							err.printStackTrace();
 						}
 						student.display();
@@ -360,7 +363,6 @@ public class StaffMenu extends StudentRecords{
 				}catch(Exception err){
 					//System.out.println(err);
 				}
-				
 			}
 		});
 		btnNewButton_2.setBounds(93, 448, 195, 25);
@@ -431,7 +433,9 @@ public class StaffMenu extends StudentRecords{
 						JOptionPane.showMessageDialog(null, "Sorry, "+progcode.getText()+" is not a valid programme code!");
 						int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to Register a New Programme Code?","Register Programme Code",JOptionPane.YES_NO_OPTION);
 						if(dialogResult == JOptionPane.YES_OPTION){
+							CreateProgramme cp = new CreateProgramme();
 							frmStaffMenu.dispose();
+							cp.load();
 							check.close();
 						}else{
 							progcode.setText("");

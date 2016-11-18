@@ -190,6 +190,13 @@ private void initialize() {
 		panel.add(btnCreateProgramme);
 			
 		JButton btnModifyPrgramme = new JButton("MODIFY PRGRAMME");
+		btnModifyPrgramme.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmCreateProgramme.dispose();
+				ModifyProgramme pm = new ModifyProgramme();
+				pm.load();
+			}
+		});
 		btnModifyPrgramme.setBounds(12, 268, 188, 25);
 		panel.add(btnModifyPrgramme);
 			
