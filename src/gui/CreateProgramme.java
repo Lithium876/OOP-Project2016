@@ -39,6 +39,8 @@ import java.awt.event.FocusEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.awt.Dialog.ModalExclusionType;
+import java.awt.Window.Type;
 
 public class CreateProgramme extends ProgrammeRecords{
 
@@ -135,6 +137,7 @@ private void initialize() {
 		frmCreateProgramme.getContentPane().setBackground(new Color(0, 102, 255));
 		frmCreateProgramme.setBounds(100, 100, 757, 569);
 		frmCreateProgramme.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmCreateProgramme.setLocationRelativeTo(null);
 		frmCreateProgramme.getContentPane().setLayout(null);
 			
 		JPanel panel = new JPanel();

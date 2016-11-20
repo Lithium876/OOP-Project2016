@@ -43,6 +43,30 @@ public class ProgrammeDetails extends StudentRecords{
 	private JTextField maxCourses;
 	private JTextField stuId;
 	private JTextField stuName;
+	private JLabel c1;
+	private JLabel c2;
+	private JLabel c3;
+	private JLabel c4;
+	private JLabel c5;
+	private JLabel c6;
+	private JLabel c7;
+	private JLabel c8;
+	private JLabel cred1;
+	private JLabel cred2;
+	private JLabel cred3;
+	private JLabel cred4;
+	private JLabel cred5;
+	private JLabel cred6;
+	private JLabel cred7;
+	private JLabel cred8;
+	private JLabel pre1;
+	private JLabel pre2;
+	private JLabel pre3;
+	private JLabel pre4;
+	private JLabel pre5;
+	private JLabel pre6;
+	private JLabel pre7;
+	private JLabel pre8;
 	private String getid; 
 	private JFrame student;
 	private String name;
@@ -50,6 +74,7 @@ public class ProgrammeDetails extends StudentRecords{
 	private JTextField progName;
 	private JTextField award;
 	private JTextField accreditation;
+	private JSeparator separator_4;
 	
 	
 	public static void main(String[] args) {
@@ -103,6 +128,168 @@ public class ProgrammeDetails extends StudentRecords{
 			}
 		};
 		clock.start();
+	}
+	public void loadCertificatecourses(String code){
+		ResultSetMetaData rsmd;
+		ResultSet rs;
+		String q = "SELECT * FROM certificate WHERE ProgrammeCode=?";
+		PreparedStatement pst;
+		try {
+			pst = conn.prepareStatement(q);
+			pst.setString(1,code);
+			rs = pst.executeQuery();
+			rsmd = rs.getMetaData();
+			int columnsNumber = rsmd.getColumnCount();
+			String[] courseInfo = new String[columnsNumber+1];
+			while (rs.next()) {
+				for (int i = 1; i <= columnsNumber; i++) {
+					courseInfo[i]=rs.getString(i);
+			    }
+			}
+			pst.close();
+			
+			c1.setText(courseInfo[2]);
+			c2.setText(courseInfo[3]);
+			c3.setText(courseInfo[4]);
+			c4.setText(courseInfo[5]);
+			cred1.setText(courseInfo[11]);
+			cred2.setText(courseInfo[12]);
+			cred3.setText(courseInfo[13]);
+			cred4.setText(courseInfo[14]);
+			pre1.setText(courseInfo[7]);
+			pre2.setText(courseInfo[8]);
+			pre3.setText(courseInfo[9]);
+			pre4.setText(courseInfo[10]);
+			c5.setText("UNAVAILABLE");
+			c6.setText("UNAVAILABLE");
+			c7.setText("UNAVAILABLE");
+			c8.setText("UNAVAILABLE");
+			cred5.setText("0");
+			cred6.setText("0");
+			cred7.setText("0");
+			cred8.setText("0");
+			pre5.setText("UNAVAILABLE");
+			pre6.setText("UNAVAILABLE");
+			pre7.setText("UNAVAILABLE");
+			pre8.setText("UNAVAILABLE");
+			c5.setEnabled(false);
+			c6.setEnabled(false);
+			c7.setEnabled(false);
+			c8.setEnabled(false);
+			cred5.setEnabled(false);
+			cred6.setEnabled(false);
+			cred7.setEnabled(false);
+			cred8.setEnabled(false);
+			pre5.setEnabled(false);
+			pre6.setEnabled(false);
+			pre7.setEnabled(false);
+			pre8.setEnabled(false);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void loadDiplomacourses(String code){
+		ResultSetMetaData rsmd;
+		ResultSet rs;
+		String q = "SELECT * FROM diploma WHERE ProgrammeCode=?";
+		PreparedStatement pst;
+		try {
+			pst = conn.prepareStatement(q);
+			pst.setString(1,code);
+			rs = pst.executeQuery();
+			rsmd = rs.getMetaData();
+			int columnsNumber = rsmd.getColumnCount();
+			String[] courseInfo = new String[columnsNumber+1];
+			while (rs.next()) {
+				for (int i = 1; i <= columnsNumber; i++) {
+					courseInfo[i]=rs.getString(i);
+			    }
+			}
+			pst.close();
+			
+			c1.setText(courseInfo[2]);
+			c2.setText(courseInfo[3]);
+			c3.setText(courseInfo[4]);
+			c4.setText(courseInfo[5]);
+			c5.setText(courseInfo[6]);
+			c6.setText(courseInfo[7]);
+			cred1.setText(courseInfo[15]);
+			cred2.setText(courseInfo[16]);
+			cred3.setText(courseInfo[17]);
+			cred4.setText(courseInfo[18]);
+			cred5.setText(courseInfo[19]);
+			cred6.setText(courseInfo[20]);
+			pre1.setText(courseInfo[9]);
+			pre2.setText(courseInfo[10]);
+			pre3.setText(courseInfo[11]);
+			pre4.setText(courseInfo[12]);
+			pre5.setText(courseInfo[13]);
+			pre6.setText(courseInfo[14]);
+			c7.setText("UNAVAILABLE");
+			c8.setText("UNAVAILABLE");
+			cred7.setText("0");
+			cred8.setText("0");
+			pre7.setText("UNAVAILABLE");
+			pre8.setText("UNAVAILABLE");
+			c7.setEnabled(false);
+			c8.setEnabled(false);
+			cred7.setEnabled(false);
+			cred8.setEnabled(false);
+			pre7.setEnabled(false);
+			pre8.setEnabled(false);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void loadAssociatecourses(String code){
+		ResultSetMetaData rsmd;
+		ResultSet rs;
+		String q = "SELECT * FROM associatedegree WHERE ProgrammeCode=?";
+		PreparedStatement pst;
+		try {
+			pst = conn.prepareStatement(q);
+			pst.setString(1,code);
+			rs = pst.executeQuery();
+			rsmd = rs.getMetaData();
+			int columnsNumber = rsmd.getColumnCount();
+			String[] courseInfo = new String[columnsNumber+1];
+			while (rs.next()) {
+				for (int i = 1; i <= columnsNumber; i++) {
+					courseInfo[i]=rs.getString(i);
+			    }
+			}
+			pst.close();
+			
+			c1.setText(courseInfo[2]);
+			c2.setText(courseInfo[3]);
+			c3.setText(courseInfo[4]);
+			c4.setText(courseInfo[5]);
+			c5.setText(courseInfo[6]);
+			c6.setText(courseInfo[7]);
+			c7.setText(courseInfo[27]);
+			c8.setText(courseInfo[28]);
+			cred1.setText(courseInfo[15]);
+			cred2.setText(courseInfo[16]);
+			cred3.setText(courseInfo[17]);
+			cred4.setText(courseInfo[18]);
+			cred5.setText(courseInfo[19]);
+			cred6.setText(courseInfo[20]);
+			cred7.setText(courseInfo[31]);
+			cred8.setText(courseInfo[32]);
+			pre1.setText(courseInfo[9]);
+			pre2.setText(courseInfo[10]);
+			pre3.setText(courseInfo[11]);
+			pre4.setText(courseInfo[12]);
+			pre5.setText(courseInfo[13]);
+			pre6.setText(courseInfo[14]);
+			pre7.setText(courseInfo[29]);
+			pre8.setText(courseInfo[30]);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void initialize() {
@@ -158,7 +345,17 @@ public class ProgrammeDetails extends StudentRecords{
 							maxCourses.setText(proginfo[3]);
 							award.setText(proginfo[4]);
 							accreditation.setText(proginfo[5]);
-							
+							if(proginfo[4].equals("Associate Degree")){
+								loadAssociatecourses(loginfo[6]);
+							}else{
+								if(proginfo[4].equals("Diploma")){
+									loadDiplomacourses(loginfo[6]);
+								}else{
+									if(proginfo[4].equals("Certificate")){
+										loadCertificatecourses(loginfo[6]);
+									}
+								}
+							}
 						}catch(Exception err){
 							System.out.println(err);
 						}
@@ -171,13 +368,14 @@ public class ProgrammeDetails extends StudentRecords{
 		student.setTitle("STUDENT");
 		student.setResizable(false);
 		student.getContentPane().setBackground(new Color(0, 102, 255));
-		student.setBounds(100, 100, 757, 569);
+		student.setBounds(100, 100, 785, 671);
 		student.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		student.setLocationRelativeTo(null);
 		student.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 153, 255));
-		panel.setBounds(12, 31, 212, 461);
+		panel.setBounds(12, 31, 212, 557);
 		student.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -189,7 +387,7 @@ public class ProgrammeDetails extends StudentRecords{
 				log.run();
 			}
 		});
-		btnNewButton.setBounds(41, 424, 117, 25);
+		btnNewButton.setBounds(45, 520, 117, 25);
 		panel.add(btnNewButton);
 		
 		JLabel label = new JLabel("Welcome");
@@ -230,7 +428,7 @@ public class ProgrammeDetails extends StudentRecords{
 				student.dispose();
 			}
 		});
-		btnViewProgrammeDetails.setBounds(12, 238, 188, 25);
+		btnViewProgrammeDetails.setBounds(12, 255, 188, 25);
 		panel.add(btnViewProgrammeDetails);
 		
 		JButton btnAddCourse = new JButton("ADD COURSE");
@@ -252,12 +450,12 @@ public class ProgrammeDetails extends StudentRecords{
 				//gf.load();
 			}
 		});
-		btnFeeBreakdown.setBounds(12, 290, 188, 25);
+		btnFeeBreakdown.setBounds(12, 332, 188, 25);
 		panel.add(btnFeeBreakdown);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(0, 153, 255));
-		panel_1.setBounds(236, 12, 507, 496);
+		panel_1.setBounds(236, 12, 535, 598);
 		student.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -268,18 +466,18 @@ public class ProgrammeDetails extends StudentRecords{
 		panel_1.add(lblEnrolForSemester);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(12, 52, 483, 2);
+		separator.setBounds(12, 52, 507, 2);
 		panel_1.add(separator);
 		
 		JLabel lblNewLabel = new JLabel("PROGRAMME CODE:");
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBounds(35, 218, 188, 15);
+		lblNewLabel.setBounds(60, 218, 188, 15);
 		panel_1.add(lblNewLabel);
 		
 		progCode = new JTextField();
 		progCode.setEditable(false);
-		progCode.setBounds(241, 214, 200, 19);
+		progCode.setBounds(266, 214, 200, 19);
 		panel_1.add(progCode);
 		progCode.setColumns(10);
 		
@@ -308,41 +506,37 @@ public class ProgrammeDetails extends StudentRecords{
 		panel_1.add(stuName);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(12, 310, 483, 2);
+		separator_1.setBounds(12, 310, 507, 2);
 		panel_1.add(separator_1);
 		
 		JLabel lblCoursesAvailable = new JLabel("COURSES OFFERED");
 		lblCoursesAvailable.setForeground(Color.WHITE);
 		lblCoursesAvailable.setFont(new Font("Bitstream Charter", Font.BOLD, 20));
-		lblCoursesAvailable.setBounds(162, 324, 209, 28);
+		lblCoursesAvailable.setBounds(164, 310, 209, 28);
 		panel_1.add(lblCoursesAvailable);
-		
-		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(12, 364, 483, 2);
-		panel_1.add(separator_2);
 		
 		JLabel lblNumberOfCourses = new JLabel("MAX NO. OF COURSES:");
 		lblNumberOfCourses.setForeground(Color.WHITE);
 		lblNumberOfCourses.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblNumberOfCourses.setBounds(35, 280, 216, 15);
+		lblNumberOfCourses.setBounds(60, 280, 216, 15);
 		panel_1.add(lblNumberOfCourses);
 		
 		maxCourses = new JTextField();
 		maxCourses.setEditable(false);
 		maxCourses.setColumns(10);
-		maxCourses.setBounds(241, 279, 200, 19);
+		maxCourses.setBounds(266, 279, 200, 19);
 		panel_1.add(maxCourses);
 		
 		JLabel label_2 = new JLabel("PROGRAMME NAME:");
 		label_2.setForeground(Color.WHITE);
 		label_2.setFont(new Font("Dialog", Font.BOLD, 16));
-		label_2.setBounds(35, 251, 188, 15);
+		label_2.setBounds(60, 251, 188, 15);
 		panel_1.add(label_2);
 		
 		progName = new JTextField();
 		progName.setEditable(false);
 		progName.setColumns(10);
-		progName.setBounds(241, 245, 200, 19);
+		progName.setBounds(266, 245, 200, 19);
 		panel_1.add(progName);
 		
 		JLabel lblaward = new JLabel("AWARD:");
@@ -360,18 +554,184 @@ public class ProgrammeDetails extends StudentRecords{
 		JLabel lblAccreditation = new JLabel("ACCREDITATION:");
 		lblAccreditation.setForeground(Color.WHITE);
 		lblAccreditation.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblAccreditation.setBounds(35, 191, 162, 15);
+		lblAccreditation.setBounds(60, 191, 162, 15);
 		panel_1.add(lblAccreditation);
 		
 		accreditation = new JTextField();
 		accreditation.setEditable(false);
 		accreditation.setColumns(10);
-		accreditation.setBounds(241, 183, 200, 19);
+		accreditation.setBounds(266, 183, 200, 19);
 		panel_1.add(accreditation);
 		
 		JSeparator separator_3 = new JSeparator();
-		separator_3.setBounds(0, 169, 483, 2);
+		separator_3.setBounds(0, 169, 519, 2);
 		panel_1.add(separator_3);
+		
+		c1 = new JLabel("courseName");
+		c1.setForeground(Color.WHITE);
+		c1.setFont(new Font("Dialog", Font.BOLD, 16));
+		c1.setBounds(35, 378, 188, 15);
+		panel_1.add(c1);
+		
+		c2 = new JLabel("courseName");
+		c2.setForeground(Color.WHITE);
+		c2.setFont(new Font("Dialog", Font.BOLD, 16));
+		c2.setBounds(35, 405, 188, 15);
+		panel_1.add(c2);
+		
+		c3 = new JLabel("courseName");
+		c3.setForeground(Color.WHITE);
+		c3.setFont(new Font("Dialog", Font.BOLD, 16));
+		c3.setBounds(35, 432, 188, 15);
+		panel_1.add(c3);
+		
+		c4 = new JLabel("courseName");
+		c4.setForeground(Color.WHITE);
+		c4.setFont(new Font("Dialog", Font.BOLD, 16));
+		c4.setBounds(35, 459, 188, 15);
+		panel_1.add(c4);
+		
+		c5 = new JLabel("courseName");
+		c5.setForeground(Color.WHITE);
+		c5.setFont(new Font("Dialog", Font.BOLD, 16));
+		c5.setBounds(35, 486, 188, 15);
+		panel_1.add(c5);
+		
+		c6 = new JLabel("courseName");
+		c6.setForeground(Color.WHITE);
+		c6.setFont(new Font("Dialog", Font.BOLD, 16));
+		c6.setBounds(35, 515, 188, 15);
+		panel_1.add(c6);
+		
+		c7 = new JLabel("courseName");
+		c7.setForeground(Color.WHITE);
+		c7.setFont(new Font("Dialog", Font.BOLD, 16));
+		c7.setBounds(35, 544, 188, 15);
+		panel_1.add(c7);
+		
+		c8 = new JLabel("courseName");
+		c8.setForeground(Color.WHITE);
+		c8.setFont(new Font("Dialog", Font.BOLD, 16));
+		c8.setBounds(35, 571, 188, 15);
+		panel_1.add(c8);
+		
+		cred1 = new JLabel("credits");
+		cred1.setForeground(Color.WHITE);
+		cred1.setFont(new Font("Dialog", Font.BOLD, 16));
+		cred1.setBounds(225, 378, 78, 15);
+		panel_1.add(cred1);
+		
+		cred2 = new JLabel("credits");
+		cred2.setForeground(Color.WHITE);
+		cred2.setFont(new Font("Dialog", Font.BOLD, 16));
+		cred2.setBounds(225, 405, 78, 15);
+		panel_1.add(cred2);
+		
+		cred3 = new JLabel("credits");
+		cred3.setForeground(Color.WHITE);
+		cred3.setFont(new Font("Dialog", Font.BOLD, 16));
+		cred3.setBounds(225, 432, 78, 15);
+		panel_1.add(cred3);
+		
+		cred4 = new JLabel("credits");
+		cred4.setForeground(Color.WHITE);
+		cred4.setFont(new Font("Dialog", Font.BOLD, 16));
+		cred4.setBounds(225, 459, 78, 15);
+		panel_1.add(cred4);
+		
+		cred5 = new JLabel("credits");
+		cred5.setForeground(Color.WHITE);
+		cred5.setFont(new Font("Dialog", Font.BOLD, 16));
+		cred5.setBounds(225, 486, 78, 15);
+		panel_1.add(cred5);
+		
+		cred6 = new JLabel("credits");
+		cred6.setForeground(Color.WHITE);
+		cred6.setFont(new Font("Dialog", Font.BOLD, 16));
+		cred6.setBounds(225, 515, 78, 15);
+		panel_1.add(cred6);
+		
+		cred7 = new JLabel("credits");
+		cred7.setForeground(Color.WHITE);
+		cred7.setFont(new Font("Dialog", Font.BOLD, 16));
+		cred7.setBounds(225, 544, 78, 15);
+		panel_1.add(cred7);
+		
+		cred8 = new JLabel("credits");
+		cred8.setForeground(Color.WHITE);
+		cred8.setFont(new Font("Dialog", Font.BOLD, 16));
+		cred8.setBounds(225, 571, 78, 15);
+		panel_1.add(cred8);
+		
+		pre1 = new JLabel("courseName");
+		pre1.setForeground(Color.WHITE);
+		pre1.setFont(new Font("Dialog", Font.BOLD, 16));
+		pre1.setBounds(331, 380, 188, 15);
+		panel_1.add(pre1);
+		
+		pre2 = new JLabel("courseName");
+		pre2.setForeground(Color.WHITE);
+		pre2.setFont(new Font("Dialog", Font.BOLD, 16));
+		pre2.setBounds(331, 406, 188, 15);
+		panel_1.add(pre2);
+		
+		pre3 = new JLabel("courseName");
+		pre3.setForeground(Color.WHITE);
+		pre3.setFont(new Font("Dialog", Font.BOLD, 16));
+		pre3.setBounds(331, 433, 188, 15);
+		panel_1.add(pre3);
+		
+		pre4 = new JLabel("courseName");
+		pre4.setForeground(Color.WHITE);
+		pre4.setFont(new Font("Dialog", Font.BOLD, 16));
+		pre4.setBounds(331, 460, 188, 15);
+		panel_1.add(pre4);
+		
+		pre5 = new JLabel("courseName");
+		pre5.setForeground(Color.WHITE);
+		pre5.setFont(new Font("Dialog", Font.BOLD, 16));
+		pre5.setBounds(331, 487, 188, 15);
+		panel_1.add(pre5);
+		
+		pre6 = new JLabel("courseName");
+		pre6.setForeground(Color.WHITE);
+		pre6.setFont(new Font("Dialog", Font.BOLD, 16));
+		pre6.setBounds(331, 516, 188, 15);
+		panel_1.add(pre6);
+		
+		pre7 = new JLabel("courseName");
+		pre7.setForeground(Color.WHITE);
+		pre7.setFont(new Font("Dialog", Font.BOLD, 16));
+		pre7.setBounds(331, 545, 188, 15);
+		panel_1.add(pre7);
+		
+		pre8 = new JLabel("courseName");
+		pre8.setForeground(Color.WHITE);
+		pre8.setFont(new Font("Dialog", Font.BOLD, 16));
+		pre8.setBounds(331, 572, 188, 15);
+		panel_1.add(pre8);
+		
+		JLabel lblCourses = new JLabel("COURSES");
+		lblCourses.setForeground(Color.WHITE);
+		lblCourses.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblCourses.setBounds(51, 350, 99, 15);
+		panel_1.add(lblCourses);
+		
+		JLabel lblCredits_8 = new JLabel("CREDITS");
+		lblCredits_8.setForeground(Color.WHITE);
+		lblCredits_8.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblCredits_8.setBounds(213, 351, 78, 15);
+		panel_1.add(lblCredits_8);
+		
+		JLabel lblPrereq = new JLabel("PRE-REQUISITE");
+		lblPrereq.setForeground(Color.WHITE);
+		lblPrereq.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblPrereq.setBounds(339, 350, 162, 15);
+		panel_1.add(lblPrereq);
+		
+		separator_4 = new JSeparator();
+		separator_4.setBounds(12, 336, 507, 2);
+		panel_1.add(separator_4);
 		
 		JMenuBar menuBar = new JMenuBar();
 		student.setJMenuBar(menuBar);

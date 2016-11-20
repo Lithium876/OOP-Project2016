@@ -352,10 +352,10 @@ public class ModifyCourse extends ProgrammeRecords{
 			cred2.setText(certificateInfo[12]);
 			cred3.setText(certificateInfo[13]);
 			cred4.setText(certificateInfo[14]);		     
-			pre1.setText(certificateInfo[11]);		        
-			pre2.setText(certificateInfo[12]);		       
-			pre3.setText(certificateInfo[13]);
-			pre4.setText(certificateInfo[14]);
+			pre1.setText(certificateInfo[7]);		        
+			pre2.setText(certificateInfo[8]);		       
+			pre3.setText(certificateInfo[9]);
+			pre4.setText(certificateInfo[10]);
 			cde1.setText(certificateInfo[15]);
 			cde2.setText(certificateInfo[16]);
 			cde3.setText(certificateInfo[17]);
@@ -554,6 +554,7 @@ public class ModifyCourse extends ProgrammeRecords{
 		modifycourse.getContentPane().setBackground(new Color(0, 102, 255));
 		modifycourse.setBounds(100, 100, 942, 616);
 		modifycourse.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		modifycourse.setLocationRelativeTo(null);
 		modifycourse.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();

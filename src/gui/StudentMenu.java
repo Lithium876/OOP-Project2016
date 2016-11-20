@@ -100,6 +100,8 @@ public class StudentMenu extends StudentRecords{
 					courseInfo[i]=rs.getString(i);
 			    }
 			}
+			pst.close();
+			
 			c1.setText(courseInfo[2]);
 			c2.setText(courseInfo[3]);
 			c3.setText(courseInfo[4]);
@@ -134,6 +136,8 @@ public class StudentMenu extends StudentRecords{
 					courseInfo[i]=rs.getString(i);
 			    }
 			}
+			pst.close();
+			
 			c1.setText(courseInfo[2]);
 			c2.setText(courseInfo[3]);
 			c3.setText(courseInfo[4]);
@@ -166,6 +170,8 @@ public class StudentMenu extends StudentRecords{
 					courseInfo[i]=rs.getString(i);
 			    }
 			}
+			pst.close();
+			
 			c1.setText(courseInfo[2]);
 			c2.setText(courseInfo[3]);
 			c3.setText(courseInfo[4]);
@@ -288,6 +294,7 @@ public class StudentMenu extends StudentRecords{
 		student.getContentPane().setBackground(new Color(0, 102, 255));
 		student.setBounds(100, 100, 757, 591);
 		student.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		student.setLocationRelativeTo(null);
 		student.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();

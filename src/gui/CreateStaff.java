@@ -72,6 +72,7 @@ public class CreateStaff{
 		frmStaffAccount.setResizable(false);
 		frmStaffAccount.setBounds(100, 100, 614, 499);
 		frmStaffAccount.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmStaffAccount.setLocationRelativeTo(null);
 		frmStaffAccount.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();

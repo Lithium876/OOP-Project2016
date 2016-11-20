@@ -140,6 +140,7 @@ public class StaffMenu extends StudentRecords{
 		frmStaffMenu.getContentPane().setBackground(new Color(0, 102, 255));
 		frmStaffMenu.setBounds(100, 100, 757, 569);
 		frmStaffMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmStaffMenu.setLocationRelativeTo(null);
 		frmStaffMenu.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();

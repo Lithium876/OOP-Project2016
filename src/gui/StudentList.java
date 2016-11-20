@@ -91,6 +91,7 @@ public class StudentList extends StudentRecords{
 		studentList.getContentPane().setBackground(new Color(0, 102, 255));
 		studentList.setBounds(100, 100, 1023, 577);
 		studentList.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		studentList.setLocationRelativeTo(null);
 		studentList.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();

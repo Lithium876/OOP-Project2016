@@ -196,6 +196,7 @@ public class ModifyProgramme extends ProgrammeRecords{
 		modifyprog.getContentPane().setBackground(new Color(0, 102, 255));
 		modifyprog.setBounds(100, 100, 994, 603);
 		modifyprog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		modifyprog.setLocationRelativeTo(null);
 		modifyprog.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
