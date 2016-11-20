@@ -858,6 +858,17 @@ public class ModifyCourse extends ProgrammeRecords{
 		panel_1.add(textField_6);
 		
 		cred1 = new JTextField();
+		cred1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				try{
+					Integer.parseInt(cred1.getText());
+				}catch(Exception err)
+				{
+					cred1.setText("");
+				}
+			}
+		});
 		cred1.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -881,10 +892,32 @@ public class ModifyCourse extends ProgrammeRecords{
 			}
 		});
 		cred2.setColumns(10);
+		cred2.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				try{
+					Integer.parseInt(cred2.getText());
+				}catch(Exception err)
+				{
+					cred2.setText("");
+				}
+			}
+		});
 		cred2.setBounds(301, 260, 60, 19);
 		panel_1.add(cred2);
 		
 		cred3 = new JTextField();
+		cred3.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				try{
+					Integer.parseInt(cred3.getText());
+				}catch(Exception err)
+				{
+					cred3.setText("");
+				}
+			}
+		});
 		cred3.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -898,6 +931,17 @@ public class ModifyCourse extends ProgrammeRecords{
 		panel_1.add(cred3);
 		
 		cred4 = new JTextField();
+		cred4.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				try{
+					Integer.parseInt(cred4.getText());
+				}catch(Exception err)
+				{
+					cred4.setText("");
+				}
+			}
+		});
 		cred4.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -911,6 +955,17 @@ public class ModifyCourse extends ProgrammeRecords{
 		panel_1.add(cred4);
 		
 		cred5 = new JTextField();
+		cred5.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				try{
+					Integer.parseInt(cred5.getText());
+				}catch(Exception err)
+				{
+					cred5.setText("");
+				}
+			}
+		});
 		cred5.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -924,6 +979,17 @@ public class ModifyCourse extends ProgrammeRecords{
 		panel_1.add(cred5);
 		
 		cred6 = new JTextField();
+		cred6.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				try{
+					Integer.parseInt(cred6.getText());
+				}catch(Exception err)
+				{
+					cred6.setText("");
+				}
+			}
+		});
 		cred6.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -937,6 +1003,17 @@ public class ModifyCourse extends ProgrammeRecords{
 		panel_1.add(cred6);
 		
 		cred7 = new JTextField();
+		cred7.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				try{
+					Integer.parseInt(cred7.getText());
+				}catch(Exception err)
+				{
+					cred7.setText("");
+				}
+			}
+		});
 		cred7.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -952,7 +1029,18 @@ public class ModifyCourse extends ProgrammeRecords{
 		cred8 = new JTextField();
 		cred8.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyTyped(KeyEvent e) {
+			public void keyReleased(KeyEvent e) {
+				try{
+					Integer.parseInt(cred8.getText());
+				}catch(Exception err)
+				{
+					cred8.setText("");
+				}
+			}
+		});
+		cred8.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
 				if(cred8.getText().length()==0){
 					cred8.setText("0");
 				}
@@ -1103,9 +1191,6 @@ public class ModifyCourse extends ProgrammeRecords{
 		JMenuBar menuBar = new JMenuBar();
 		modifycourse.setJMenuBar(menuBar);
 		
-		JMenu mnFile = new JMenu("File");
-		menuBar.add(mnFile);
-		
 		JMenu mnAccount = new JMenu("Account Settings");
 		menuBar.add(mnAccount);
 		
@@ -1117,12 +1202,6 @@ public class ModifyCourse extends ProgrammeRecords{
 			}
 		});
 		mnAccount.add(mntmChangePassword);
-		
-		JSeparator separator_7 = new JSeparator();
-		mnAccount.add(separator_7);
-		
-		JMenuItem mntmAccountInformation = new JMenuItem("Account Information");
-		mnAccount.add(mntmAccountInformation);
 		
 		JMenu mnNewMenu = new JMenu("About");
 		menuBar.add(mnNewMenu);

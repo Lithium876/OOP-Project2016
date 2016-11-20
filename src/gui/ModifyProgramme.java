@@ -543,9 +543,6 @@ public class ModifyProgramme extends ProgrammeRecords{
 		JMenuBar menuBar = new JMenuBar();
 		modifyprog.setJMenuBar(menuBar);
 		
-		JMenu mnFile = new JMenu("File");
-		menuBar.add(mnFile);
-		
 		JMenu mnAccount = new JMenu("Account Settings");
 		menuBar.add(mnAccount);
 		
@@ -557,12 +554,6 @@ public class ModifyProgramme extends ProgrammeRecords{
 			}
 		});
 		mnAccount.add(mntmChangePassword);
-		
-		JSeparator separator_7 = new JSeparator();
-		mnAccount.add(separator_7);
-		
-		JMenuItem mntmAccountInformation = new JMenuItem("Account Information");
-		mnAccount.add(mntmAccountInformation);
 		
 		JMenu mnNewMenu = new JMenu("About");
 		menuBar.add(mnNewMenu);

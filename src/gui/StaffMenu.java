@@ -476,9 +476,6 @@ public class StaffMenu extends StudentRecords{
 		JMenuBar menuBar = new JMenuBar();
 		frmStaffMenu.setJMenuBar(menuBar);
 		
-		JMenu mnFile = new JMenu("File");
-		menuBar.add(mnFile);
-		
 		JMenu mnAccount = new JMenu("Account Settings");
 		menuBar.add(mnAccount);
 		
@@ -490,12 +487,6 @@ public class StaffMenu extends StudentRecords{
 			}
 		});
 		mnAccount.add(mntmChangePassword);
-		
-		JSeparator separator_7 = new JSeparator();
-		mnAccount.add(separator_7);
-		
-		JMenuItem mntmAccountInformation = new JMenuItem("Account Information");
-		mnAccount.add(mntmAccountInformation);
 		
 		JMenu mnAbout = new JMenu("About");
 		menuBar.add(mnAbout);
