@@ -144,6 +144,9 @@ public class ProgrammeDetails extends StudentRecords{
 			while (rs.next()) {
 				for (int i = 1; i <= columnsNumber; i++) {
 					courseInfo[i]=rs.getString(i);
+					if(courseInfo[i].equals("")||courseInfo[i].equals("-")){
+						courseInfo[i]="NO LONGER OFFERED";
+					}
 			    }
 			}
 			pst.close();
@@ -184,6 +187,10 @@ public class ProgrammeDetails extends StudentRecords{
 			pre6.setEnabled(false);
 			pre7.setEnabled(false);
 			pre8.setEnabled(false);
+			if(c1.getText().equals("NO LONGER OFFERED")){c1.setEnabled(false); pre1.setEnabled(false);}
+			if(c2.getText().equals("NO LONGER OFFERED")){c2.setEnabled(false); pre2.setEnabled(false);}
+			if(c3.getText().equals("NO LONGER OFFERED")){c3.setEnabled(false); pre3.setEnabled(false);}
+			if(c4.getText().equals("NO LONGER OFFERED")){c4.setEnabled(false); pre4.setEnabled(false);}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -204,6 +211,9 @@ public class ProgrammeDetails extends StudentRecords{
 			while (rs.next()) {
 				for (int i = 1; i <= columnsNumber; i++) {
 					courseInfo[i]=rs.getString(i);
+					if(courseInfo[i].equals("")||courseInfo[i].equals("-")){
+						courseInfo[i]="NO LONGER OFFERED";
+					}
 			    }
 			}
 			pst.close();
@@ -238,6 +248,12 @@ public class ProgrammeDetails extends StudentRecords{
 			cred8.setEnabled(false);
 			pre7.setEnabled(false);
 			pre8.setEnabled(false);
+			if(c1.getText().equals("NO LONGER OFFERED")){c1.setEnabled(false); pre1.setEnabled(false);}
+			if(c2.getText().equals("NO LONGER OFFERED")){c2.setEnabled(false); pre2.setEnabled(false);}
+			if(c3.getText().equals("NO LONGER OFFERED")){c3.setEnabled(false); pre3.setEnabled(false);}
+			if(c4.getText().equals("NO LONGER OFFERED")){c4.setEnabled(false); pre4.setEnabled(false);}
+			if(c5.getText().equals("NO LONGER OFFERED")){c5.setEnabled(false); pre5.setEnabled(false);}
+			if(c6.getText().equals("NO LONGER OFFERED")){c6.setEnabled(false); pre6.setEnabled(false);}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -259,6 +275,9 @@ public class ProgrammeDetails extends StudentRecords{
 			while (rs.next()) {
 				for (int i = 1; i <= columnsNumber; i++) {
 					courseInfo[i]=rs.getString(i);
+					if(courseInfo[i].equals("")||courseInfo[i].equals("-")){
+						courseInfo[i]="NO LONGER OFFERED";
+					}
 			    }
 			}
 			pst.close();
@@ -287,6 +306,14 @@ public class ProgrammeDetails extends StudentRecords{
 			pre6.setText(courseInfo[14]);
 			pre7.setText(courseInfo[29]);
 			pre8.setText(courseInfo[30]);
+			if(c1.getText().equals("NO LONGER OFFERED")){c1.setEnabled(false); pre1.setEnabled(false);}
+			if(c2.getText().equals("NO LONGER OFFERED")){c2.setEnabled(false); pre2.setEnabled(false);}
+			if(c3.getText().equals("NO LONGER OFFERED")){c3.setEnabled(false); pre3.setEnabled(false);}
+			if(c4.getText().equals("NO LONGER OFFERED")){c4.setEnabled(false); pre4.setEnabled(false);}
+			if(c5.getText().equals("NO LONGER OFFERED")){c5.setEnabled(false); pre5.setEnabled(false);}
+			if(c6.getText().equals("NO LONGER OFFERED")){c6.setEnabled(false); pre6.setEnabled(false);}
+			if(c7.getText().equals("NO LONGER OFFERED")){c7.setEnabled(false); pre7.setEnabled(false);}
+			if(c8.getText().equals("NO LONGER OFFERED")){c8.setEnabled(false); pre8.setEnabled(false);}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -368,7 +395,7 @@ public class ProgrammeDetails extends StudentRecords{
 		student.setTitle("STUDENT");
 		student.setResizable(false);
 		student.getContentPane().setBackground(new Color(0, 102, 255));
-		student.setBounds(100, 100, 785, 671);
+		student.setBounds(100, 100, 814, 671);
 		student.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		student.setLocationRelativeTo(null);
 		student.getContentPane().setLayout(null);
@@ -455,7 +482,7 @@ public class ProgrammeDetails extends StudentRecords{
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(0, 153, 255));
-		panel_1.setBounds(236, 12, 535, 598);
+		panel_1.setBounds(236, 12, 564, 598);
 		student.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -466,7 +493,7 @@ public class ProgrammeDetails extends StudentRecords{
 		panel_1.add(lblEnrolForSemester);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(12, 52, 507, 2);
+		separator.setBounds(12, 52, 540, 2);
 		panel_1.add(separator);
 		
 		JLabel lblNewLabel = new JLabel("PROGRAMME CODE:");
@@ -506,7 +533,7 @@ public class ProgrammeDetails extends StudentRecords{
 		panel_1.add(stuName);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(12, 310, 507, 2);
+		separator_1.setBounds(12, 310, 540, 2);
 		panel_1.add(separator_1);
 		
 		JLabel lblCoursesAvailable = new JLabel("COURSES OFFERED");
@@ -564,151 +591,151 @@ public class ProgrammeDetails extends StudentRecords{
 		panel_1.add(accreditation);
 		
 		JSeparator separator_3 = new JSeparator();
-		separator_3.setBounds(0, 169, 519, 2);
+		separator_3.setBounds(0, 169, 552, 2);
 		panel_1.add(separator_3);
 		
 		c1 = new JLabel("courseName");
 		c1.setForeground(Color.WHITE);
 		c1.setFont(new Font("Dialog", Font.BOLD, 16));
-		c1.setBounds(35, 378, 188, 15);
+		c1.setBounds(12, 378, 221, 15);
 		panel_1.add(c1);
 		
 		c2 = new JLabel("courseName");
 		c2.setForeground(Color.WHITE);
 		c2.setFont(new Font("Dialog", Font.BOLD, 16));
-		c2.setBounds(35, 405, 188, 15);
+		c2.setBounds(12, 405, 221, 15);
 		panel_1.add(c2);
 		
 		c3 = new JLabel("courseName");
 		c3.setForeground(Color.WHITE);
 		c3.setFont(new Font("Dialog", Font.BOLD, 16));
-		c3.setBounds(35, 432, 188, 15);
+		c3.setBounds(12, 432, 221, 15);
 		panel_1.add(c3);
 		
 		c4 = new JLabel("courseName");
 		c4.setForeground(Color.WHITE);
 		c4.setFont(new Font("Dialog", Font.BOLD, 16));
-		c4.setBounds(35, 459, 188, 15);
+		c4.setBounds(12, 459, 221, 15);
 		panel_1.add(c4);
 		
 		c5 = new JLabel("courseName");
 		c5.setForeground(Color.WHITE);
 		c5.setFont(new Font("Dialog", Font.BOLD, 16));
-		c5.setBounds(35, 486, 188, 15);
+		c5.setBounds(12, 486, 221, 15);
 		panel_1.add(c5);
 		
 		c6 = new JLabel("courseName");
 		c6.setForeground(Color.WHITE);
 		c6.setFont(new Font("Dialog", Font.BOLD, 16));
-		c6.setBounds(35, 515, 188, 15);
+		c6.setBounds(12, 517, 221, 15);
 		panel_1.add(c6);
 		
 		c7 = new JLabel("courseName");
 		c7.setForeground(Color.WHITE);
 		c7.setFont(new Font("Dialog", Font.BOLD, 16));
-		c7.setBounds(35, 544, 188, 15);
+		c7.setBounds(12, 544, 221, 15);
 		panel_1.add(c7);
 		
 		c8 = new JLabel("courseName");
 		c8.setForeground(Color.WHITE);
 		c8.setFont(new Font("Dialog", Font.BOLD, 16));
-		c8.setBounds(35, 571, 188, 15);
+		c8.setBounds(12, 571, 221, 15);
 		panel_1.add(c8);
 		
 		cred1 = new JLabel("credits");
 		cred1.setForeground(Color.WHITE);
 		cred1.setFont(new Font("Dialog", Font.BOLD, 16));
-		cred1.setBounds(225, 378, 78, 15);
+		cred1.setBounds(235, 378, 62, 15);
 		panel_1.add(cred1);
 		
 		cred2 = new JLabel("credits");
 		cred2.setForeground(Color.WHITE);
 		cred2.setFont(new Font("Dialog", Font.BOLD, 16));
-		cred2.setBounds(225, 405, 78, 15);
+		cred2.setBounds(235, 405, 78, 15);
 		panel_1.add(cred2);
 		
 		cred3 = new JLabel("credits");
 		cred3.setForeground(Color.WHITE);
 		cred3.setFont(new Font("Dialog", Font.BOLD, 16));
-		cred3.setBounds(225, 432, 78, 15);
+		cred3.setBounds(235, 432, 78, 15);
 		panel_1.add(cred3);
 		
 		cred4 = new JLabel("credits");
 		cred4.setForeground(Color.WHITE);
 		cred4.setFont(new Font("Dialog", Font.BOLD, 16));
-		cred4.setBounds(225, 459, 78, 15);
+		cred4.setBounds(235, 459, 78, 15);
 		panel_1.add(cred4);
 		
 		cred5 = new JLabel("credits");
 		cred5.setForeground(Color.WHITE);
 		cred5.setFont(new Font("Dialog", Font.BOLD, 16));
-		cred5.setBounds(225, 486, 78, 15);
+		cred5.setBounds(235, 486, 78, 15);
 		panel_1.add(cred5);
 		
 		cred6 = new JLabel("credits");
 		cred6.setForeground(Color.WHITE);
 		cred6.setFont(new Font("Dialog", Font.BOLD, 16));
-		cred6.setBounds(225, 515, 78, 15);
+		cred6.setBounds(235, 515, 78, 15);
 		panel_1.add(cred6);
 		
 		cred7 = new JLabel("credits");
 		cred7.setForeground(Color.WHITE);
 		cred7.setFont(new Font("Dialog", Font.BOLD, 16));
-		cred7.setBounds(225, 544, 78, 15);
+		cred7.setBounds(235, 544, 78, 15);
 		panel_1.add(cred7);
 		
 		cred8 = new JLabel("credits");
 		cred8.setForeground(Color.WHITE);
 		cred8.setFont(new Font("Dialog", Font.BOLD, 16));
-		cred8.setBounds(225, 571, 78, 15);
+		cred8.setBounds(235, 571, 78, 15);
 		panel_1.add(cred8);
 		
 		pre1 = new JLabel("courseName");
 		pre1.setForeground(Color.WHITE);
 		pre1.setFont(new Font("Dialog", Font.BOLD, 16));
-		pre1.setBounds(331, 380, 188, 15);
+		pre1.setBounds(331, 380, 221, 15);
 		panel_1.add(pre1);
 		
 		pre2 = new JLabel("courseName");
 		pre2.setForeground(Color.WHITE);
 		pre2.setFont(new Font("Dialog", Font.BOLD, 16));
-		pre2.setBounds(331, 406, 188, 15);
+		pre2.setBounds(331, 406, 221, 15);
 		panel_1.add(pre2);
 		
 		pre3 = new JLabel("courseName");
 		pre3.setForeground(Color.WHITE);
 		pre3.setFont(new Font("Dialog", Font.BOLD, 16));
-		pre3.setBounds(331, 433, 188, 15);
+		pre3.setBounds(331, 433, 221, 15);
 		panel_1.add(pre3);
 		
 		pre4 = new JLabel("courseName");
 		pre4.setForeground(Color.WHITE);
 		pre4.setFont(new Font("Dialog", Font.BOLD, 16));
-		pre4.setBounds(331, 460, 188, 15);
+		pre4.setBounds(331, 460, 221, 15);
 		panel_1.add(pre4);
 		
 		pre5 = new JLabel("courseName");
 		pre5.setForeground(Color.WHITE);
 		pre5.setFont(new Font("Dialog", Font.BOLD, 16));
-		pre5.setBounds(331, 487, 188, 15);
+		pre5.setBounds(331, 487, 221, 15);
 		panel_1.add(pre5);
 		
 		pre6 = new JLabel("courseName");
 		pre6.setForeground(Color.WHITE);
 		pre6.setFont(new Font("Dialog", Font.BOLD, 16));
-		pre6.setBounds(331, 516, 188, 15);
+		pre6.setBounds(331, 516, 221, 15);
 		panel_1.add(pre6);
 		
 		pre7 = new JLabel("courseName");
 		pre7.setForeground(Color.WHITE);
 		pre7.setFont(new Font("Dialog", Font.BOLD, 16));
-		pre7.setBounds(331, 545, 188, 15);
+		pre7.setBounds(331, 545, 221, 15);
 		panel_1.add(pre7);
 		
 		pre8 = new JLabel("courseName");
 		pre8.setForeground(Color.WHITE);
 		pre8.setFont(new Font("Dialog", Font.BOLD, 16));
-		pre8.setBounds(331, 572, 188, 15);
+		pre8.setBounds(331, 572, 221, 15);
 		panel_1.add(pre8);
 		
 		JLabel lblCourses = new JLabel("COURSES");
@@ -730,7 +757,7 @@ public class ProgrammeDetails extends StudentRecords{
 		panel_1.add(lblPrereq);
 		
 		separator_4 = new JSeparator();
-		separator_4.setBounds(12, 336, 507, 2);
+		separator_4.setBounds(12, 336, 540, 2);
 		panel_1.add(separator_4);
 		
 		JMenuBar menuBar = new JMenuBar();

@@ -98,6 +98,9 @@ public class StudentMenu extends StudentRecords{
 			while (rs.next()) {
 				for (int i = 1; i <= columnsNumber; i++) {
 					courseInfo[i]=rs.getString(i);
+					if(courseInfo[i].equals("")||courseInfo[i].equals("-")){
+						courseInfo[i]="NO LONGER OFFERED";
+					}
 			    }
 			}
 			pst.close();
@@ -114,6 +117,10 @@ public class StudentMenu extends StudentRecords{
 			c6.setEnabled(false);
 			c7.setEnabled(false);
 			c8.setEnabled(false);
+			if(c1.getText().equals("NO LONGER OFFERED")){c1.setEnabled(false);}
+			if(c2.getText().equals("NO LONGER OFFERED")){c2.setEnabled(false);}
+			if(c3.getText().equals("NO LONGER OFFERED")){c3.setEnabled(false);}
+			if(c4.getText().equals("NO LONGER OFFERED")){c4.setEnabled(false);}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -134,6 +141,9 @@ public class StudentMenu extends StudentRecords{
 			while (rs.next()) {
 				for (int i = 1; i <= columnsNumber; i++) {
 					courseInfo[i]=rs.getString(i);
+					if(courseInfo[i].equals("")||courseInfo[i].equals("-")){
+						courseInfo[i]="NO LONGER OFFERED";
+					}
 			    }
 			}
 			pst.close();
@@ -148,6 +158,12 @@ public class StudentMenu extends StudentRecords{
 			c8.setText("COURSE UNAVAILABLE");
 			c7.setEnabled(false);
 			c8.setEnabled(false);
+			if(c1.getText().equals("NO LONGER OFFERED")){c1.setEnabled(false);}
+			if(c2.getText().equals("NO LONGER OFFERED")){c2.setEnabled(false);}
+			if(c3.getText().equals("NO LONGER OFFERED")){c3.setEnabled(false);}
+			if(c4.getText().equals("NO LONGER OFFERED")){c4.setEnabled(false);}
+			if(c5.getText().equals("NO LONGER OFFERED")){c5.setEnabled(false);}
+			if(c6.getText().equals("NO LONGER OFFERED")){c6.setEnabled(false);}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -168,6 +184,9 @@ public class StudentMenu extends StudentRecords{
 			while (rs.next()) {
 				for (int i = 1; i <= columnsNumber; i++) {
 					courseInfo[i]=rs.getString(i);
+					if(courseInfo[i].equals("")||courseInfo[i].equals("-")){
+						courseInfo[i]="NO LONGER OFFERED";
+					}
 			    }
 			}
 			pst.close();
@@ -180,6 +199,14 @@ public class StudentMenu extends StudentRecords{
 			c6.setText(courseInfo[7]);
 			c7.setText(courseInfo[27]);
 			c8.setText(courseInfo[28]);
+			if(c1.getText().equals("NO LONGER OFFERED")){c1.setEnabled(false);}
+			if(c2.getText().equals("NO LONGER OFFERED")){c2.setEnabled(false);}
+			if(c3.getText().equals("NO LONGER OFFERED")){c3.setEnabled(false);}
+			if(c4.getText().equals("NO LONGER OFFERED")){c4.setEnabled(false);}
+			if(c5.getText().equals("NO LONGER OFFERED")){c5.setEnabled(false);}
+			if(c6.getText().equals("NO LONGER OFFERED")){c6.setEnabled(false);}
+			if(c7.getText().equals("NO LONGER OFFERED")){c7.setEnabled(false);}
+			if(c8.getText().equals("NO LONGER OFFERED")){c8.setEnabled(false);}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

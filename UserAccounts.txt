@@ -31,3 +31,18 @@ STUDENT
 fgh
 
 =======================================
+Darrly Brown
+darryl
+password1
+STAFF
+SCIT
+FENC
+=======================================
+
+Camille Thomas
+1623555
+password1
+STUDENT
+555
+
+=======================================

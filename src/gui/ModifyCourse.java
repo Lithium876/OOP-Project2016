@@ -1080,41 +1080,137 @@ public class ModifyCourse extends ProgrammeRecords{
 		panel_1.add(separator_2);
 		
 		cde1 = new JTextField();
+		cde1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(cde1.getText().equals(cde2.getText())||cde1.getText().equals(cde3.getText())||cde1.getText().equals(cde4.getText())||cde1.getText().equals(cde5.getText())||cde1.getText().equals(cde6.getText())||cde1.getText().equals(cde7.getText())||cde1.getText().equals(cde8.getText())){
+					if(cde1.getText().equals("")){
+					}else{
+						JOptionPane.showMessageDialog(null, cde1.getText()+" Already Exists");
+						cde1.setText("");
+					}
+				}
+			}
+		});
 		cde1.setColumns(10);
 		cde1.setBounds(30, 227, 60, 19);
 		panel_1.add(cde1);
 		
 		cde2 = new JTextField();
+		cde2.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(cde2.getText().equals(cde1.getText())||cde2.getText().equals(cde3.getText())||cde2.getText().equals(cde4.getText())||cde2.getText().equals(cde5.getText())||cde2.getText().equals(cde6.getText())||cde2.getText().equals(cde7.getText())||cde2.getText().equals(cde8.getText())){
+					if(cde2.getText().equals("")){
+					}else{
+						JOptionPane.showMessageDialog(null, cde2.getText()+" Already Exists");
+						cde2.setText("");
+					}
+				}
+			}
+		});
 		cde2.setColumns(10);
 		cde2.setBounds(30, 260, 60, 19);
 		panel_1.add(cde2);
 		
 		cde3 = new JTextField();
+		cde3.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(cde3.getText().equals(cde1.getText())||cde3.getText().equals(cde2.getText())||cde3.getText().equals(cde4.getText())||cde3.getText().equals(cde5.getText())||cde3.getText().equals(cde6.getText())||cde3.getText().equals(cde7.getText())||cde3.getText().equals(cde8.getText())){
+					if(cde3.getText().equals("")){
+					}else{
+						JOptionPane.showMessageDialog(null, cde3.getText()+" Already Exists");
+						cde3.setText("");
+					}
+				}
+			}
+		});
 		cde3.setColumns(10);
 		cde3.setBounds(30, 289, 60, 19);
 		panel_1.add(cde3);
 		
 		cde4 = new JTextField();
+		cde4.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(cde4.getText().equals(cde1.getText())||cde4.getText().equals(cde2.getText())||cde4.getText().equals(cde3.getText())||cde4.getText().equals(cde5.getText())||cde4.getText().equals(cde6.getText())||cde4.getText().equals(cde7.getText())||cde4.getText().equals(cde8.getText())){
+					if(cde4.getText().equals("")){
+					}else{
+						JOptionPane.showMessageDialog(null, cde4.getText()+" Already Exists");
+						cde4.setText("");
+					}
+				}
+			}
+		});
 		cde4.setColumns(10);
 		cde4.setBounds(30, 322, 60, 19);
 		panel_1.add(cde4);
 		
 		cde5 = new JTextField();
+		cde5.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(cde5.getText().equals(cde1.getText())||cde5.getText().equals(cde2.getText())||cde5.getText().equals(cde3.getText())||cde5.getText().equals(cde4.getText())||cde5.getText().equals(cde6.getText())||cde5.getText().equals(cde7.getText())||cde5.getText().equals(cde8.getText())){
+					if(cde5.getText().equals("")){
+					}else{
+						JOptionPane.showMessageDialog(null, cde5.getText()+" Already Exists");
+						cde5.setText("");
+					}
+				}
+			}
+		});
 		cde5.setColumns(10);
 		cde5.setBounds(30, 355, 60, 19);
 		panel_1.add(cde5);
 		
 		cde6 = new JTextField();
+		cde6.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(cde6.getText().equals(cde1.getText())||cde6.getText().equals(cde2.getText())||cde6.getText().equals(cde3.getText())||cde6.getText().equals(cde4.getText())||cde6.getText().equals(cde5.getText())||cde6.getText().equals(cde7.getText())||cde6.getText().equals(cde8.getText())){
+					if(cde6.getText().equals("")){
+					}else{
+						JOptionPane.showMessageDialog(null, cde6.getText()+" Already Exists");
+						cde6.setText("");
+					}
+				}
+			}
+		});
 		cde6.setColumns(10);
 		cde6.setBounds(30, 382, 60, 19);
 		panel_1.add(cde6);
 		
 		cde7 = new JTextField();
+		cde7.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(cde7.getText().equals(cde1.getText())||cde7.getText().equals(cde2.getText())||cde7.getText().equals(cde3.getText())||cde7.getText().equals(cde4.getText())||cde7.getText().equals(cde5.getText())||cde7.getText().equals(cde6.getText())||cde7.getText().equals(cde8.getText())){
+					if(cde7.getText().equals("")){
+					}else{
+						JOptionPane.showMessageDialog(null, cde7.getText()+" Already Exists");
+						cde7.setText("");
+					}
+				}
+			}
+		});
 		cde7.setColumns(10);
 		cde7.setBounds(30, 415, 60, 19);
 		panel_1.add(cde7);
 		
 		cde8 = new JTextField();
+		cde8.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(cde8.getText().equals(cde1.getText())||cde8.getText().equals(cde2.getText())||cde8.getText().equals(cde3.getText())||cde8.getText().equals(cde4.getText())||cde8.getText().equals(cde5.getText())||cde8.getText().equals(cde7.getText())){
+					if(cde8.getText().equals("")){
+					}else{
+						JOptionPane.showMessageDialog(null, cde8.getText()+" Already Exists");
+						cde8.setText("");
+					}
+				}
+			}
+		});
 		cde8.setColumns(10);
 		cde8.setBounds(30, 444, 60, 19);
 		panel_1.add(cde8);
