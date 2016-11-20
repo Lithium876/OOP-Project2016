@@ -48,6 +48,7 @@ public class ModifyProgramme extends ProgrammeRecords{
 	private JFrame modifyprog;
 	private JButton SeeAll;
 	private JTable table;
+	private JButton modCourses;
 	private JTextField find;
 	private String name;
 	private String depart;
@@ -58,6 +59,11 @@ public class ModifyProgramme extends ProgrammeRecords{
 	private JTextField award;
 	private JTextField accreditation;
 	private String code;
+	private static String programmeCode;
+	private static String programmeName;
+	private static String programmeAward;
+	private static String programmeAccreditation;
+	private static String programmemaxCourses;
 	Connection conn=null;
 	
 	
@@ -90,14 +96,11 @@ public class ModifyProgramme extends ProgrammeRecords{
 	
 	public ModifyProgramme(String code, String name, int maxCourse, String award, String accreditation,CourseRecords course) {
 		super(code, name, maxCourse, award, accreditation, course);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void setEditable(boolean arg){
-		award.setEditable(arg);
 		progName.setEditable(arg);
 		progCode.setEditable(arg);
-		maxCourses.setEditable(arg);
 		accreditation.setEditable(arg);
 	}
 	public void clear(){
@@ -107,6 +110,27 @@ public class ModifyProgramme extends ProgrammeRecords{
 		maxCourses.setText("");
 		accreditation.setText("");
 	}
+	
+	public String getProgrammeaward(){
+		return programmeAward;
+	}
+	
+	public String getProgrammecode(){
+		return programmeCode;
+	}
+	
+	public String getProgrammename(){
+		return programmeName;
+	}
+	
+	public String getProgrammemaxcourses(){
+		return programmemaxCourses;
+	}
+	
+	public String getProgrammeaccreditation(){
+		return programmeAccreditation;
+	}
+	
 	public void TableDisplay(String code) {
 		try{
 				String Query= "SELECT * FROM programmeinfo WHERE ProgrammeCode=?"; 
@@ -208,7 +232,7 @@ public class ModifyProgramme extends ProgrammeRecords{
 		btnCreateProgramme.setBounds(12, 224, 188, 25);
 		panel.add(btnCreateProgramme);
 		
-		JButton btnModifyPrgramme = new JButton("MODIFY PRGRAMME");
+		JButton btnModifyPrgramme = new JButton("MODIFY PRGRAMME ");
 		btnModifyPrgramme.setEnabled(false);
 		btnModifyPrgramme.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -290,6 +314,8 @@ public class ModifyProgramme extends ProgrammeRecords{
 					accreditation.setText(model.getValueAt(selectedRowIndex, 4).toString());
 					code = model.getValueAt(selectedRowIndex, 0).toString();
 					setEditable(true);
+					modCourses.setEnabled(true);
+					
 				}catch(Exception err){
 					System.out.println(err);
 				}
@@ -322,6 +348,7 @@ public class ModifyProgramme extends ProgrammeRecords{
 					PreparedStatement pst= conn.prepareStatement(q);
 					ResultSet rs = pst.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
+					pst.close();
 				}catch(Exception err){
 					System.out.println(err);
 				}
@@ -380,7 +407,10 @@ public class ModifyProgramme extends ProgrammeRecords{
 						get.close();
 						JOptionPane.showMessageDialog(null, progCode.getText()+" Already Exists");
 						progCode.setText(find.getText());
+					}else{
+						get.close();
 					}
+					get.close();
 				}catch(Exception err){
 					System.out.println(err);
 				}
@@ -494,13 +524,22 @@ public class ModifyProgramme extends ProgrammeRecords{
 		button.setBounds(476, 479, 198, 36);
 		panel_1.add(button);
 		
-		JButton btnAddCourses = new JButton("MODIFY COURSES");
-		btnAddCourses.addActionListener(new ActionListener() {
+		modCourses = new JButton("MODIFY COURSES");
+		modCourses.setEnabled(false);
+		modCourses.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				modifyprog.dispose();
+				programmeAward=award.getText();
+				programmeCode=progCode.getText();
+				programmeName=progName.getText();
+				programmeAccreditation=accreditation.getText();
+				programmemaxCourses=maxCourses.getText();
+				ModifyCourse mc = new ModifyCourse();
+				mc.load();
 			}
 		});
-		btnAddCourses.setBounds(476, 369, 198, 36);
-		panel_1.add(btnAddCourses);
+		modCourses.setBounds(476, 369, 198, 36);
+		panel_1.add(modCourses);
 		JMenuBar menuBar = new JMenuBar();
 		modifyprog.setJMenuBar(menuBar);
 		

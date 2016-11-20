@@ -303,6 +303,7 @@ private void initialize() {
 							}
 						}
 						ProgrammeRecords programme = new CreateProgramme(progCode.getText(), progName.getText(), Integer.parseInt((String) numofCourses.getSelectedItem()), Award, Accreditation,course);
+						
 						try {
 							String query = "INSERT INTO programmeinfo(ProgrammeCode, ProgrammeName, NumberofCourses, Award, Accreditation)VALUES(?,?,?,?,?)";
 							PreparedStatement pst;
@@ -317,6 +318,14 @@ private void initialize() {
 							clear();
 							programme.display();
 							JOptionPane.showMessageDialog(null, "Programme Created!");
+							int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to Register Courses for this Programme now?","Register Courses",JOptionPane.YES_NO_OPTION);
+							if(dialogResult == JOptionPane.YES_OPTION){
+								ModifyProgramme mc = new ModifyProgramme();
+								frmCreateProgramme.dispose();
+								mc.load();
+							}else{
+								
+							}
 						} catch (Exception err) {
 							err.printStackTrace();
 						}

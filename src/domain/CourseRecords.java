@@ -36,12 +36,26 @@ public class CourseRecords extends Records{
 		this.preRequisite = preRequisite;
 	}
 	public void display(){
-		System.out.println(super.getCode());
-		System.out.println(super.getName());
-		System.out.println(description);
-		System.out.println(credits);
-		System.out.println(preRequisite);
+		String[] pre =preRequisite.split("\\s");
+		String[] name =super.getName().split("\\s");
+		String[] code =super.getCode().split("\\s");
 		
+		System.out.println("Course Description: "+description);
+		System.out.println("Credtis: "+credits);
+		
+		System.out.println("Course Codes:");
+		for(String c:code){
+			System.out.println(c);
+		}
+		
+		System.out.println("Course Names:");
+		for(String n:name){
+			System.out.println(n);
+		}
+		
+		System.out.println("Pre-Requisites:");
+		for(String p:pre){
+			System.out.println(p);
+		}
 	}
-
 }
