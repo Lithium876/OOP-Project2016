@@ -12,47 +12,22 @@ FENC
 =======================================
 Paul Smith
 1614999
-qwerty12
-STUDENT
-=======================================
-Lomar Lilly
-1616PHY
-qwerty12
-STUDENT
-=======================================
-dsvsdv sdvsdvsdv
-1617vsdvds
-12345678Q
-STUDENT
-
-
-=======================================
-
-Will Smith
-1618999
 password1
 STUDENT
-999
+
 
 =======================================
-dfgdfg sdufgsdo
-1619123
+James Bond
+1621555
 password1
 STUDENT
-123
+555
 
 =======================================
-Vid Rec
-1620123
+John Doe
+1622fgh
 password1
 STUDENT
-123
-
-=======================================
-Corey Lilly
-1621sher
-qwerty12
-STUDENT
-sher
+fgh
 
 =======================================

@@ -47,6 +47,14 @@ public class StudentMenu extends StudentRecords{
 	private JTextField stuName;
 	private JTextField stuEnrolstat;
 	private JTextField stuEnroldate;
+	private JCheckBox c1;
+	private JCheckBox c2;
+	private JCheckBox c3;
+	private JCheckBox c4;
+	private JCheckBox c5;
+	private JCheckBox c6;
+	private JCheckBox c7;
+	private JCheckBox c8;
 	private String getid; 
 	private JFrame student;
 	private String name;
@@ -74,9 +82,103 @@ public class StudentMenu extends StudentRecords{
 			e.printStackTrace();
 		}
 	}
-	public void loadDiplomacourses(){
-		
+	
+	public void loadCertificatecourses(String code){
+		ResultSetMetaData rsmd;
+		ResultSet rs;
+		String q = "SELECT * FROM certificate WHERE ProgrammeCode=?";
+		PreparedStatement pst;
+		try {
+			pst = conn.prepareStatement(q);
+			pst.setString(1,code);
+			rs = pst.executeQuery();
+			rsmd = rs.getMetaData();
+			int columnsNumber = rsmd.getColumnCount();
+			String[] courseInfo = new String[columnsNumber+1];
+			while (rs.next()) {
+				for (int i = 1; i <= columnsNumber; i++) {
+					courseInfo[i]=rs.getString(i);
+			    }
+			}
+			c1.setText(courseInfo[2]);
+			c2.setText(courseInfo[3]);
+			c3.setText(courseInfo[4]);
+			c4.setText(courseInfo[5]);
+			c5.setText("COURSE UNAVAILABLE");
+			c6.setText("COURSE UNAVAILABLE");
+			c7.setText("COURSE UNAVAILABLE");
+			c8.setText("COURSE UNAVAILABLE");
+			c5.setEnabled(false);
+			c6.setEnabled(false);
+			c7.setEnabled(false);
+			c8.setEnabled(false);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
+	
+	public void loadDiplomacourses(String code){
+		ResultSetMetaData rsmd;
+		ResultSet rs;
+		String q = "SELECT * FROM diploma WHERE ProgrammeCode=?";
+		PreparedStatement pst;
+		try {
+			pst = conn.prepareStatement(q);
+			pst.setString(1,code);
+			rs = pst.executeQuery();
+			rsmd = rs.getMetaData();
+			int columnsNumber = rsmd.getColumnCount();
+			String[] courseInfo = new String[columnsNumber+1];
+			while (rs.next()) {
+				for (int i = 1; i <= columnsNumber; i++) {
+					courseInfo[i]=rs.getString(i);
+			    }
+			}
+			c1.setText(courseInfo[2]);
+			c2.setText(courseInfo[3]);
+			c3.setText(courseInfo[4]);
+			c4.setText(courseInfo[5]);
+			c5.setText(courseInfo[6]);
+			c6.setText(courseInfo[7]);
+			c7.setText("COURSE UNAVAILABLE");
+			c8.setText("COURSE UNAVAILABLE");
+			c7.setEnabled(false);
+			c8.setEnabled(false);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void loadAssociatecourses(String code){
+		ResultSetMetaData rsmd;
+		ResultSet rs;
+		String q = "SELECT * FROM associatedegree WHERE ProgrammeCode=?";
+		PreparedStatement pst;
+		try {
+			pst = conn.prepareStatement(q);
+			pst.setString(1,code);
+			rs = pst.executeQuery();
+			rsmd = rs.getMetaData();
+			int columnsNumber = rsmd.getColumnCount();
+			String[] courseInfo = new String[columnsNumber+1];
+			while (rs.next()) {
+				for (int i = 1; i <= columnsNumber; i++) {
+					courseInfo[i]=rs.getString(i);
+			    }
+			}
+			c1.setText(courseInfo[2]);
+			c2.setText(courseInfo[3]);
+			c3.setText(courseInfo[4]);
+			c4.setText(courseInfo[5]);
+			c5.setText(courseInfo[6]);
+			c6.setText(courseInfo[7]);
+			c7.setText(courseInfo[27]);
+			c8.setText(courseInfo[28]);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public StudentMenu() {
 		initialize();
 		clock();
@@ -148,7 +250,8 @@ public class StudentMenu extends StudentRecords{
 							stuProgramme.setText(loginfo[6]);
 							stuEnrolstat.setText(loginfo[7]);
 							stuEnroldate.setText(loginfo[8]);
-						
+							pst.close();
+							
 							pst2.setString(1,stuProgramme.getText());
 							rs2 = pst2.executeQuery();
 							rsmd2 = rs2.getMetaData();
@@ -160,8 +263,18 @@ public class StudentMenu extends StudentRecords{
 							    }
 							}
 							maxCourses.setText(proginfo[3]);
-							pst.close();
 							pst2.close();
+							if(proginfo[4].equals("Associate Degree")){
+								loadAssociatecourses(loginfo[6]);
+							}else{
+								if(proginfo[4].equals("Diploma")){
+									loadDiplomacourses(loginfo[6]);
+								}else{
+									if(proginfo[4].equals("Certificate")){
+										loadCertificatecourses(loginfo[6]);
+									}
+								}
+							}
 						}catch(Exception err){
 							System.out.println(err);
 						}
@@ -351,49 +464,49 @@ public class StudentMenu extends StudentRecords{
 		maxCourses.setBounds(294, 218, 132, 19);
 		panel_1.add(maxCourses);
 		
-		JCheckBox c1 = new JCheckBox("New check box");
+		c1 = new JCheckBox("New check box");
 		c1.setForeground(new Color(255, 255, 255));
 		c1.setBackground(new Color(0, 153, 255));
-		c1.setBounds(12, 305, 184, 23);
+		c1.setBounds(12, 305, 254, 23);
 		panel_1.add(c1);
 		
-		JCheckBox c2 = new JCheckBox("New check box");
+		c2 = new JCheckBox("New check box");
 		c2.setForeground(new Color(255, 255, 255));
 		c2.setBackground(new Color(0, 153, 255));
-		c2.setBounds(12, 342, 196, 23);
+		c2.setBounds(12, 342, 254, 23);
 		panel_1.add(c2);
 		
-		JCheckBox c3 = new JCheckBox("New check box");
+		c3 = new JCheckBox("New check box");
 		c3.setForeground(new Color(255, 255, 255));
 		c3.setBackground(new Color(0, 153, 255));
-		c3.setBounds(12, 380, 184, 23);
+		c3.setBounds(12, 380, 254, 23);
 		panel_1.add(c3);
 		
-		JCheckBox c4 = new JCheckBox("New check box");
+		c4 = new JCheckBox("New check box");
 		c4.setForeground(new Color(255, 255, 255));
 		c4.setBackground(new Color(0, 153, 255));
-		c4.setBounds(12, 421, 196, 23);
+		c4.setBounds(12, 421, 254, 23);
 		panel_1.add(c4);
 		
-		JCheckBox c5 = new JCheckBox("New check box");
+		c5 = new JCheckBox("New check box");
 		c5.setForeground(new Color(255, 255, 255));
 		c5.setBackground(new Color(0, 153, 255));
 		c5.setBounds(270, 305, 225, 23);
 		panel_1.add(c5);
 		
-		JCheckBox c6 = new JCheckBox("New check box");
+		c6 = new JCheckBox("New check box");
 		c6.setForeground(new Color(255, 255, 255));
 		c6.setBackground(new Color(0, 153, 255));
 		c6.setBounds(270, 342, 225, 23);
 		panel_1.add(c6);
 		
-		JCheckBox c7 = new JCheckBox("New check box");
+		c7 = new JCheckBox("New check box");
 		c7.setForeground(new Color(255, 255, 255));
 		c7.setBackground(new Color(0, 153, 255));
-		c7.setBounds(270, 380, 209, 23);
+		c7.setBounds(270, 380, 225, 23);
 		panel_1.add(c7);
 		
-		JCheckBox c8 = new JCheckBox("New check box");
+		c8 = new JCheckBox("New check box");
 		c8.setForeground(new Color(255, 255, 255));
 		c8.setBackground(new Color(0, 153, 255));
 		c8.setBounds(270, 421, 225, 23);
