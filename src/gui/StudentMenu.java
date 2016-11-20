@@ -36,6 +36,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import domain.StudentRecords;
 import net.proteanit.sql.DbUtils;
+import javax.swing.JList;
+import javax.swing.JCheckBox;
 
 public class StudentMenu extends StudentRecords{
 
@@ -72,7 +74,9 @@ public class StudentMenu extends StudentRecords{
 			e.printStackTrace();
 		}
 	}
-	
+	public void loadDiplomacourses(){
+		
+	}
 	public StudentMenu() {
 		initialize();
 		clock();
@@ -169,7 +173,7 @@ public class StudentMenu extends StudentRecords{
 		student.setTitle("STUDENT");
 		student.setResizable(false);
 		student.getContentPane().setBackground(new Color(0, 102, 255));
-		student.setBounds(100, 100, 757, 569);
+		student.setBounds(100, 100, 757, 591);
 		student.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		student.getContentPane().setLayout(null);
 		
@@ -247,7 +251,7 @@ public class StudentMenu extends StudentRecords{
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(0, 153, 255));
-		panel_1.setBounds(236, 12, 507, 496);
+		panel_1.setBounds(236, 12, 507, 518);
 		student.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -346,6 +350,62 @@ public class StudentMenu extends StudentRecords{
 		maxCourses.setColumns(10);
 		maxCourses.setBounds(294, 218, 132, 19);
 		panel_1.add(maxCourses);
+		
+		JCheckBox c1 = new JCheckBox("New check box");
+		c1.setForeground(new Color(255, 255, 255));
+		c1.setBackground(new Color(0, 153, 255));
+		c1.setBounds(12, 305, 184, 23);
+		panel_1.add(c1);
+		
+		JCheckBox c2 = new JCheckBox("New check box");
+		c2.setForeground(new Color(255, 255, 255));
+		c2.setBackground(new Color(0, 153, 255));
+		c2.setBounds(12, 342, 196, 23);
+		panel_1.add(c2);
+		
+		JCheckBox c3 = new JCheckBox("New check box");
+		c3.setForeground(new Color(255, 255, 255));
+		c3.setBackground(new Color(0, 153, 255));
+		c3.setBounds(12, 380, 184, 23);
+		panel_1.add(c3);
+		
+		JCheckBox c4 = new JCheckBox("New check box");
+		c4.setForeground(new Color(255, 255, 255));
+		c4.setBackground(new Color(0, 153, 255));
+		c4.setBounds(12, 421, 196, 23);
+		panel_1.add(c4);
+		
+		JCheckBox c5 = new JCheckBox("New check box");
+		c5.setForeground(new Color(255, 255, 255));
+		c5.setBackground(new Color(0, 153, 255));
+		c5.setBounds(270, 305, 225, 23);
+		panel_1.add(c5);
+		
+		JCheckBox c6 = new JCheckBox("New check box");
+		c6.setForeground(new Color(255, 255, 255));
+		c6.setBackground(new Color(0, 153, 255));
+		c6.setBounds(270, 342, 225, 23);
+		panel_1.add(c6);
+		
+		JCheckBox c7 = new JCheckBox("New check box");
+		c7.setForeground(new Color(255, 255, 255));
+		c7.setBackground(new Color(0, 153, 255));
+		c7.setBounds(270, 380, 209, 23);
+		panel_1.add(c7);
+		
+		JCheckBox c8 = new JCheckBox("New check box");
+		c8.setForeground(new Color(255, 255, 255));
+		c8.setBackground(new Color(0, 153, 255));
+		c8.setBounds(270, 421, 225, 23);
+		panel_1.add(c8);
+		
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setBounds(12, 452, 483, 2);
+		panel_1.add(separator_3);
+		
+		JButton enroll = new JButton("ENROLL ME");
+		enroll.setBounds(150, 461, 188, 45);
+		panel_1.add(enroll);
 		
 		JMenuBar menuBar = new JMenuBar();
 		student.setJMenuBar(menuBar);

@@ -333,49 +333,41 @@ public class ModifyCourse extends ProgrammeRecords{
 	        PreparedStatement pst=conn.prepareStatement(q);
 	        pst.setString(1, code);
 	        ResultSet rs = pst.executeQuery();
-	        
-		    if(rs.next()) { 
-		    	String des = rs.getString("Description");
-		    	description.setText(des);
-		        String c1 = rs.getString("CourseName1");
-		        course1.setText(c1);
-		        String c2 = rs.getString("CourseName2");
-		        course2.setText(c2);
-		        String c3 = rs.getString("CourseName3");
-		        course3.setText(c3);
-		        String c4 = rs.getString("CourseName4");
-		        course4.setText(c4);
-		        String cd1 = rs.getString("Credits1");
-		        cred1.setText(cd1);
-		        String cd2 = rs.getString("Credits2");
-		        cred2.setText(cd2);
-		        String cd3 = rs.getString("Credits3");
-		        cred3.setText(cd3);
-		        String cd4 = rs.getString("Credits4");
-		        cred4.setText(cd4);
-		        String p1 = rs.getString("Prereq1");
-		        pre1.setText(p1);
-		        String p2 = rs.getString("Prereq2");
-		        pre2.setText(p2);
-		        String p3 = rs.getString("Prereq3");
-		        pre3.setText(p3);
-		        String p4 = rs.getString("Prereq4");
-		        pre4.setText(p4);
-		        String Ccode1 = rs.getString("Code1");
-		        cde1.setText(Ccode1);
-		        String Ccode2 = rs.getString("Code2");
-		        cde2.setText(Ccode2);
-		        String Ccode3 = rs.getString("Code3");
-		        cde3.setText(Ccode3);
-		        String Ccode4 = rs.getString("Code4");
-		        cde4.setText(Ccode4);
-		        pst.close();
-		    }else{
-		    	 cred1.setText("0");
+	        ResultSetMetaData rsmd = rs.getMetaData();
+			int columnsNumber = rsmd.getColumnCount();
+			String[] certificateInfo = new String[columnsNumber+1];
+			while (rs.next()) {
+				for (int i = 1; i <= columnsNumber; i++) {
+					certificateInfo[i]=rs.getString(i);
+			    }
+			}
+			pst.close();
+
+			description.setText(certificateInfo[6]);
+			course1.setText(certificateInfo[2]);
+			course2.setText(certificateInfo[3]);
+			course3.setText(certificateInfo[4]);		       
+			course4.setText(certificateInfo[5]);	  
+			cred1.setText(certificateInfo[11]);      
+			cred2.setText(certificateInfo[12]);
+			cred3.setText(certificateInfo[13]);
+			cred4.setText(certificateInfo[14]);		     
+			pre1.setText(certificateInfo[11]);		        
+			pre2.setText(certificateInfo[12]);		       
+			pre3.setText(certificateInfo[13]);
+			pre4.setText(certificateInfo[14]);
+			cde1.setText(certificateInfo[15]);
+			cde2.setText(certificateInfo[16]);
+			cde3.setText(certificateInfo[17]);
+			cde4.setText(certificateInfo[18]);
+
+			if(cred1.getText().length()==0 && cred1.getText().length()==0 && cred2.getText().length()==0 && cred3.getText().length()==0 && cred4.getText().length()==0){
+				 cred1.setText("0");
 		    	 cred2.setText("0");
 		    	 cred3.setText("0");
 		    	 cred4.setText("0");
-		    }
+			}
+			
 		    cred5.setEnabled(false);
 	        cred6.setEnabled(false);
 	        cred7.setEnabled(false);
@@ -404,60 +396,43 @@ public class ModifyCourse extends ProgrammeRecords{
 	        PreparedStatement pst=conn.prepareStatement(q);
 	        pst.setString(1, code);
 	        ResultSet rs = pst.executeQuery();
-	        
-		    if(rs.next()) {
-		    	String des = rs.getString("Description");
-		    	description.setText(des);
-		        String c1 = rs.getString("CourseName1");
-		        course1.setText(c1);
-		        String c2 = rs.getString("CourseName2");
-		        course2.setText(c2);
-		        String c3 = rs.getString("CourseName3");
-		        course3.setText(c3);
-		        String c4 = rs.getString("CourseName4");
-		        course4.setText(c4);
-		        String c5 = rs.getString("CourseName5");
-		        course5.setText(c5);
-		        String c6 = rs.getString("CourseName6");
-		        course6.setText(c6);
-		        String cd1 = rs.getString("Credits1");
-		        cred1.setText(cd1);
-		        String cd2 = rs.getString("Credits2");
-		        cred2.setText(cd2);
-		        String cd3 = rs.getString("Credits3");
-		        cred3.setText(cd3);
-		        String cd4 = rs.getString("Credits4");
-		        cred4.setText(cd4);
-		        String cd5 = rs.getString("Credits5");
-		        cred5.setText(cd5);
-		        String cd6 = rs.getString("Credits6");
-		        cred6.setText(cd6);
-		        String p1 = rs.getString("Prereq1");
-		        pre1.setText(p1);
-		        String p2 = rs.getString("Prereq2");
-		        pre2.setText(p2);
-		        String p3 = rs.getString("Prereq3");
-		        pre3.setText(p3);
-		        String p4 = rs.getString("Prereq4");
-		        pre4.setText(p4);
-		        String p5 = rs.getString("Prereq5");
-		        pre5.setText(p5);
-		        String p6 = rs.getString("Prereq6");
-		        pre6.setText(p6);
-		        String Ccode1 = rs.getString("Code1");
-		        cde1.setText(Ccode1);
-		        String Ccode2 = rs.getString("Code2");
-		        cde2.setText(Ccode2);
-		        String Ccode3 = rs.getString("Code3");
-		        cde3.setText(Ccode3);
-		        String Ccode4 = rs.getString("Code4");
-		        cde4.setText(Ccode4);
-		        String Ccode5 = rs.getString("Code5");
-		        cde5.setText(Ccode5);
-		        String Ccode6 = rs.getString("Code6");
-		        cde6.setText(Ccode6);
-		        pst.close();
-		    } else{
+	        ResultSetMetaData rsmd = rs.getMetaData();
+			int columnsNumber = rsmd.getColumnCount();
+			String[] diplomaInfo = new String[columnsNumber+1];
+			while (rs.next()) {
+				for (int i = 1; i <= columnsNumber; i++) {
+					diplomaInfo[i]=rs.getString(i);
+			    }
+			}
+			pst.close();
+			
+		    description.setText(diplomaInfo[8]);
+		    course1.setText(diplomaInfo[2]);
+		    course2.setText(diplomaInfo[3]);
+		    course3.setText(diplomaInfo[4]);
+		    course4.setText(diplomaInfo[5]);
+		    course5.setText(diplomaInfo[6]);
+		    course6.setText(diplomaInfo[7]);;
+		    cred1.setText(diplomaInfo[15]);
+		    cred2.setText(diplomaInfo[16]);
+		    cred3.setText(diplomaInfo[17]);
+		    cred4.setText(diplomaInfo[18]);
+		    cred5.setText(diplomaInfo[19]);
+		    cred6.setText(diplomaInfo[20]);
+		    pre1.setText(diplomaInfo[9]);
+		    pre2.setText(diplomaInfo[10]);
+		    pre3.setText(diplomaInfo[11]);
+		    pre4.setText(diplomaInfo[12]);
+		    pre5.setText(diplomaInfo[13]);
+		    pre6.setText(diplomaInfo[14]);
+		    cde1.setText(diplomaInfo[21]);
+		    cde2.setText(diplomaInfo[22]);
+		    cde3.setText(diplomaInfo[23]);
+		    cde4.setText(diplomaInfo[24]);
+		    cde5.setText(diplomaInfo[25]);
+		    cde6.setText(diplomaInfo[26]);
+		    
+		    if(cred1.getText().length()==0 && cred1.getText().length()==0 && cred2.getText().length()==0 && cred3.getText().length()==0 && cred4.getText().length()==0 && cred5.getText().length()==0 && cred6.getText().length()==0){
 		    	 cred1.setText("0");
 		    	 cred2.setText("0");
 		    	 cred3.setText("0");
@@ -465,6 +440,7 @@ public class ModifyCourse extends ProgrammeRecords{
 		    	 cred5.setText("0");
 		    	 cred6.setText("0");
 		    }
+		    
 		    cde7.setEnabled(false);
 	        cde8.setEnabled(false);
 	        pre7.setEnabled(false);
@@ -477,82 +453,58 @@ public class ModifyCourse extends ProgrammeRecords{
 	    	JOptionPane.showMessageDialog(null, e);
 	    }
 	}
+	
 	public void loadAssociate(String code){
 		try {
 	        String q = "SELECT * FROM associatedegree WHERE ProgrammeCode =?";
 	        PreparedStatement pst=conn.prepareStatement(q);
 	        pst.setString(1, code);
 	        ResultSet rs = pst.executeQuery();
-	        
-		    if(rs.next()) { 
-		    	String des = rs.getString("Description");
-		    	description.setText(des);
-		        String c1 = rs.getString("CourseName1");
-		        course1.setText(c1);
-		        String c2 = rs.getString("CourseName2");
-		        course2.setText(c2);
-		        String c3 = rs.getString("CourseName3");
-		        course3.setText(c3);
-		        String c4 = rs.getString("CourseName4");
-		        course4.setText(c4);
-		        String c5 = rs.getString("CourseName5");
-		        course5.setText(c5);
-		        String c6 = rs.getString("CourseName6");
-		        course6.setText(c6);
-		        String c7 = rs.getString("CourseName7");
-		        course7.setText(c7);
-		        String c8 = rs.getString("CourseName8");
-		        course8.setText(c8);
-		        String cd1 = rs.getString("Credits1");
-		        cred1.setText(cd1);
-		        String cd2 = rs.getString("Credits2");
-		        cred2.setText(cd2);
-		        String cd3 = rs.getString("Credits3");
-		        cred3.setText(cd3);
-		        String cd4 = rs.getString("Credits4");
-		        cred4.setText(cd4);
-		        String cd5 = rs.getString("Credits5");
-		        cred5.setText(cd5);
-		        String cd6 = rs.getString("Credits6");
-		        cred6.setText(cd6);
-		        String cd7 = rs.getString("Credits7");
-		        cred7.setText(cd7);
-		        String cd8 = rs.getString("Credits8");
-		        cred8.setText(cd8);
-		        String p1 = rs.getString("Prereq1");
-		        pre1.setText(p1);
-		        String p2 = rs.getString("Prereq2");
-		        pre2.setText(p2);
-		        String p3 = rs.getString("Prereq3");
-		        pre3.setText(p3);
-		        String p4 = rs.getString("Prereq4");
-		        pre4.setText(p4);
-		        String p5 = rs.getString("Prereq5");
-		        pre5.setText(p5);
-		        String p6 = rs.getString("Prereq6");
-		        pre6.setText(p6);
-		        String p7 = rs.getString("Prereq7");
-		        pre7.setText(p7);
-		        String p8 = rs.getString("Prereq8");
-		        pre8.setText(p8);
-		        String Ccode1 = rs.getString("Code1");
-		        cde1.setText(Ccode1);
-		        String Ccode2 = rs.getString("Code2");
-		        cde2.setText(Ccode2);
-		        String Ccode3 = rs.getString("Code3");
-		        cde3.setText(Ccode3);
-		        String Ccode4 = rs.getString("Code4");
-		        cde4.setText(Ccode4);
-		        String Ccode5 = rs.getString("Code5");
-		        cde5.setText(Ccode5);
-		        String Ccode6 = rs.getString("Code6");
-		        cde6.setText(Ccode6);
-		        String Ccode7 = rs.getString("Code7");
-		        cde7.setText(Ccode7);
-		        String Ccode8 = rs.getString("Code8");
-		        cde8.setText(Ccode8);
-		        pst.close();
-		    }else{
+	        ResultSetMetaData rsmd = rs.getMetaData();
+			int columnsNumber = rsmd.getColumnCount();
+			String[] degreeInfo = new String[columnsNumber+1];
+			while (rs.next()) {
+				for (int i = 1; i <= columnsNumber; i++) {
+					degreeInfo[i]=rs.getString(i);
+			    }
+			}
+			pst.close();
+			
+		    description.setText(degreeInfo[8]);
+		    course1.setText(degreeInfo[2]);
+		    course2.setText(degreeInfo[3]);
+		    course3.setText(degreeInfo[4]);
+		    course4.setText(degreeInfo[5]);
+		    course5.setText(degreeInfo[6]);
+		    course6.setText(degreeInfo[7]);
+		    course7.setText(degreeInfo[27]);
+		    course8.setText(degreeInfo[28]);
+		    cred1.setText(degreeInfo[15]);
+		    cred2.setText(degreeInfo[16]);
+		    cred3.setText(degreeInfo[17]);
+		    cred4.setText(degreeInfo[18]);
+		    cred5.setText(degreeInfo[19]);
+		    cred6.setText(degreeInfo[20]);
+		    cred7.setText(degreeInfo[31]);
+		    cred8.setText(degreeInfo[32]);
+		    pre1.setText(degreeInfo[9]);
+		    pre2.setText(degreeInfo[10]);
+		    pre3.setText(degreeInfo[11]);
+		    pre4.setText(degreeInfo[12]);
+		    pre5.setText(degreeInfo[13]);
+		    pre6.setText(degreeInfo[14]);
+		    pre7.setText(degreeInfo[29]);
+		    pre8.setText(degreeInfo[30]);
+		    cde1.setText(degreeInfo[21]);
+		    cde2.setText(degreeInfo[22]);
+		    cde3.setText(degreeInfo[23]);
+		    cde4.setText(degreeInfo[24]);
+		    cde5.setText(degreeInfo[25]);
+		    cde6.setText(degreeInfo[26]);
+		    cde7.setText(degreeInfo[33]);
+		    cde8.setText(degreeInfo[34]);
+		    
+		    if(cred1.getText().length()==0 && cred1.getText().length()==0 && cred2.getText().length()==0 && cred3.getText().length()==0 && cred4.getText().length()==0 && cred5.getText().length()==0 && cred6.getText().length()==0 && cred7.getText().length()==0 && cred8.getText().length()==0){
 		    	 cred1.setText("0");
 		    	 cred2.setText("0");
 		    	 cred3.setText("0");
