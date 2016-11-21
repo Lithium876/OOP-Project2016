@@ -991,9 +991,9 @@ public class ModifyCourse extends ProgrammeRecords{
 				}
 			}
 		});
-		cred8.addKeyListener(new KeyAdapter() {
+		cred8.addFocusListener(new FocusAdapter() {
 			@Override
-			public void keyReleased(KeyEvent e) {
+			public void focusLost(FocusEvent e) {
 				if(cred8.getText().length()==0){
 					cred8.setText("0");
 				}
@@ -1202,7 +1202,7 @@ public class ModifyCourse extends ProgrammeRecords{
 		cde8.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				if(cde8.getText().equals(cde1.getText())||cde8.getText().equals(cde2.getText())||cde8.getText().equals(cde3.getText())||cde8.getText().equals(cde4.getText())||cde8.getText().equals(cde5.getText())||cde8.getText().equals(cde7.getText())){
+				if(cde8.getText().equals(cde1.getText())||cde8.getText().equals(cde2.getText())||cde8.getText().equals(cde3.getText())||cde8.getText().equals(cde4.getText())||cde8.getText().equals(cde5.getText())||cde8.getText().equals(cde7.getText())||cde8.getText().equals(cde6.getText())){
 					if(cde8.getText().equals("")){
 					}else{
 						JOptionPane.showMessageDialog(null, cde8.getText()+" Already Exists");
