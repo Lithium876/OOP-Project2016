@@ -43,6 +43,14 @@ public class GenerateFeeBreakdown extends StudentRecords{
 	private JTextField progCode;
 	private JTextField stuId;
 	private JTextField stuName;
+	private JTextField progName;
+	private JTextField award;
+	private JTextField accreditation;
+	private JSeparator separator_4;
+	private JTextField maxCourses;
+	private JFrame student;
+	private String name;
+	private String getid; 
 	private JLabel c1;
 	private JLabel c2;
 	private JLabel c3;
@@ -59,15 +67,6 @@ public class GenerateFeeBreakdown extends StudentRecords{
 	private JLabel cred6;
 	private JLabel cred7;
 	private JLabel cred8;
-	private String getid; 
-	private JFrame student;
-	private String name;
-	Connection conn=null;
-	private JTextField progName;
-	private JTextField award;
-	private JTextField accreditation;
-	private JSeparator separator_4;
-	private JTextField maxCourses;
 	private JLabel lblCodes;
 	private JLabel code1;
 	private JLabel code2;
@@ -92,6 +91,7 @@ public class GenerateFeeBreakdown extends StudentRecords{
 	private JSeparator separator_2;
 	private JLabel lblTotal;
 	private JLabel totalcost4;
+	Connection conn=null;
 	
 	public void live(){
 		try {
@@ -375,9 +375,8 @@ public class GenerateFeeBreakdown extends StudentRecords{
 					    pst3.close();
 					}
 				}catch(Exception err){
-					
+					//System.out.println(err);	
 				}
-				
 			}
 		});
 		student.setTitle("STUDENT");
@@ -458,13 +457,6 @@ public class GenerateFeeBreakdown extends StudentRecords{
 		
 		JButton btnFeeBreakdown = new JButton("FEE BREAKDOWN");
 		btnFeeBreakdown.setEnabled(false);
-		btnFeeBreakdown.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//GenerateFee gf = new GenerateFee();
-				//student.dispose();	
-				//gf.load();
-			}
-		});
 		btnFeeBreakdown.setBounds(12, 332, 188, 25);
 		panel.add(btnFeeBreakdown);
 		

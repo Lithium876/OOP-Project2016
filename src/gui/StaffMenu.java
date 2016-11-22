@@ -53,8 +53,6 @@ public class StaffMenu extends StudentRecords{
 	private JTextField progcode;
 	private JTextField pass;
 	private String name;
-	private String depart;
-	private String fac;
 	Connection conn=null;
 	
 	
@@ -221,8 +219,6 @@ public class StaffMenu extends StudentRecords{
 		info=fp.getUserinfo(getid);
 		try{
 			name=info[0];
-			depart=info[1];
-			fac=info[2];
 		}
 		catch(Exception e){
 			//System.out.println(e);

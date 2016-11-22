@@ -40,8 +40,6 @@ public class StudentList extends StudentRecords{
 	private JTable table;
 	private JTextField find;
 	private String name;
-	private String depart;
-	private String fac;
 	Connection conn=null;
 	
 	public void load() {
@@ -140,10 +138,6 @@ public class StudentList extends StudentRecords{
 		panel.add(btnModifyPrgramme);
 		
 		JButton btnGenerateStudentList = new JButton("STUDENT LIST");
-		btnGenerateStudentList.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnGenerateStudentList.setEnabled(false);
 		btnGenerateStudentList.setBounds(12, 330, 188, 25);
 		panel.add(btnGenerateStudentList);
@@ -171,8 +165,6 @@ public class StudentList extends StudentRecords{
 		info=fp.getUserinfo(getid);
 		try{
 			name=info[0];
-			depart=info[1];
-			fac=info[2];
 		}catch(Exception e){
 			//System.out.println(e);
 		}

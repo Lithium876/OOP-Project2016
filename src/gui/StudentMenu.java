@@ -71,7 +71,6 @@ public class StudentMenu extends StudentRecords{
 	private String name;
 	Connection conn=null;
 	
-	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -93,8 +92,6 @@ public class StudentMenu extends StudentRecords{
 			e.printStackTrace();
 		}
 	}
-	
-	
 	
 	public StudentMenu(String id, String firstName, String lastName, String address, String enrolmentStatus,String programmeCode, String contactNumber, CourseRecords course) {
 		super(id, firstName, lastName, address, enrolmentStatus, programmeCode, contactNumber, course);
@@ -407,10 +404,7 @@ public class StudentMenu extends StudentRecords{
 			{
 				try{
 					for(;;){
-					Calendar now = new GregorianCalendar();
-					int day = now.get(Calendar.DAY_OF_MONTH);
-					int month=now.get(Calendar.MONTH);
-					int year =now.get(Calendar.YEAR);
+					//Calendar now = new GregorianCalendar();
 					/*int seconds = now.get(Calendar.SECOND);
 					int minutes=now.get(Calendar.MINUTE);
 					int hour=now.get(Calendar.HOUR);*/

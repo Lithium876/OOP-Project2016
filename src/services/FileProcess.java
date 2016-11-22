@@ -92,10 +92,8 @@ public class FileProcess {
 						{
 							Temps.set(l+2, Update);
 							count++;
-						}
-						
+						}					
 					}
-				
 				}
 				catch(Exception err)
 				{
@@ -163,55 +161,6 @@ public class FileProcess {
 		}
 		return -1;
 	}
-	public void Delete(String search)
-	{
-		File users=new File("UserAccounts.txt");
-		String strholder="";							//THIS VARIABLE HOLDS EACH LINE THAT IS READ IN FROM THE FILE
-		int count =0;
-		ArrayList<String> Temps =new ArrayList<String>();
-		try
-		{
-			Scanner inFile = new Scanner(users);    //GETS THE INPUT FROM FILE
-			while(inFile.hasNext())   				//LOOPS THROUGHT THE FILE WHILE IT HAS A NEXT LINE
-			{
-				strholder=inFile.nextLine();
-				Temps.add(strholder);				//ADDS EACH LINE FROM THE FILE TO ARRAYLIST
-			}
-			inFile.close();            
-			for(int l=0;l<Temps.size(); l++)
-			{
-				try
-				{
-					if(Temps.get(l).contains(search)) //CHECKS EACH INDEX ALONG SITE THE RECORD TO DELETE 
-					{
-						Temps.set(l,"");           //DELETE'S THE RECORD 
-						Temps.set(l+1, "");
-						Temps.set(l+2, "");
-						count++;					 //COUNTING HOW MUCH RECORDS WERE DELETED
-					}
-				}
-				catch(Exception err)
-				{
-					JOptionPane.showMessageDialog(null, "Opps.. Somthing went wrong while Updating file.\nError: "+err.getMessage());
-				}
-			}
-			users.delete();
-			writeUpdates(Temps);
-		}
-		catch(Exception e)
-		{
-			JOptionPane.showMessageDialog(null, "Opps.. Somthing went wrong while reading file.\nError: "+e.getMessage());
-		}
-		if(count==0)   //IF WHAT WE SEARCHED FOR WAS NOT IN THE FILE TO DELETE
-		{
-			JOptionPane.showMessageDialog(null, "Opps.. "+search+" Was not found in file.. Please Try Again");
-		}
-		else
-		{
-			JOptionPane.showMessageDialog(null, "Update Completed.\n"+count+" records were Updated");
-			Temps.clear();
-		}
-	}
 	
 	public int fileLookUP(String user, String pass, String domain)
 	{
@@ -242,6 +191,7 @@ public class FileProcess {
 		}
 		return -1;
 	}	
+	
 	public int LookUPUser(String user)
 	{
 		try
@@ -271,6 +221,7 @@ public class FileProcess {
 		}
 		return -1;
 	}	
+	
 	public String[] getUserinfo(String user)
 	{
 		try
@@ -301,7 +252,6 @@ public class FileProcess {
 		{
 			//JOptionPane.showMessageDialog(null, "Opps.. Somthing went wrong while looking up user in file.\n Error: "+e.getMessage());
 		}
-		return null;
-		
+		return null;		
 	}	
 }

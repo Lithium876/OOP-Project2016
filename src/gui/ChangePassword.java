@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.Color;
@@ -22,25 +21,8 @@ public class ChangePassword {
 	private JPasswordField passwordField;
 	private JPasswordField confirmpasswordField;
 	StaffMenu sm= new StaffMenu();
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ChangePassword window = new ChangePassword();
-					window.frmChangePassword.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
+	
+	
 	public void start() {
 		try {
 			ChangePassword window = new ChangePassword();
@@ -49,14 +31,11 @@ public class ChangePassword {
 			e.printStackTrace();
 		}
 	}
+	
 	public ChangePassword() {
 		initialize();
 	}
 
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frmChangePassword = new JFrame();
 		frmChangePassword.setResizable(false);
@@ -116,5 +95,4 @@ public class ChangePassword {
 		separator_1.setBounds(12, 145, 397, 2);
 		frmChangePassword.getContentPane().add(separator_1);
 	}
-
 }

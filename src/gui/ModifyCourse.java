@@ -51,8 +51,6 @@ public class ModifyCourse extends ProgrammeRecords{
 	private JFrame modifycourse;
 	private JTextField find;
 	private String name;
-	private String depart;
-	private String fac;
 	private String programmeCode;
 	private String programmeName;
 	private String programmeAward;
@@ -634,11 +632,9 @@ public class ModifyCourse extends ProgrammeRecords{
 		info=fp.getUserinfo(getid);
 		try{
 			name=info[0];
-			depart=info[1];
-			fac=info[2];
 		}
 		catch(Exception e){
-			
+			System.out.println(e);
 		}
 		StaffName.setText(name);
 		

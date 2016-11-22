@@ -42,6 +42,11 @@ public class ProgrammeDetails extends StudentRecords{
 	private JTextField progCode;
 	private JTextField stuId;
 	private JTextField stuName;
+	private JTextField progName;
+	private JTextField award;
+	private JTextField accreditation;
+	private JSeparator separator_4;
+	private JTextField maxCourses;
 	private JTextArea descritption;
 	private JLabel en1;
 	private JLabel en2;
@@ -78,12 +83,6 @@ public class ProgrammeDetails extends StudentRecords{
 	private String getid; 
 	private JFrame student;
 	private String name;
-	Connection conn=null;
-	private JTextField progName;
-	private JTextField award;
-	private JTextField accreditation;
-	private JSeparator separator_4;
-	private JTextField maxCourses;
 	private JLabel lblDescription;
 	private JLabel lblCodes;
 	private JLabel code1;
@@ -94,6 +93,7 @@ public class ProgrammeDetails extends StudentRecords{
 	private JLabel code6;
 	private JLabel code7;
 	private JLabel code8;
+	Connection conn=null;
 	
 	public void live(){
 		try {

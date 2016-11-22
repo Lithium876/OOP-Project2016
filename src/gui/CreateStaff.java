@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.Color;
@@ -30,28 +29,7 @@ public class CreateStaff{
 	private JTextField faculty;
 	public String usr;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CreateStaff window = new CreateStaff();
-					window.frmStaffAccount.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the application.
-	 */
-	public CreateStaff() {
-		initialize();
-	}
 	public void run() {
 		try {
 			CreateStaff window = new CreateStaff();
@@ -61,9 +39,10 @@ public class CreateStaff{
 		}
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	public CreateStaff() {
+		initialize();
+	}
+	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
 		frmStaffAccount = new JFrame();
@@ -206,8 +185,6 @@ public class CreateStaff{
 		faculty = new JTextField();
 		faculty.setColumns(10);
 		faculty.setBounds(400, 119, 159, 19);
-		panel.add(faculty);
-		
-		
+		panel.add(faculty);		
 	}
 }

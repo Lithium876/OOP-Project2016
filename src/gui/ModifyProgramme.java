@@ -51,8 +51,6 @@ public class ModifyProgramme extends ProgrammeRecords{
 	private JButton modCourses;
 	private JTextField find;
 	private String name;
-	private String depart;
-	private String fac;
 	private JTextField progName;
 	private JTextField progCode;
 	private JTextField maxCourses;
@@ -146,6 +144,7 @@ public class ModifyProgramme extends ProgrammeRecords{
 		        	ex.getMessage();
 		        }
 	   }
+	
 	public void search(String arg){
 		 try{	
 				String Query= "SELECT * FROM programmeinfo WHERE ProgrammeCode=?"; 
@@ -278,11 +277,9 @@ public class ModifyProgramme extends ProgrammeRecords{
 		info=fp.getUserinfo(getid);
 		try{
 			name=info[0];
-			depart=info[1];
-			fac=info[2];
 		}
 		catch(Exception e){
-			
+			System.out.println(e);
 		}
 		StaffName.setText(name);
 		
@@ -307,7 +304,6 @@ public class ModifyProgramme extends ProgrammeRecords{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try{
-					ProgrammeRecords pr = new ProgrammeRecords();
 					DefaultTableModel model= (DefaultTableModel)table.getModel();
 					int selectedRowIndex = table.getSelectedRow();
 					award.setText(model.getValueAt(selectedRowIndex, 3).toString());
@@ -319,7 +315,6 @@ public class ModifyProgramme extends ProgrammeRecords{
 					code = model.getValueAt(selectedRowIndex, 0).toString();
 					setEditable(true);
 					modCourses.setEnabled(true);
-					
 				}catch(Exception err){
 					System.out.println(err);
 				}
@@ -473,7 +468,6 @@ public class ModifyProgramme extends ProgrammeRecords{
 				try{
 					if(progName.getText().length()!=0 && progCode.getText().length()!=0  && accreditation.getText().length()!=0  && cost.getText().length()!=0)
 					{
-						String numOfRecords = null;
 						CourseRecords course = new CourseRecords();
 						ProgrammeRecords pr = new ModifyProgramme(progCode.getText(),progName.getText(),Integer.parseInt(maxCourses.getText()),award.getText(),accreditation.getText(),course);
 						pr.display();

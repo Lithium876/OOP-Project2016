@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Desktop;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,6 +39,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.awt.Dialog.ModalExclusionType;
+import java.awt.EventQueue;
 import java.awt.Window.Type;
 
 public class CreateProgramme extends ProgrammeRecords{
@@ -47,19 +47,15 @@ public class CreateProgramme extends ProgrammeRecords{
 	private JFrame frmCreateProgramme;
 	private JTextField progCode;
 	private JTextField progName;
-	private JComboBox comboBox;
 	private JCheckBox dip;
 	private JCheckBox cer;
 	private JCheckBox deg;
 	private JCheckBox no;
 	private JCheckBox yes;
 	private String name;
-	private String depart;
-	private String fac;
 	private JComboBox numofCourses;
 	Connection conn=null;
 
-	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -72,6 +68,7 @@ public class CreateProgramme extends ProgrammeRecords{
 			}
 		});
 	}
+	
 	public void load() {
 		try {
 			CreateProgramme window = new CreateProgramme();
@@ -103,6 +100,7 @@ public class CreateProgramme extends ProgrammeRecords{
 		yes.setSelected(false);
 		numofCourses.setSelectedIndex(0);
 	}
+	
 	public void clock(){
 		Thread clock=new Thread()
 		{
@@ -129,8 +127,8 @@ public class CreateProgramme extends ProgrammeRecords{
 		clock.start();
 	}
 	
-@SuppressWarnings({ "rawtypes", "unchecked" })
-private void initialize() {
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void initialize() {
 		frmCreateProgramme = new JFrame();
 		frmCreateProgramme.setTitle("STAFF MENU");
 		frmCreateProgramme.setResizable(false);
@@ -164,10 +162,7 @@ private void initialize() {
 		info=fp.getUserinfo(getid);
 		try{
 			name=info[0];
-			depart=info[1];
-			fac=info[2];
 		}catch(Exception e){
-				
 		}
 		StaffName.setText(name);
 			
@@ -257,7 +252,6 @@ private void initialize() {
 				}catch(Exception err){
 					System.out.println(err);
 				}
-				
 			}
 		});
 		progCode.setBounds(216, 85, 242, 19);
@@ -339,7 +333,6 @@ private void initialize() {
 				System.out.println(err);
 			}
 		}
-			
 		});
 		btnNewButton_2.setBounds(72, 443, 183, 34);
 		panel_1.add(btnNewButton_2);
@@ -529,11 +522,5 @@ private void initialize() {
 			}
 		});
 		mnAbout.add(mntmNewMenuItem);
-	}
-	public String getYesText() {
-		return yes.getText();
-	}
-	public void setYesText(String text) {
-		yes.setText(text);
 	}
 }
