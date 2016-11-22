@@ -65,6 +65,7 @@ public class ModifyProgramme extends ProgrammeRecords{
 	private static String programmeAccreditation;
 	private static String programmemaxCourses;
 	Connection conn=null;
+	private JTextField cost;
 	
 	
 	public static void main(String[] args) {
@@ -102,6 +103,7 @@ public class ModifyProgramme extends ProgrammeRecords{
 		progName.setEditable(arg);
 		progCode.setEditable(arg);
 		accreditation.setEditable(arg);
+		cost.setEditable(arg);
 	}
 	public void clear(){
 		award.setText("");
@@ -194,14 +196,14 @@ public class ModifyProgramme extends ProgrammeRecords{
 		modifyprog.setResizable(false);
 		modifyprog.setTitle("STAFF ");
 		modifyprog.getContentPane().setBackground(new Color(0, 102, 255));
-		modifyprog.setBounds(100, 100, 994, 603);
+		modifyprog.setBounds(100, 100, 984, 631);
 		modifyprog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		modifyprog.setLocationRelativeTo(null);
 		modifyprog.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 153, 255));
-		panel.setBounds(12, 31, 212, 484);
+		panel.setBounds(12, 31, 212, 506);
 		modifyprog.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -261,7 +263,7 @@ public class ModifyProgramme extends ProgrammeRecords{
 				log.run();
 			}
 		});
-		btnNewButton_1.setBounds(39, 447, 117, 25);
+		btnNewButton_1.setBounds(45, 469, 117, 25);
 		panel.add(btnNewButton_1);
 		
 		JLabel StaffName = new JLabel("New label");
@@ -292,7 +294,7 @@ public class ModifyProgramme extends ProgrammeRecords{
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBackground(new Color(0, 153, 255));
-		panel_1.setBounds(236, 12, 738, 530);
+		panel_1.setBounds(236, 12, 738, 557);
 		modifyprog.getContentPane().add(panel_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -313,6 +315,7 @@ public class ModifyProgramme extends ProgrammeRecords{
 					progCode.setText(model.getValueAt(selectedRowIndex, 0).toString());
 					maxCourses.setText(model.getValueAt(selectedRowIndex, 2).toString());
 					accreditation.setText(model.getValueAt(selectedRowIndex, 4).toString());
+					cost.setText(model.getValueAt(selectedRowIndex, 5).toString());
 					code = model.getValueAt(selectedRowIndex, 0).toString();
 					setEditable(true);
 					modCourses.setEnabled(true);
@@ -381,7 +384,7 @@ public class ModifyProgramme extends ProgrammeRecords{
 		progName = new JTextField();
 		progName.setEditable(false);
 		progName.setColumns(10);
-		progName.setBounds(189, 402, 222, 19);
+		progName.setBounds(202, 401, 222, 19);
 		panel_1.add(progName);
 		
 		JLabel lblProgrammeCode_1 = new JLabel("Programme Code:");
@@ -420,7 +423,7 @@ public class ModifyProgramme extends ProgrammeRecords{
 		});
 		progCode.setEditable(false);
 		progCode.setColumns(10);
-		progCode.setBounds(189, 431, 222, 19);
+		progCode.setBounds(202, 430, 222, 19);
 		panel_1.add(progCode);
 		
 		JLabel lblMaxNoCourses = new JLabel("Max No. Courses:");
@@ -432,7 +435,7 @@ public class ModifyProgramme extends ProgrammeRecords{
 		maxCourses = new JTextField();
 		maxCourses.setEditable(false);
 		maxCourses.setColumns(10);
-		maxCourses.setBounds(189, 464, 222, 19);
+		maxCourses.setBounds(202, 462, 222, 19);
 		panel_1.add(maxCourses);
 		
 		JLabel lblA = new JLabel("Award:");
@@ -444,38 +447,38 @@ public class ModifyProgramme extends ProgrammeRecords{
 		award = new JTextField();
 		award.setEditable(false);
 		award.setColumns(10);
-		award.setBounds(189, 369, 222, 19);
+		award.setBounds(202, 368, 222, 19);
 		panel_1.add(award);
 		
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setOrientation(SwingConstants.VERTICAL);
-		separator_2.setBounds(436, 369, 2, 146);
+		separator_2.setBounds(436, 369, 2, 175);
 		panel_1.add(separator_2);
 		
 		JLabel lblAccreditation = new JLabel("Accreditation:");
 		lblAccreditation.setForeground(Color.WHITE);
 		lblAccreditation.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblAccreditation.setBounds(42, 495, 124, 20);
+		lblAccreditation.setBounds(42, 524, 124, 20);
 		panel_1.add(lblAccreditation);
 		
 		accreditation = new JTextField();
 		accreditation.setEditable(false);
 		accreditation.setColumns(10);
-		accreditation.setBounds(189, 497, 222, 19);
+		accreditation.setBounds(202, 525, 222, 19);
 		panel_1.add(accreditation);
 		
 		JButton btnDelete = new JButton("UPDATE");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					if(progName.getText().length()!=0 && award.getText().length()!=0  && progCode.getText().length()!=0  && accreditation.getText().length()!=0  && maxCourses.getText().length()!=0)
+					if(progName.getText().length()!=0 && progCode.getText().length()!=0  && accreditation.getText().length()!=0  && cost.getText().length()!=0)
 					{
 						String numOfRecords = null;
 						CourseRecords course = new CourseRecords();
 						ProgrammeRecords pr = new ModifyProgramme(progCode.getText(),progName.getText(),Integer.parseInt(maxCourses.getText()),award.getText(),accreditation.getText(),course);
 						pr.display();
 						
-						String query="UPDATE programmeinfo SET ProgrammeName='"+pr.getName()+"',ProgrammeCode='"+progCode.getText()+"','Accreditation'='"+pr.getAccreditation()+"',Award='"+pr.getAward()+"','NumberofCourses'='"+pr.getMaxCourse()+"' WHERE ProgrammeCode='"+code+"' ";
+						String query="UPDATE programmeinfo SET ProgrammeName='"+pr.getName()+"',ProgrammeCode='"+progCode.getText()+"','Accreditation'='"+pr.getAccreditation()+"',Award='"+pr.getAward()+"','NumberofCourses'='"+pr.getMaxCourse()+"','CostPerCredit'='"+cost.getText()+"' WHERE ProgrammeCode='"+code+"' ";
 						PreparedStatement pst= conn.prepareStatement(query);
 					    pst.executeUpdate();
 					    pst.close();
@@ -491,7 +494,7 @@ public class ModifyProgramme extends ProgrammeRecords{
 				}
 			}
 		});
-		btnDelete.setBounds(476, 425, 198, 36);
+		btnDelete.setBounds(476, 432, 198, 36);
 		panel_1.add(btnDelete);
 		
 		JButton button = new JButton("DELETE");
@@ -522,7 +525,7 @@ public class ModifyProgramme extends ProgrammeRecords{
 				}
 			}
 		});
-		button.setBounds(476, 479, 198, 36);
+		button.setBounds(476, 495, 198, 36);
 		panel_1.add(button);
 		
 		modCourses = new JButton("MODIFY COURSES");
@@ -541,6 +544,28 @@ public class ModifyProgramme extends ProgrammeRecords{
 		});
 		modCourses.setBounds(476, 369, 198, 36);
 		panel_1.add(modCourses);
+		
+		JLabel lblCostPerCredit = new JLabel("Cost Per Credit($):");
+		lblCostPerCredit.setForeground(Color.WHITE);
+		lblCostPerCredit.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblCostPerCredit.setBounds(20, 495, 175, 20);
+		panel_1.add(lblCostPerCredit);
+		
+		cost = new JTextField();
+		cost.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				try{
+					Integer.parseInt(cost.getText());
+				}catch(Exception err){
+					cost.setText("");
+				}
+			}
+		});
+		cost.setEditable(false);
+		cost.setColumns(10);
+		cost.setBounds(202, 497, 222, 19);
+		panel_1.add(cost);
 		JMenuBar menuBar = new JMenuBar();
 		modifyprog.setJMenuBar(menuBar);
 		

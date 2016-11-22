@@ -570,9 +570,9 @@ public class StudentMenu extends StudentRecords{
 		JButton btnFeeBreakdown = new JButton("FEE BREAKDOWN");
 		btnFeeBreakdown.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//GenerateFee gf = new GenerateFee();
-				//student.dispose();	
-				//gf.load();
+				GenerateFeeBreakdown gf = new GenerateFeeBreakdown();
+				student.dispose();	
+				gf.live();
 			}
 		});
 		btnFeeBreakdown.setBounds(12, 290, 188, 25);
@@ -807,7 +807,6 @@ public class StudentMenu extends StudentRecords{
 		enroll = new JButton("ENROLL ME");
 		enroll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				enroll.setEnabled(false);
 				String progAward = null;
 				try {
 					String q = "SELECT Award FROM programmeinfo WHERE ProgrammeCode=?";
@@ -818,19 +817,23 @@ public class StudentMenu extends StudentRecords{
 						progAward=rs.getString(1);
 					}
 					pst.close();
-		
-					if(progAward.equals("Associate Degree")){
-						enrollDegree(stuId.getText());
+					if(c1.isSelected()==false && c2.isSelected()==false && c3.isSelected()==false && c4.isSelected()==false && c5.isSelected()==false && c6.isSelected()==false && c7.isSelected()==false && c8.isSelected()==false){
+							JOptionPane.showMessageDialog(null, "No course was selected!");
 					}else{
-						if(progAward.equals("Diploma")){
-							enrollDiploma(stuId.getText());
+						enroll.setEnabled(false);
+						enroll.setText("ENROLLED");
+						if(progAward.equals("Associate Degree")){
+							enrollDegree(stuId.getText());
 						}else{
-							if(progAward.equals("Certificate")){
-								enrollCertificate(stuId.getText());
+							if(progAward.equals("Diploma")){
+								enrollDiploma(stuId.getText());
+							}else{
+								if(progAward.equals("Certificate")){
+									enrollCertificate(stuId.getText());
+								}
 							}
 						}
 					}
-					
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
