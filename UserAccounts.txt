@@ -10,9 +10,9 @@ STAFF
 Computing
 FENC
 =======================================
-Paul Smith
-1614999
-password1
+password3
+password3
+password2
 STUDENT
 999
 
@@ -47,3 +47,20 @@ STUDENT
 
 =======================================
 
+Sammy null
+Sam
+password1
+STAFF
+COBAM
+SBA
+01/11/2016
+=======================================
+
+password4
+password4
+password2
+STAFF
+FOBE
+SBLM
+10/11/2016
+=======================================

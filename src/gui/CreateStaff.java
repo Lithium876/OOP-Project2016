@@ -3,8 +3,12 @@ package gui;
 
 import javax.swing.JFrame;
 import java.awt.Color;
+import java.awt.EventQueue;
+
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import domain.StaffRecords;
 import services.FileProcess;
 
 import javax.swing.JLabel;
@@ -15,21 +19,39 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
+import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
 
-public class CreateStaff{
+public class CreateStaff extends StaffRecords{
 
 	private JFrame frmStaffAccount;
 	private JTextField firstName;
 	private JTextField username;
+	private JComboBox faculty;
+	private JComboBox department;
+	private JDateChooser DateC;
 	private JPasswordField passwordField;
 	private JPasswordField confirmpasswordField;
 	private JTextField lastName;
-	private JTextField departmnt;
-	private JTextField faculty;
 	public String usr;
 
-
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable(){
+			public void run() {
+				try {
+					CreateStaff window = new CreateStaff();
+					window.frmStaffAccount.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 	public void run() {
 		try {
 			CreateStaff window = new CreateStaff();
@@ -43,20 +65,25 @@ public class CreateStaff{
 		initialize();
 	}
 	
+	public CreateStaff(String id, String firstName, String lastName,String faculty, String department, String employmentDate) {
+		super(id, firstName, lastName, faculty, department, employmentDate);
+		super.setLastName(lastName);
+	}
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
 		frmStaffAccount = new JFrame();
 		frmStaffAccount.setTitle("Staff Account");
 		frmStaffAccount.getContentPane().setBackground(new Color(0, 102, 255));
 		frmStaffAccount.setResizable(false);
-		frmStaffAccount.setBounds(100, 100, 614, 499);
+		frmStaffAccount.setBounds(100, 100, 614, 524);
 		frmStaffAccount.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmStaffAccount.setLocationRelativeTo(null);
 		frmStaffAccount.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 153, 255));
-		panel.setBounds(12, 12, 588, 447);
+		panel.setBounds(12, 12, 588, 472);
 		frmStaffAccount.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -105,13 +132,13 @@ public class CreateStaff{
 		
 		JLabel lblDomain = new JLabel("Domain:");
 		lblDomain.setForeground(Color.WHITE);
-		lblDomain.setBounds(123, 305, 99, 15);
+		lblDomain.setBounds(123, 346, 99, 15);
 		panel.add(lblDomain);
 		
 		JComboBox domain = new JComboBox();
 		domain.setEnabled(false);
 		domain.setEditable(true);
-		domain.setBounds(265, 300, 198, 24);
+		domain.setBounds(265, 341, 198, 24);
 		domain.setModel(new DefaultComboBoxModel(new String[]{"STAFF"}));
 		panel.add(domain);
 		
@@ -125,25 +152,25 @@ public class CreateStaff{
 		panel.add(separator);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(12, 349, 564, 2);
+		separator_1.setBounds(12, 377, 564, 2);
 		panel.add(separator_1);
 		
 		JButton btnNewButton = new JButton("ADD STAFF");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+				String date = df.format(DateC.getDate());
+				StaffRecords sr = new CreateStaff(username.getText(), firstName.getText(), lastName.getText(), String.valueOf(department.getSelectedItem()), String.valueOf(faculty.getSelectedItem()), date);
 				FileProcess fp = new FileProcess();
-				String name = new String(firstName.getText()+" "+lastName.getText());
-				usr = username.getText();
-				String department = departmnt.getText();
-				String fac = faculty.getText();
+				String name = new String(sr.getFirstName()+" "+sr.getLastName());
 				String passwrd = new String(passwordField.getPassword());
 				String confirmPasswrd = new String(confirmpasswordField.getPassword());
 				String type = String.valueOf(domain.getSelectedItem());
 				
-				fp.validate(name, usr, passwrd, confirmPasswrd, "NO", type,department,fac);
+				fp.validate(name, sr.getIdNumber(), passwrd, confirmPasswrd, type,sr.getDepartment(), sr.getFaculty(), date);
 			}
 		});
-		btnNewButton.setBounds(191, 366, 221, 32);
+		btnNewButton.setBounds(192, 391, 221, 32);
 		panel.add(btnNewButton);
 		
 		JLabel lblAddStaffAccount = new JLabel("Staff Account");
@@ -164,27 +191,74 @@ public class CreateStaff{
 				log.run();
 			}
 		});
-		btnNewButton_1.setBounds(251, 407, 99, 25);
+		btnNewButton_1.setBounds(252, 435, 99, 25);
 		panel.add(btnNewButton_1);
 		
 		JLabel lblDepartment = new JLabel("Department:");
 		lblDepartment.setForeground(Color.WHITE);
-		lblDepartment.setBounds(22, 123, 99, 15);
+		lblDepartment.setBounds(302, 123, 99, 15);
 		panel.add(lblDepartment);
-		
-		departmnt = new JTextField();
-		departmnt.setColumns(10);
-		departmnt.setBounds(118, 119, 166, 19);
-		panel.add(departmnt);
 		
 		JLabel lblFaculty = new JLabel("Faculty:");
 		lblFaculty.setForeground(Color.WHITE);
-		lblFaculty.setBounds(302, 121, 99, 15);
+		lblFaculty.setBounds(22, 123, 99, 15);
 		panel.add(lblFaculty);
 		
-		faculty = new JTextField();
-		faculty.setColumns(10);
-		faculty.setBounds(400, 119, 159, 19);
-		panel.add(faculty);		
+		JLabel lblDateEmployed = new JLabel("Date Employed:");
+		lblDateEmployed.setForeground(Color.WHITE);
+		lblDateEmployed.setBounds(129, 303, 127, 15);
+		panel.add(lblDateEmployed);
+		
+		DefaultComboBoxModel  COHSdepartments = new DefaultComboBoxModel(new String[]{"SON","SAHN","SOP"});
+		DefaultComboBoxModel  COBAMdepartments= new DefaultComboBoxModel(new String[]{"SBA","SHTM","SEEL","SAM"});
+		DefaultComboBoxModel  FELSdepartments = new DefaultComboBoxModel(new String[]{"STVE","SHSS"});
+		DefaultComboBoxModel  FOBEdepartments = new DefaultComboBoxModel(new String[]{"SBLM","CSA"});
+		DefaultComboBoxModel  FENCdepartments = new DefaultComboBoxModel(new String[]{"SE","SCIT"});
+		DefaultComboBoxModel  FOLdepartments  = new DefaultComboBoxModel(new String[]{"LAW"});
+		DefaultComboBoxModel  FOSSdepartments = new DefaultComboBoxModel(new String[]{"SONAS","SOMAS","CSOSS"});
+		DefaultComboBoxModel  COMOVdepartments= new DefaultComboBoxModel(new String[]{"Medicine","PHHT","OHS","VS"});
+		
+		faculty = new JComboBox();
+		faculty.setModel(new DefaultComboBoxModel(new String[] {"COHS", "COBAM", "FELS", "FOBE", "FENC", "FOL", "FOSS", "COMOV"}));
+		faculty.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (faculty.getSelectedIndex()==0){
+					department.setModel(COHSdepartments);
+				}				
+				else if (faculty.getSelectedIndex()==1){
+					department.setModel(COBAMdepartments);
+				}
+				else if (faculty.getSelectedIndex()==2){
+					department.setModel(FELSdepartments);
+				}
+				else if (faculty.getSelectedIndex()==3){
+					department.setModel(FOBEdepartments);
+				}
+				else if (faculty.getSelectedIndex()==4){
+					department.setModel(FENCdepartments);
+				}
+				else if (faculty.getSelectedIndex()==5){
+					department.setModel(FOLdepartments);
+				}
+				else if (faculty.getSelectedIndex()==6){
+					department.setModel(FOSSdepartments);
+				}
+				else if (faculty.getSelectedIndex()==7){
+					department.setModel(COMOVdepartments);
+				}
+			}
+		});
+		
+		faculty.setBounds(118, 118, 166, 24);
+		panel.add(faculty);
+		
+		department = new JComboBox();
+		department.setBounds(400, 118, 166, 24);
+		panel.add(department);
+		
+		DateC = new JDateChooser();
+		DateC.setDateFormatString("MMM d, yyyy");
+		DateC.setBounds(265, 298, 198, 20);
+		panel.add(DateC);
 	}
 }

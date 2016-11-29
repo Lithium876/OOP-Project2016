@@ -349,7 +349,7 @@ public class StaffMenu extends StudentRecords{
 							pst.setString(8, student.getDateEnrolled());
 							pst.execute();
 							pst.close();	
-							fp.validate(name, usr, passwrd, confirmPasswrd, "NO", type,department,fac);
+							fp.validate(name, usr, passwrd, confirmPasswrd, type,department,fac, date.getText());
 							JOptionPane.showMessageDialog(null, "Student Registered!");
 						}catch (Exception err) {
 							err.printStackTrace();

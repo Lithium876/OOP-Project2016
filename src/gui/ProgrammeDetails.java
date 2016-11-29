@@ -1011,15 +1011,6 @@ public class ProgrammeDetails extends StudentRecords{
 		JMenu mnAccount = new JMenu("Account Settings");
 		menuBar.add(mnAccount);
 		
-		JMenuItem mntmChangePassword = new JMenuItem("Change Password");
-		mntmChangePassword.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ChangePassword cp = new ChangePassword();
-				cp.start();
-			}
-		});
-		mnAccount.add(mntmChangePassword);
-		
 		JMenu mnAbout = new JMenu("About");
 		menuBar.add(mnAbout);
 		

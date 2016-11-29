@@ -5,13 +5,14 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
 public class FileProcess {
-	public void writeUser(String name, String user, String pass,String domain,String department, String faculty)
+	public void writeUser(String name, String user, String pass,String domain,String department, String faculty, String date)
 	{
 		FileWriter writer =null;
 		try 
@@ -30,9 +31,9 @@ public class FileProcess {
 			writer.write("\r\n");
 			writer.write(faculty);
 			writer.write("\r\n");
+			writer.write(date);
+			writer.write("\r\n");
 			writer.write("=======================================");
-			writer.write("\r\n");
-			writer.write("\r\n");
 		} 
 		catch (IOException e) 
 		{
@@ -48,76 +49,7 @@ public class FileProcess {
 		}
 	}
 	
-	public void writeUpdates(ArrayList<String> list){
-		try{
-			BufferedWriter writer = new BufferedWriter(new FileWriter("UserAccounts.txt"));
-			for(String x : list){
-					writer.write(x);
-					writer.newLine();
-			}
-			writer.close();
-		}catch(Exception e){
-			JOptionPane.showMessageDialog(null, "Unable to Open File.\nError: "+e.getLocalizedMessage());
-			}
-	}
-	
-	public void updateFile(String search, String Update, String rewrite){
-		File users=new File("UserAccounts.txt");
-		String strholder="";                     //THIS VARIABLE HOLDS EACH LINE THAT IS READ IN FROM THE FILE
-		int count=0;
-		ArrayList<String> Temps =new ArrayList<String>();
-		try
-		{
-			Scanner inFile = new Scanner(users);  //GETS THE INPUT FROM FILE
-			while(inFile.hasNext()) 				  //LOOPS THROUGHT THE FILE WHILE IT HAS A NEXT LINE
-			{
-				strholder=inFile.nextLine();
-				Temps.add(strholder);					//ADDS EACH LINE FROM THE FILE TO ARRAYLIST
-			}
-			inFile.close();
-			
-			users.delete();							//DELET'S OLD FILE TO BE REPLACE WITH UPDATED FILE
-			for(int l=0;l<Temps.size(); l++)
-			{
-				try
-				{
-					if(Temps.get(l+1).contains(search))
-					{
-						if(rewrite.equals("NO"))
-						{
-							Temps.set(l+1, Update);
-							count++;
-						}
-						else
-						{
-							Temps.set(l+2, Update);
-							count++;
-						}					
-					}
-				}
-				catch(Exception err)
-				{
-					//JOptionPane.showMessageDialog(null, "Opps.. Somthing went wrong while Updating file.\nError: "+err.getMessage());
-				}
-			}
-			writeUpdates(Temps);    //SENDS OFF ARRYLIST TO BE WRITTEN BACK TO FILE
-		}
-		catch(Exception e)
-		{
-			JOptionPane.showMessageDialog(null, "Opps.. Somthing went wrong while reading file.\nError: "+e.getMessage());
-		}
-		if(count==0)
-		{
-			JOptionPane.showMessageDialog(null, "Opps.. "+search+" Was not found in file.. Please Try Again");
-		}
-		else
-		{
-			JOptionPane.showMessageDialog(null, "Update Completed.");
-		}
-		Temps.clear();//CLEARS THE LIST
-	}
-	
-	public int validate(String name, String user, String pass, String confirmpass, String update,String domain,String department, String faculty)
+	public int validate(String name, String user, String pass, String confirmpass ,String domain,String department, String faculty, String date)
 	{
 		String alpha= "[a-zA-Z]+";
 		String num="[0-9]+";
@@ -136,23 +68,18 @@ public class FileProcess {
 				JOptionPane.showMessageDialog(null, "Passwords didn't Match... Try Again!");
 			}
 			else
-			{
-				if(update.equals("NO")){
-					
-					int check= LookUPUser(user);
-					if(check==0){
-						JOptionPane.showMessageDialog(null, "Username Already Exist!");
-						return 1;
+			{	
+				int check= LookUPUser(user);
+				if(check==0){
+					JOptionPane.showMessageDialog(null, "Username Already Exist!");
+					return 1;
 						
-					}else{
-						JOptionPane.showMessageDialog(null, "Account Created!!");
-						writeUser(name, user,pass,domain,department,faculty);
-					}
-					return 0;
-				}else if(update.equals("YES")){
-					updateFile(user,pass,"YES");
-					return 0;
+				}else{
+					JOptionPane.showMessageDialog(null, "Account Created!!");
+					writeUser(name, user,pass,domain,department,faculty,date);
 				}
+				return 0;
+				
 			}
 		}
 		catch(Exception e)

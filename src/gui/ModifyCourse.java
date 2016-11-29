@@ -1240,13 +1240,6 @@ public class ModifyCourse extends ProgrammeRecords{
 		menuBar.add(mnAccount);
 		
 		JMenuItem mntmChangePassword = new JMenuItem("Change Password");
-		mntmChangePassword.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ChangePassword cp = new ChangePassword();
-				cp.start();
-			}
-		});
-		mnAccount.add(mntmChangePassword);
 		
 		JMenu mnNewMenu = new JMenu("About");
 		menuBar.add(mnNewMenu);
