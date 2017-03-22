@@ -12,7 +12,7 @@ After completing an analysis of the paper based system, the Chairman provided a 
 requirements. The Chairman has also instructed your team to provide additional functionalities to enhance
 the program
 
-#Initial requirements 
+# Initial requirements 
 ### The Prototype Should: ###
 Provide an administrator account for the initial system configuration that allows the administrator to
 create user accounts for staff members.
