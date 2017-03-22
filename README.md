@@ -1,4 +1,4 @@
-#Project Details
+# Project Details
 
 The Home & Away Institute (H&AI) is an Educational Institution that specializes in offering Distance
 Learning courses. The institution has been in operation for over three (3) years, and has been using a paper
@@ -13,7 +13,7 @@ requirements. The Chairman has also instructed your team to provide additional f
 the program
 
 #Initial requirements 
-###The Prototype Should:###
+### The Prototype Should: ###
 Provide an administrator account for the initial system configuration that allows the administrator to
 create user accounts for staff members.
 * Provide an administrator account for the initial system configuration that allows the administrator to
@@ -57,12 +57,12 @@ number of courses.
 * Diploma Programmes offer student six specialized courses
 * Associate Degree Programmes offer students eight specialized course
 
-##Functionality Requirements, when the user selects:
+## Functionality Requirements, when the user selects:
 <b>Register Student</b> – the system should present a form that accepts student’s details and generates a student
 record. The student id number should be generated using the current year, programme code and a sequence
 that starts at zero (0), and the enrolment status should be set to zero (0).
 
-##Programme Administration:
+## Programme Administration:
 <i>Create Programme</i> – the system should present a form that accepts general programme details.
 
 
@@ -73,7 +73,7 @@ of courses for the programme.
 Generate Student List – the system should present a form that accepts a programme code then displays the
 list of student currently enrolled in the programme.
 
-##Enrol for Semester
+## Enrol for Semester
 <i>View Programme Details</i> – the system should display all courses in the programme.
 
 <i>Add Course</i> – the system should present a form that allows the selection of courses from the enrolled
